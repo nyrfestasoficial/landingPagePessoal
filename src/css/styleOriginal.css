@@ -127,6 +127,53 @@ button {
     transform: translateY(0)
 }
 
+/* ─── REVEAL — escalonado (stagger) ─────────────── */
+.reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)
+}
+
+.reveal-stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s }
+.reveal-stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s }
+.reveal-stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.2s }
+.reveal-stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.3s }
+.reveal-stagger.visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.4s }
+
+/* ─── SOBRE — eyebrow line animada ──────────────── */
+.sobre-eyebrow-wrap {
+    position: relative;
+    display: inline-block
+}
+
+.sobre-eyebrow-line {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--brand-orange);
+    border-radius: 2px;
+    transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1)
+}
+
+.sobre-eyebrow-line.visible { width: 100% }
+
+/* ─── SOBRE — flash laranja nos números ─────────── */
+@keyframes number-flash {
+    0%, 100% { color: inherit; text-shadow: none }
+    40%       { color: var(--brand-orange); text-shadow: 0 0 12px rgba(244,160,0,0.4) }
+}
+
+.sobre-para strong.flash {
+    animation: number-flash 3s ease-in-out infinite
+}
+
+.sobre-para strong.flash:nth-of-type(1) 
+.sobre-para strong.flash:nth-of-type(2) 
+.sobre-para strong.flash:nth-of-type(3)
+.sobre-para strong.flash:nth-of-type(4)
+
 /* ─── PRE-HEADER ──────────────────────────────── */
 .pre-header {
     background: var(--white);
@@ -1534,19 +1581,27 @@ button {
 }
 
 .depo-carousel-wrapper {
-    overflow: hidden;
-    width: 100%
+    width: 100%;
+    overflow: hidden
 }
 
 .depo-track {
     display: flex;
     gap: 20px;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 100%
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    width: 100%;
+    padding-bottom: 4px
 }
+
+.depo-track::-webkit-scrollbar { display: none }
 
 .depo-card {
     flex: 0 0 calc(33.333% - 14px);
+    scroll-snap-align: start;
     background: var(--gray-1);
     border-radius: 16px;
     padding: 32px 28px;
@@ -1650,12 +1705,22 @@ button {
     background: transparent;
     border: 2px solid var(--gray-2);
     cursor: pointer;
-    transition: background var(--transition), border-color var(--transition)
+    transition: background var(--transition), border-color var(--transition), transform var(--transition)
+}
+
+.depo-dot:not(.active).pulsing {
+    animation: depo-dot-pulse 1.8s ease-in-out infinite
+}
+
+@keyframes depo-dot-pulse {
+    0%, 100% { transform: scale(1); border-color: var(--gray-2) }
+    50%       { transform: scale(1.5); border-color: var(--brand-orange) }
 }
 
 .depo-dot.active {
     background: var(--brand-orange);
-    border-color: var(--brand-orange)
+    border-color: var(--brand-orange);
+    animation: none
 }
 
 /* ─── FAQ ─────────────────────────────────────── */

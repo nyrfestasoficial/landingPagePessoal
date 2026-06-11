@@ -2502,6 +2502,18 @@
     </div>
 
     <script>
+        // ─── SCROLL LOCK ──────────────────────────────────────────────
+        function lockScroll() {
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+        }
+        function unlockScroll() {
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+        }
+
+        lockScroll(); // bloqueia scroll durante o loader
+
         // PAGE LOADER — handled by hero Promise.all below
 
 
@@ -3013,8 +3025,8 @@
             const closeBtn = document.getElementById('modal-privacy-close');
             const link = document.getElementById('privacy-policy-link');
 
-            function open() { modal.removeAttribute('hidden'); document.body.style.overflow = 'hidden'; }
-            function close() { modal.setAttribute('hidden', ''); document.body.style.overflow = ''; }
+            function open() { modal.removeAttribute('hidden'); lockScroll(); }
+            function close() { modal.setAttribute('hidden', ''); unlockScroll(); }
 
             if (link) link.addEventListener('click', e => { e.preventDefault(); open(); });
             if (closeBtn) closeBtn.addEventListener('click', close);
@@ -3145,13 +3157,13 @@
                 clearFieldError(inputRS, errRS);
                 clearFieldError(inputCNPJ, errCNPJ);
                 modal.removeAttribute('hidden');
-                document.body.style.overflow = 'hidden';
+                lockScroll();
                 setTimeout(() => inputRS.focus(), 60);
             }
 
             function closeModal() {
                 modal.setAttribute('hidden', '');
-                document.body.style.overflow = '';
+                unlockScroll();
                 _catalogSeason = null;
             }
 
@@ -3232,13 +3244,13 @@
                 waBtn.dataset.catalogSeason = isCatalog ? (CATALOG_SEASONS_V[panelSeason] || '') : '';
 
                 modal.removeAttribute('hidden');
-                document.body.style.overflow = 'hidden';
+                lockScroll();
             }
 
             function closeModal() {
                 iframe.src = '';
                 modal.setAttribute('hidden', '');
-                document.body.style.overflow = '';
+                unlockScroll();
             }
 
             closeBtn.addEventListener('click', closeModal);
@@ -3722,6 +3734,7 @@
                 loader.classList.add('slide-out');
                 setTimeout(() => {
                     loader.remove();
+                    unlockScroll();
                     startHeroSequence();
                 }, SLIDE);
             }, RING_DELAY + RING_DRAW + PAUSE);

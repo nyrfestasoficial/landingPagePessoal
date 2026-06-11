@@ -128,17 +128,41 @@ button {
 }
 
 /* ─── REVEAL — escalonado (stagger) ─────────────── */
-.reveal-stagger > * {
+.reveal-stagger>* {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)
 }
 
-.reveal-stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s }
-.reveal-stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s }
-.reveal-stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.2s }
-.reveal-stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.3s }
-.reveal-stagger.visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.4s }
+.reveal-stagger.visible>*:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s
+}
+
+.reveal-stagger.visible>*:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s
+}
+
+.reveal-stagger.visible>*:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s
+}
+
+.reveal-stagger.visible>*:nth-child(4) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s
+}
+
+.reveal-stagger.visible>*:nth-child(5) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s
+}
 
 /* ─── SOBRE — eyebrow line animada ──────────────── */
 .sobre-eyebrow-wrap {
@@ -157,22 +181,30 @@ button {
     transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1)
 }
 
-.sobre-eyebrow-line.visible { width: 100% }
+.sobre-eyebrow-line.visible {
+    width: 100%
+}
 
 /* ─── SOBRE — flash laranja nos números ─────────── */
 @keyframes number-flash {
-    0%, 100% { color: inherit; text-shadow: none }
-    40%       { color: var(--brand-orange); text-shadow: 0 0 12px rgba(244,160,0,0.4) }
+
+    0%,
+    100% {
+        color: inherit;
+        text-shadow: none
+    }
+
+    40% {
+        color: var(--brand-orange);
+        text-shadow: 0 0 12px rgba(244, 160, 0, 0.4)
+    }
 }
 
 .sobre-para strong.flash {
     animation: number-flash 3s ease-in-out infinite
 }
 
-.sobre-para strong.flash:nth-of-type(1) 
-.sobre-para strong.flash:nth-of-type(2) 
-.sobre-para strong.flash:nth-of-type(3)
-.sobre-para strong.flash:nth-of-type(4)
+.sobre-para strong.flash:nth-of-type(1) .sobre-para strong.flash:nth-of-type(2) .sobre-para strong.flash:nth-of-type(3) .sobre-para strong.flash:nth-of-type(4)
 
 /* ─── PRE-HEADER ──────────────────────────────── */
 .pre-header {
@@ -536,7 +568,9 @@ button {
     scrollbar-width: none
 }
 
-.svc-carousel-track::-webkit-scrollbar { display: none }
+.svc-carousel-track::-webkit-scrollbar {
+    display: none
+}
 
 .svc-slide {
     position: relative;
@@ -1022,7 +1056,9 @@ button {
     scrollbar-width: none
 }
 
-.card-carousel-track::-webkit-scrollbar { display: none }
+.card-carousel-track::-webkit-scrollbar {
+    display: none
+}
 
 .card-slide {
     position: relative;
@@ -1597,7 +1633,9 @@ button {
     padding-bottom: 4px
 }
 
-.depo-track::-webkit-scrollbar { display: none }
+.depo-track::-webkit-scrollbar {
+    display: none
+}
 
 .depo-card {
     flex: 0 0 calc(33.333% - 14px);
@@ -1713,8 +1751,17 @@ button {
 }
 
 @keyframes depo-dot-pulse {
-    0%, 100% { transform: scale(1); border-color: var(--gray-2) }
-    50%       { transform: scale(1.5); border-color: var(--brand-orange) }
+
+    0%,
+    100% {
+        transform: scale(1);
+        border-color: var(--gray-2)
+    }
+
+    50% {
+        transform: scale(1.5);
+        border-color: var(--brand-orange)
+    }
 }
 
 .depo-dot.active {
@@ -4871,15 +4918,15 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .apres-line-sm {
-        font-size: clamp(62px, 3.96vw, 76px)
+        font-size: clamp(38px, 5vw, 62px)
     }
 
     .apres-line-lg {
-        font-size: clamp(148px, 9.38vw, 180px)
+        font-size: clamp(80px, 13vw, 148px)
     }
 
     .apres-line-md {
-        font-size: clamp(62px, 3.96vw, 76px)
+        font-size: clamp(38px, 5vw, 62px)
     }
 
     .service-title {
@@ -4908,8 +4955,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
     /* ── Textos de leitura (px fixo) ── */
     .apres-body {
-        font-size: 25px;
-        max-width: 600px;
+        font-size: 18px
     }
 
 
@@ -5102,5 +5148,24 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
     .footer-copy {
         font-size: 13px
+    }
+}
+
+/* ─── APRESENTAÇÃO — telas largas com altura suficiente ─────── */
+@media (min-width: 1500px) and (min-height: 800px) {
+    .apres-line-sm {
+        font-size: clamp(62px, 3.96vw, 76px)
+    }
+
+    .apres-line-lg {
+        font-size: clamp(148px, 9.38vw, 180px)
+    }
+
+    .apres-line-md {
+        font-size: clamp(62px, 3.96vw, 76px)
+    }
+
+    .apres-body {
+        font-size: 22px
     }
 }
