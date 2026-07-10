@@ -104,7 +104,7 @@
         /* ── CARD ─────────────────────────────────────────── */
         .novidade-card {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: min(calc((100vh - 150px) * 0.75), 640px) 1fr;
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid rgba(255, 120, 0, 0.2);
@@ -118,6 +118,8 @@
         .card-img {
             position: relative;
             overflow: hidden;
+            width: min(calc((100vh - 150px) * 0.75), 640px);
+            aspect-ratio: 3/4;
         }
 
         .card-img img {
