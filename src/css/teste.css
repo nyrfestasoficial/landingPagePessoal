@@ -4911,9 +4911,9 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     /* Novidades: mantém container original */
-    .novidade-hl .container {
+    /* .novidade-hl .container {
         max-width: 1000px
-    }
+    } */
 
     /* ── Títulos e display (tinham clamp) ── */
     .inicio-label-top {
@@ -5192,7 +5192,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-size: 15px;
+    font-size: 19px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -5215,7 +5215,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
 .novidade-title {
     font-family: 'Creepster', cursive;
-    font-size: clamp(32px, 5vw, 52px);
+    font-size: clamp(38px, 5.5vw, 62px);
     text-transform: uppercase;
     line-height: 1;
     letter-spacing: 2px;
@@ -5428,7 +5428,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .novidade-eyebrow {
-        font-size: 17px
+        font-size: 22px
     }
 
     .novidade-btn-video,
@@ -5440,15 +5440,60 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
 /* ── Novidade — card maior (≥ 1920px) ────────────── */
 @media (min-width: 1920px) {
+
+    /* Novidades: mantém container original */
     .novidade-hl .container {
         max-width: 1300px
     }
 
     /* .novidade-card {
         grid-template-columns: minmax(0, 760px) 1fr;
-    } */
+    }
 
-    /* .novidade-card-img {
+    .novidade-card-img {
         max-width: 760px;
     } */
+}
+
+/* ── Novidade — incentivos nos botões ─────────────── */
+@keyframes novidade-btn-pulse {
+
+    0%,
+    100% {
+        border-color: rgba(255, 120, 0, 0.35)
+    }
+
+    50% {
+        border-color: #FF7800;
+        box-shadow: 0 0 12px rgba(255, 120, 0, 0.35)
+    }
+}
+
+@keyframes novidade-video-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(61, 0, 102, 0)
+    }
+
+    50% {
+        box-shadow: 0 0 0 4px rgba(61, 0, 102, 0.5)
+    }
+}
+
+.novidade-btn-wa {
+    animation: novidade-btn-pulse 2.5s ease-in-out infinite;
+}
+
+.novidade-btn-wa:hover {
+    animation: none;
+}
+
+.novidade-btn-video {
+    animation: novidade-video-pulse 2.5s ease-in-out infinite;
+    animation-delay: 1.25s;
+}
+
+.novidade-btn-video:hover {
+    animation: none;
 }
