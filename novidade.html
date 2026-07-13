@@ -104,7 +104,7 @@
         /* ── CARD ─────────────────────────────────────────── */
         .novidade-card {
             display: grid;
-            grid-template-columns: min(calc((100vh - 60px) * 0.75), 640px) 1fr;
+            grid-template-columns: 1fr 1fr;
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid rgba(255, 120, 0, 0.2);
@@ -118,8 +118,6 @@
         .card-img {
             position: relative;
             overflow: hidden;
-            width: min(calc((100vh - 60px) * 0.75), 640px);
-            aspect-ratio: 3/4;
         }
 
         .card-img img {
@@ -287,7 +285,7 @@
         /* Tablet portrait apenas (481–800px): reduz o card como unidade */
         @media (min-width: 481px) and (max-width: 800px) {
             .novidade-card {
-                max-width: 80vw;
+                max-width: 75vw;
                 margin: 0 auto;
             }
 

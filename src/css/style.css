@@ -353,7 +353,8 @@ button {
 
 .service-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 480px) minmax(0, min(calc((100vh - 150px) * 0.75), 640px));
+    justify-content: center;
     gap: 60px;
     align-items: center;
     padding: 88px 0;
@@ -522,17 +523,17 @@ button {
 
 .service-img-wrap {
     position: relative;
-    height: calc(100% + 88px);
-    margin-top: -44px;
-    margin-bottom: -44px;
+    width: 100%;
+    max-width: min(calc((100vh - 150px) * 0.75), 640px);
+    margin: 0 auto;
+    aspect-ratio: 3/4;
     border-radius: 20px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
-    justify-content: center;
-    min-height: 420px
+    justify-content: center
 }
 
 .service-ilustrativas {
@@ -553,6 +554,7 @@ button {
 .svc-carousel {
     position: relative;
     width: 100%;
+    max-width: min(calc((100vh - 150px) * 0.75), 640px);
     aspect-ratio: 3/4;
     overflow: hidden
 }
