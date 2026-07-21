@@ -2016,7 +2016,8 @@
                         <p class="novidade-desc">Um item que <strong>vende sozinho na vitrine</strong>: quem vê, quer
                             testar.
                             Quem testa, compra. Efeito imediato, demanda garantida.</p>
-                        <p class="novidade-obs">Esse tipo de produto costuma esgotar rápido por ser novidade — vale garantir quantidade já no pedido de antecipação.</p>
+                        <p class="novidade-obs">Esse tipo de produto costuma esgotar rápido por ser novidade — vale
+                            garantir quantidade já no pedido de antecipação.</p>
                         <div class="novidade-actions">
                             <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="Mão do Terror"
                                 data-video="https://www.youtube.com/shorts/_PtwvKiR2PI" data-name="Mão do Terror"
@@ -2025,7 +2026,8 @@
                                     viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg>Ver vídeo do produto</button>
-                            <button class="novidade-btn-wa" data-novidade-wa-btn="Mão do Terror">Falar com atendente</button>
+                            <button class="novidade-btn-wa" data-novidade-wa-btn="Mão do Terror">Falar com
+                                atendente</button>
                         </div>
                     </div>
                 </div>
@@ -2060,23 +2062,26 @@
                         <p class="novidade-desc">Painéis em tecido para decoração, com acabamento reforçado, estampas
                             de alto impacto visual e tecido resistente — ideais para ambientar vitrines, festas e
                             decorações temáticas.</p>
-                        <p class="novidade-obs">MOD-1130 · 180×110 cm  |  MOD-1131 · 100×75 cm</p>
+                        <p class="novidade-obs">MOD-1130 · 180×110 cm | MOD-1131 · 100×75 cm</p>
                         <div class="novidade-actions">
-                            <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="Painéis Horizontais"
-                                data-video="https://www.youtube.com/shorts/fFc9NeRSO_U" data-name="Painel Horizontal MOD-1130"
-                                data-ref="MOD-1130"
+                            <button class="novidade-btn-video card-video-btn-primary"
+                                data-novidade-wa="Painéis Horizontais"
+                                data-video="https://www.youtube.com/shorts/fFc9NeRSO_U"
+                                data-name="Painel Horizontal MOD-1130" data-ref="MOD-1130"
                                 data-desc="Painel em tecido para decoração, 180×110 cm — estampa de alto impacto para vitrines e ambientação temática."><svg
                                     viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg>Ver vídeo MOD-1130</button>
-                            <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="Painéis Horizontais"
-                                data-video="https://www.youtube.com/shorts/a5GaxOJnGYE" data-name="Painel Horizontal MOD-1131"
-                                data-ref="MOD-1131"
+                            <button class="novidade-btn-video card-video-btn-primary"
+                                data-novidade-wa="Painéis Horizontais"
+                                data-video="https://www.youtube.com/shorts/a5GaxOJnGYE"
+                                data-name="Painel Horizontal MOD-1131" data-ref="MOD-1131"
                                 data-desc="Painel em tecido para decoração, 100×75 cm — estampa de alto impacto para vitrines e ambientação temática."><svg
                                     viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg>Ver vídeo MOD-1131</button>
-                            <button class="novidade-btn-wa" data-novidade-wa-btn="Painéis Horizontais">Falar com atendente</button>
+                            <button class="novidade-btn-wa" data-novidade-wa-btn="Painéis Horizontais">Falar com
+                                atendente</button>
                         </div>
                     </div>
                 </div>
@@ -2114,13 +2119,14 @@
                         <p class="novidade-obs">MOD-1132 · 90×180 cm</p>
                         <div class="novidade-actions">
                             <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="Painel Vertical"
-                                data-video="https://www.youtube.com/shorts/yNv23HLk6So" data-name="Painel Vertical MOD-1132"
-                                data-ref="MOD-1132"
+                                data-video="https://www.youtube.com/shorts/yNv23HLk6So"
+                                data-name="Painel Vertical MOD-1132" data-ref="MOD-1132"
                                 data-desc="Painel em tecido para decoração, 90×180 cm — estampa de alto impacto para vitrines e ambientação temática."><svg
                                     viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M8 5v14l11-7z" />
                                 </svg>Ver vídeo do produto</button>
-                            <button class="novidade-btn-wa" data-novidade-wa-btn="Painel Vertical">Falar com atendente</button>
+                            <button class="novidade-btn-wa" data-novidade-wa-btn="Painel Vertical">Falar com
+                                atendente</button>
                         </div>
                     </div>
                 </div>
@@ -3489,7 +3495,12 @@
 
                     tabs.forEach(t => t.classList.toggle('active', t === tab));
                     panels.forEach(p => {
-                        p.classList.toggle('active', p.dataset.novidadePanel === target);
+                        const isTarget = p.dataset.novidadePanel === target;
+                        p.classList.toggle('active', isTarget);
+                        if (isTarget) {
+                            const carousel = p.querySelector('[data-novidade-carousel]');
+                            if (carousel && carousel._novidadeStart) carousel._novidadeStart();
+                        }
                     });
                 });
             });
@@ -3503,6 +3514,7 @@
             var current = 0;
             var total = slides.length;
             var autoplayTimer = null;
+            var userInteracted = false;
             var AUTOPLAY_MS = 5000;
 
             if (total <= 1) return;
@@ -3512,8 +3524,9 @@
                 dot.className = i === 0 ? 'novidade-dot active' : 'novidade-dot';
                 dot.setAttribute('aria-label', 'Imagem ' + (i + 1));
                 dot.addEventListener('click', function () {
+                    userInteracted = true;
+                    stopAutoplay();
                     goTo(i);
-                    resetAutoplay();
                 });
                 dotsWrap.appendChild(dot);
             });
@@ -3527,15 +3540,30 @@
             }
 
             function startAutoplay() {
+                stopAutoplay();
                 autoplayTimer = setInterval(function () {
                     goTo(current + 1);
                 }, AUTOPLAY_MS);
             }
 
-            function resetAutoplay() {
-                if (autoplayTimer) clearInterval(autoplayTimer);
-                startAutoplay();
+            function stopAutoplay() {
+                if (autoplayTimer) {
+                    clearInterval(autoplayTimer);
+                    autoplayTimer = null;
+                }
             }
+
+            // Exposto para o listener das tabs — reinicia estado ao entrar no painel
+            carousel._novidadeStart = function () {
+                userInteracted = false;
+                startAutoplay();
+            };
+
+            // Swipe manual também mata o autoplay definitivamente (até nova visita)
+            track.addEventListener('touchstart', function () {
+                userInteracted = true;
+                stopAutoplay();
+            }, { passive: true });
 
             track.addEventListener('scroll', function () {
                 var idx = Math.round(track.scrollLeft / track.offsetWidth);
@@ -3546,8 +3574,6 @@
                     });
                 }
             }, { passive: true });
-
-            startAutoplay();
         });
 
 
