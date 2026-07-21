@@ -2495,7 +2495,7 @@ button {
 }
 
 .footer-logo-img {
-    height: 100px;
+    height: 44px;
     width: auto;
     display: block;
     margin-bottom: 8px
@@ -5136,10 +5136,6 @@ body[data-mode="apresentacao"] .height-hamburger span {
         font-size: 28px
     }
 
-    .footer-logo-img {
-        height: 150px;
-    }
-
     .footer-tagline {
         font-size: 14px
     }
@@ -5309,7 +5305,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
 .novidade-nome {
     font-family: 'Anton', sans-serif;
-    font-size: clamp(36px, 4.5vw, 56px);
+    font-size: clamp(28px, 3.6vw, 44px);
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.05;
@@ -5346,6 +5342,23 @@ body[data-mode="apresentacao"] .height-hamburger span {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.novidade-video-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.novidade-video-row .novidade-btn-video {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+@media (max-width: 420px) {
+    .novidade-video-row {
+        grid-template-columns: 1fr;
+    }
 }
 
 .novidade-selo {
@@ -5450,7 +5463,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 /* ── Novidade — fontes (≥ 1500px) ────────────────── */
 @media (min-width: 1500px) {
     .novidade-nome {
-        font-size: clamp(56px, 3.54vw, 68px)
+        font-size: clamp(36px, 2.5vw, 46px);
     }
 
     .novidade-desc {
