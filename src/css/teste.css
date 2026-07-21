@@ -2494,6 +2494,13 @@ button {
     margin-bottom: 4px
 }
 
+.footer-logo-img {
+    height: 110px;
+    width: auto;
+    display: block;
+    /* margin-bottom: 8px */
+}
+
 .footer-logo em {
     color: var(--brand-orange);
     font-style: normal
@@ -5129,6 +5136,10 @@ body[data-mode="apresentacao"] .height-hamburger span {
         font-size: 28px
     }
 
+    .footer-logo-img {
+        height: 150px;
+    }
+
     .footer-tagline {
         font-size: 14px
     }
@@ -5518,6 +5529,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 .novidade-btn-video:hover {
     animation: none;
 }
+
 /* ── Novidade — tabs editoriais ────────────────────── */
 .novidade-tabs {
     display: flex;
@@ -5541,6 +5553,10 @@ body[data-mode="apresentacao"] .height-hamburger span {
     cursor: pointer;
     position: relative;
     transition: color 0.25s ease;
+}
+
+.novidade-tab.unvisited {
+    color: rgba(255, 255, 255, 0.65);
 }
 
 .novidade-tab::after {
@@ -5571,8 +5587,15 @@ body[data-mode="apresentacao"] .height-hamburger span {
 }
 
 @keyframes novidade-tab-breathe {
-    0%, 100% { background: rgba(255, 120, 0, 0.18) }
-    50%       { background: rgba(255, 120, 0, 0.55) }
+
+    0%,
+    100% {
+        background: rgba(255, 120, 0, 0.35)
+    }
+
+    50% {
+        background: rgba(255, 120, 0, 0.85)
+    }
 }
 
 .novidade-tab-sep {
