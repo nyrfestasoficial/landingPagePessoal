@@ -80,9 +80,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://res.cloudinary.com">
     <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Creepster&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body data-mode="inicio">
@@ -1986,6 +1986,42 @@
 
         </div>
     </section>
+    <!-- NOVIDADE HALLOWEEN 2026 -->
+    <section class="novidade-hl" style="padding: 80px 0; background: var(--black);">
+        <div class="container">
+            <div class="novidade-header reveal">
+                <div class="novidade-eyebrow">Novidade Halloween 2026</div>
+                <h2 class="novidade-title">Em primeira mão</h2>
+            </div>
+            <div class="novidade-card reveal" style="transition-delay:.15s">
+                <div class="novidade-card-img">
+                    <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1783693270/NOVIDADE_HL-MAO-DO-TERROR_oeefnd.webp"
+                        alt="Mão do Terror REF 315" loading="lazy">
+                </div>
+                <div class="novidade-card-body">
+                    <span class="novidade-badge">Novo para 2026</span>
+                    <p class="novidade-ref">REF · 315</p>
+                    <h3 class="novidade-nome">Mão do <em>Terror</em></h3>
+                    <p class="novidade-desc">Um item que <strong>vende sozinho na vitrine</strong>: quem vê, quer
+                        testar.
+                        Quem testa, compra. Efeito imediato, demanda garantida.</p>
+                    <p class="novidade-obs">Esse tipo de produto costuma esgotar rápido por ser novidade — vale garantir
+                        quantidade já no pedido de antecipação.</p>
+                    <div class="novidade-actions">
+                        <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="true"
+                            data-video="https://www.youtube.com/shorts/qyWJVIOrloU" data-name="Mão do Terror"
+                            data-ref="REF 315"
+                            data-desc="Efeito surpresa de mão saindo do corpo — item de alto impacto visual e giro garantido na vitrine."><svg
+                                viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>Ver vídeo do produto</button>
+                        <button class="novidade-btn-wa" id="novidade-wa-btn">Falar com atendente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SOBRE -->
     <section class="sobre" id="sobre">
         <div class="container">
@@ -3078,7 +3114,17 @@
         const WA_NUM = WA;
         let _catalogSeason = null;
 
+        // Mensagem customizada para Novidade (sobrescreve buildWAMsg quando definida)
+        let _novWAMsg = null;
+
         function buildWAMsg(rs, cnpj) {
+            if (_novWAMsg) {
+                const msg = _novWAMsg
+                    .replace('{rs}', rs)
+                    .replace('{cnpj}', cnpj);
+                _novWAMsg = null;
+                return msg.split('\n').map(encodeURIComponent).join('%0A');
+            }
             const lines = _catalogSeason
                 ? [
                     `Olá, Nyr Festas!`,
@@ -3210,6 +3256,15 @@
             });
 
             window._openWAModal = openModal;
+
+            // ─── NOVIDADE WA ───────────────────────────────────────
+            const novWaBtn = document.getElementById('novidade-wa-btn');
+            if (novWaBtn) {
+                novWaBtn.addEventListener('click', () => {
+                    _novWAMsg = 'Olá, Nyr Festas!\nCheguei até aqui pelo site oficial e estou interessado no item lançamento REF - 315 (Mão do Terror).\nRazão Social: {rs}  |  CNPJ: {cnpj}';
+                    openModal(null);
+                });
+            }
         })();
 
         // ─── MODAL VÍDEO ──────────────────────────────────────────
@@ -3239,8 +3294,9 @@
                 const panelSeason = activePanel ? activePanel.dataset.panel : null;
                 const waBtn = document.getElementById('modal-video-wa-btn');
                 const waBtnText = waBtn.querySelector('.wa-btn-text');
-                const isCatalog = panelSeason === 'junina' || panelSeason === 'copa' || panelSeason === 'halloween';
-                waBtnText.textContent = isCatalog ? 'Solicitar catálogo' : 'Falar com Atendente';
+                const isNovidade = !!_novWAMsg;
+                const isCatalog = !isNovidade && (panelSeason === 'junina' || panelSeason === 'copa' || panelSeason === 'halloween');
+                waBtnText.textContent = isNovidade ? 'Falar com Atendente' : (isCatalog ? 'Solicitar catálogo' : 'Falar com Atendente');
                 waBtn.dataset.catalogSeason = isCatalog ? (CATALOG_SEASONS_V[panelSeason] || '') : '';
 
                 modal.removeAttribute('hidden');
@@ -3261,6 +3317,9 @@
 
             document.querySelectorAll('[data-video]').forEach(btn => {
                 btn.addEventListener('click', () => {
+                    if (btn.dataset.novidadeWa) {
+                        _novWAMsg = 'Olá, Nyr Festas!\nCheguei até aqui pelo site oficial e estou interessado no item lançamento REF - 315 (Mão do Terror).\nRazão Social: {rs}  |  CNPJ: {cnpj}';
+                    }
                     openModal(btn.dataset.video, btn.dataset.name, btn.dataset.ref, btn.dataset.desc);
                 });
             });

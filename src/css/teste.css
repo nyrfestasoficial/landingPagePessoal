@@ -5507,3 +5507,143 @@ body[data-mode="apresentacao"] .height-hamburger span {
 .novidade-btn-video:hover {
     animation: none;
 }
+
+/* ── Novidade — tabs editoriais ────────────────────── */
+.novidade-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.novidade-tab {
+    background: none;
+    border: none;
+    padding: 6px 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.25s ease;
+}
+
+.novidade-tab::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.15);
+    transition: background 0.25s ease;
+}
+
+.novidade-tab:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.novidade-tab.active {
+    color: var(--white);
+}
+
+.novidade-tab.active::after {
+    background: #FF7800;
+}
+
+.novidade-tab-sep {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    user-select: none;
+}
+
+@media (max-width: 600px) {
+    .novidade-tabs {
+        gap: 8px;
+    }
+
+    .novidade-tab {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+}
+
+/* ── Novidade — painéis (troca via JS) ─────────────── */
+.novidade-panel {
+    display: none;
+}
+
+.novidade-panel.active {
+    display: block;
+}
+
+/* ── Novidade — carrossel de imagens (dots only) ───── */
+.novidade-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.novidade-carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.novidade-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.novidade-slide {
+    position: relative;
+    flex: 0 0 100%;
+    height: 100%;
+    scroll-snap-align: start;
+}
+
+.novidade-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.novidade-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.novidade-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.novidade-dot.active {
+    background: #FF7800;
+    border-color: #FF7800;
+    transform: scale(1.2);
+}

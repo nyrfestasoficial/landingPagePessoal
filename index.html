@@ -82,7 +82,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Creepster&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/teste.css">
 </head>
 
 <body data-mode="inicio">
@@ -1993,32 +1993,139 @@
                 <div class="novidade-eyebrow">Novidade Halloween 2026</div>
                 <h2 class="novidade-title">Em primeira mão</h2>
             </div>
-            <div class="novidade-card reveal" style="transition-delay:.15s">
-                <div class="novidade-card-img">
-                    <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1783693270/NOVIDADE_HL-MAO-DO-TERROR_oeefnd.webp"
-                        alt="Mão do Terror REF 315" loading="lazy">
-                </div>
-                <div class="novidade-card-body">
-                    <span class="novidade-badge">Novo para 2026</span>
-                    <p class="novidade-ref">REF · 315</p>
-                    <h3 class="novidade-nome">Mão do <em>Terror</em></h3>
-                    <p class="novidade-desc">Um item que <strong>vende sozinho na vitrine</strong>: quem vê, quer
-                        testar.
-                        Quem testa, compra. Efeito imediato, demanda garantida.</p>
-                    <p class="novidade-obs">Esse tipo de produto costuma esgotar rápido por ser novidade — vale garantir
-                        quantidade já no pedido de antecipação.</p>
-                    <div class="novidade-actions">
-                        <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="true"
-                            data-video="https://www.youtube.com/shorts/qyWJVIOrloU" data-name="Mão do Terror"
-                            data-ref="REF 315"
-                            data-desc="Efeito surpresa de mão saindo do corpo — item de alto impacto visual e giro garantido na vitrine."><svg
-                                viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>Ver vídeo do produto</button>
-                        <button class="novidade-btn-wa" id="novidade-wa-btn">Falar com atendente</button>
+
+            <div class="novidade-tabs reveal" style="transition-delay:.08s">
+                <button class="novidade-tab active" data-novidade-panel="mao-terror">Mão do Terror</button>
+                <span class="novidade-tab-sep">·</span>
+                <button class="novidade-tab" data-novidade-panel="painel-h">Painéis Horizontais</button>
+                <span class="novidade-tab-sep">·</span>
+                <button class="novidade-tab" data-novidade-panel="painel-v">Painéis Verticais</button>
+            </div>
+
+            <!-- PAINEL — MÃO DO TERROR -->
+            <div class="novidade-panel active" data-novidade-panel="mao-terror">
+                <div class="novidade-card reveal" style="transition-delay:.15s">
+                    <div class="novidade-card-img">
+                        <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1783693270/NOVIDADE_HL-MAO-DO-TERROR_oeefnd.webp"
+                            alt="Mão do Terror REF 315" loading="lazy">
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2026</span>
+                        <p class="novidade-ref">REF · 315</p>
+                        <h3 class="novidade-nome">Mão do <em>Terror</em></h3>
+                        <p class="novidade-desc">Um item que <strong>vende sozinho na vitrine</strong>: quem vê, quer
+                            testar.
+                            Quem testa, compra. Efeito imediato, demanda garantida.</p>
+                        <p class="novidade-obs">Esse tipo de produto costuma esgotar rápido por ser novidade — vale garantir quantidade já no pedido de antecipação.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="Mão do Terror"
+                                data-video="https://www.youtube.com/shorts/_PtwvKiR2PI" data-name="Mão do Terror"
+                                data-ref="REF 315"
+                                data-desc="Efeito surpresa de mão saindo do corpo — item de alto impacto visual e giro garantido na vitrine."><svg
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa" data-novidade-wa-btn="Mão do Terror">Falar com atendente</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- PAINEL — PAINÉIS HORIZONTAIS -->
+            <div class="novidade-panel" data-novidade-panel="painel-h">
+                <div class="novidade-card reveal">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEIS-HORIZONTAIS_1_m14qjj.webp"
+                                        alt="Painéis Horizontais 1" loading="lazy"></div>
+                                <div class="novidade-slide"><img
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEIS-HORIZONTAIS_2_xk0ruu.webp"
+                                        alt="Painéis Horizontais 2" loading="lazy"></div>
+                                <div class="novidade-slide"><img
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEIS-HORIZONTAIS_3_baqm4x.webp"
+                                        alt="Painéis Horizontais 3" loading="lazy"></div>
+                                <div class="novidade-slide"><img
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEIS-HORIZONTAIS_4_mmlzil.webp"
+                                        alt="Painéis Horizontais 4" loading="lazy"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2026</span>
+                        <p class="novidade-ref">MOD-1130 e MOD-1131</p>
+                        <h3 class="novidade-nome">Painéis <em>Horizontais</em></h3>
+                        <p class="novidade-desc">Painéis em tecido para decoração, com acabamento reforçado, estampas
+                            de alto impacto visual e tecido resistente — ideais para ambientar vitrines, festas e
+                            decorações temáticas.</p>
+                        <p class="novidade-obs">MOD-1130 · 180×110 cm  |  MOD-1131 · 100×75 cm</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="Painéis Horizontais"
+                                data-video="https://www.youtube.com/shorts/fFc9NeRSO_U" data-name="Painel Horizontal MOD-1130"
+                                data-ref="MOD-1130"
+                                data-desc="Painel em tecido para decoração, 180×110 cm — estampa de alto impacto para vitrines e ambientação temática."><svg
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo MOD-1130</button>
+                            <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="Painéis Horizontais"
+                                data-video="https://www.youtube.com/shorts/a5GaxOJnGYE" data-name="Painel Horizontal MOD-1131"
+                                data-ref="MOD-1131"
+                                data-desc="Painel em tecido para decoração, 100×75 cm — estampa de alto impacto para vitrines e ambientação temática."><svg
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo MOD-1131</button>
+                            <button class="novidade-btn-wa" data-novidade-wa-btn="Painéis Horizontais">Falar com atendente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAINEL — PAINÉIS VERTICAIS -->
+            <div class="novidade-panel" data-novidade-panel="painel-v">
+                <div class="novidade-card reveal">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEL-VERTICAL_1_heb9n7.webp"
+                                        alt="Painel Vertical 1" loading="lazy"></div>
+                                <div class="novidade-slide"><img
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEL-VERTICAL_2_a3adk0.webp"
+                                        alt="Painel Vertical 2" loading="lazy"></div>
+                                <div class="novidade-slide"><img
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEL-VERTICAL_3_kluj1d.webp"
+                                        alt="Painel Vertical 3" loading="lazy"></div>
+                                <div class="novidade-slide"><img
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEL-VERTICAL_4_lejkhn.webp"
+                                        alt="Painel Vertical 4" loading="lazy"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2026</span>
+                        <p class="novidade-ref">MOD-1132</p>
+                        <h3 class="novidade-nome">Painel <em>Vertical</em></h3>
+                        <p class="novidade-desc">Painel em tecido para decoração, com acabamento reforçado, estampas
+                            de alto impacto visual e tecido resistente — ideal para ambientar vitrines, festas e
+                            decorações temáticas.</p>
+                        <p class="novidade-obs">MOD-1132 · 90×180 cm</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="Painel Vertical"
+                                data-video="https://www.youtube.com/shorts/yNv23HLk6So" data-name="Painel Vertical MOD-1132"
+                                data-ref="MOD-1132"
+                                data-desc="Painel em tecido para decoração, 90×180 cm — estampa de alto impacto para vitrines e ambientação temática."><svg
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa" data-novidade-wa-btn="Painel Vertical">Falar com atendente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -3257,14 +3364,14 @@
 
             window._openWAModal = openModal;
 
-            // ─── NOVIDADE WA ───────────────────────────────────────
-            const novWaBtn = document.getElementById('novidade-wa-btn');
-            if (novWaBtn) {
-                novWaBtn.addEventListener('click', () => {
-                    _novWAMsg = 'Olá, Nyr Festas!\nCheguei até aqui pelo site oficial e estou interessado no item lançamento REF - 315 (Mão do Terror).\nRazão Social: {rs}  |  CNPJ: {cnpj}';
+            // ─── NOVIDADE WA — genérico para os 3 painéis ─────────
+            document.querySelectorAll('[data-novidade-wa-btn]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const nome = btn.dataset.novidadeWaBtn;
+                    _novWAMsg = `Olá, Nyr Festas!\nCheguei até aqui pelo site oficial e estou interessado no item lançamento ${nome}.\nRazão Social: {rs}  |  CNPJ: {cnpj}`;
                     openModal(null);
                 });
-            }
+            });
         })();
 
         // ─── MODAL VÍDEO ──────────────────────────────────────────
@@ -3318,7 +3425,7 @@
             document.querySelectorAll('[data-video]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     if (btn.dataset.novidadeWa) {
-                        _novWAMsg = 'Olá, Nyr Festas!\nCheguei até aqui pelo site oficial e estou interessado no item lançamento REF - 315 (Mão do Terror).\nRazão Social: {rs}  |  CNPJ: {cnpj}';
+                        _novWAMsg = `Olá, Nyr Festas!\nCheguei até aqui pelo site oficial e estou interessado no item lançamento ${btn.dataset.novidadeWa}.\nRazão Social: {rs}  |  CNPJ: {cnpj}`;
                     }
                     openModal(btn.dataset.video, btn.dataset.name, btn.dataset.ref, btn.dataset.desc);
                 });
@@ -3369,6 +3476,78 @@
 
             if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
             if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
+        });
+
+        // ─── NOVIDADE — TABS ────────────────────────────────────────
+        (function () {
+            const tabs = document.querySelectorAll('.novidade-tab');
+            const panels = document.querySelectorAll('.novidade-panel');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.novidadePanel;
+
+                    tabs.forEach(t => t.classList.toggle('active', t === tab));
+                    panels.forEach(p => {
+                        p.classList.toggle('active', p.dataset.novidadePanel === target);
+                    });
+                });
+            });
+        })();
+
+        // ─── NOVIDADE — CARROSSEL (dots only, autoplay 5s) ──────────
+        document.querySelectorAll('[data-novidade-carousel]').forEach(function (carousel) {
+            var track = carousel.querySelector('.novidade-carousel-track');
+            var slides = carousel.querySelectorAll('.novidade-slide');
+            var dotsWrap = carousel.querySelector('.novidade-dots');
+            var current = 0;
+            var total = slides.length;
+            var autoplayTimer = null;
+            var AUTOPLAY_MS = 5000;
+
+            if (total <= 1) return;
+
+            slides.forEach(function (_, i) {
+                var dot = document.createElement('button');
+                dot.className = i === 0 ? 'novidade-dot active' : 'novidade-dot';
+                dot.setAttribute('aria-label', 'Imagem ' + (i + 1));
+                dot.addEventListener('click', function () {
+                    goTo(i);
+                    resetAutoplay();
+                });
+                dotsWrap.appendChild(dot);
+            });
+
+            function goTo(index) {
+                current = (index + total) % total;
+                track.scrollTo({ left: current * track.offsetWidth, behavior: 'smooth' });
+                dotsWrap.querySelectorAll('.novidade-dot').forEach(function (d, i) {
+                    d.className = i === current ? 'novidade-dot active' : 'novidade-dot';
+                });
+            }
+
+            function startAutoplay() {
+                autoplayTimer = setInterval(function () {
+                    goTo(current + 1);
+                }, AUTOPLAY_MS);
+            }
+
+            function resetAutoplay() {
+                if (autoplayTimer) clearInterval(autoplayTimer);
+                startAutoplay();
+            }
+
+            track.addEventListener('scroll', function () {
+                var idx = Math.round(track.scrollLeft / track.offsetWidth);
+                if (idx !== current) {
+                    current = idx;
+                    dotsWrap.querySelectorAll('.novidade-dot').forEach(function (d, i) {
+                        d.className = i === current ? 'novidade-dot active' : 'novidade-dot';
+                    });
+                }
+            }, { passive: true });
+
+            startAutoplay();
         });
 
 
