@@ -2495,10 +2495,10 @@ button {
 }
 
 .footer-logo-img {
-    height: 110px;
+    height: 100px;
     width: auto;
     display: block;
-    /* margin-bottom: 8px */
+    margin-bottom: 8px
 }
 
 .footer-logo em {
