@@ -1997,9 +1997,9 @@
             <div class="novidade-tabs reveal" style="transition-delay:.08s">
                 <button class="novidade-tab active" data-novidade-panel="mao-terror">Mão do Terror</button>
                 <span class="novidade-tab-sep">·</span>
-                <button class="novidade-tab" data-novidade-panel="painel-h">Painéis Horizontais</button>
+                <button class="novidade-tab unvisited" data-novidade-panel="painel-h">Painéis Horizontais</button>
                 <span class="novidade-tab-sep">·</span>
-                <button class="novidade-tab" data-novidade-panel="painel-v">Painéis Verticais</button>
+                <button class="novidade-tab unvisited" data-novidade-panel="painel-v">Painéis Verticais</button>
             </div>
 
             <!-- PAINEL — MÃO DO TERROR -->
@@ -2028,6 +2028,7 @@
                                 </svg>Ver vídeo do produto</button>
                             <button class="novidade-btn-wa" data-novidade-wa-btn="Mão do Terror">Falar com
                                 atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
                         </div>
                     </div>
                 </div>
@@ -2082,6 +2083,7 @@
                                 </svg>Ver vídeo MOD-1131</button>
                             <button class="novidade-btn-wa" data-novidade-wa-btn="Painéis Horizontais">Falar com
                                 atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
                         </div>
                     </div>
                 </div>
@@ -2127,6 +2129,7 @@
                                 </svg>Ver vídeo do produto</button>
                             <button class="novidade-btn-wa" data-novidade-wa-btn="Painel Vertical">Falar com
                                 atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
                         </div>
                     </div>
                 </div>
@@ -3492,6 +3495,7 @@
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     const target = tab.dataset.novidadePanel;
+                    tab.classList.remove('unvisited');
 
                     tabs.forEach(t => t.classList.toggle('active', t === tab));
                     panels.forEach(p => {
@@ -3515,7 +3519,7 @@
             var total = slides.length;
             var autoplayTimer = null;
             var userInteracted = false;
-            var AUTOPLAY_MS = 5000;
+            var AUTOPLAY_MS = 4000;
 
             if (total <= 1) return;
 
@@ -3559,11 +3563,8 @@
                 startAutoplay();
             };
 
-            // Swipe manual também mata o autoplay definitivamente (até nova visita)
-            track.addEventListener('touchstart', function () {
-                userInteracted = true;
-                stopAutoplay();
-            }, { passive: true });
+            // Swipe manual não interrompe o autoplay — o scroll listener
+            // abaixo já sincroniza os dots com a posição correta
 
             track.addEventListener('scroll', function () {
                 var idx = Math.round(track.scrollLeft / track.offsetWidth);
