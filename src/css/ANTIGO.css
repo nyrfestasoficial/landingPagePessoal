@@ -2494,6 +2494,13 @@ button {
     margin-bottom: 4px
 }
 
+.footer-logo-img {
+    height: 120px;
+    width: auto;
+    display: block;
+    margin-bottom: 8px
+}
+
 .footer-logo em {
     color: var(--brand-orange);
     font-style: normal
@@ -5129,6 +5136,10 @@ body[data-mode="apresentacao"] .height-hamburger span {
         font-size: 28px
     }
 
+    .footer-logo-img {
+        height: 160px;
+    }
+
     .footer-tagline {
         font-size: 14px
     }
@@ -5298,7 +5309,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
 .novidade-nome {
     font-family: 'Anton', sans-serif;
-    font-size: clamp(36px, 4.5vw, 56px);
+    font-size: clamp(28px, 3.6vw, 44px);
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.05;
@@ -5335,6 +5346,34 @@ body[data-mode="apresentacao"] .height-hamburger span {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.novidade-video-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.novidade-video-row .novidade-btn-video {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+@media (max-width: 420px) {
+    .novidade-video-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.novidade-selo {
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 2px;
 }
 
 .novidade-btn-video {
@@ -5428,7 +5467,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 /* ── Novidade — fontes (≥ 1500px) ────────────────── */
 @media (min-width: 1500px) {
     .novidade-nome {
-        font-size: clamp(56px, 3.54vw, 68px)
+        font-size: clamp(36px, 2.5vw, 46px);
     }
 
     .novidade-desc {
@@ -5505,5 +5544,170 @@ body[data-mode="apresentacao"] .height-hamburger span {
 }
 
 .novidade-btn-video:hover {
+    animation: none;
+}
+
+/* ── Novidade — tabs editoriais ────────────────────── */
+.novidade-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.novidade-tab {
+    background: none;
+    border: none;
+    padding: 6px 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.25s ease;
+}
+
+.novidade-tab.unvisited {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.novidade-tab::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.15);
+    transition: background 0.25s ease;
+}
+
+.novidade-tab:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.novidade-tab.active {
+    color: var(--white);
+}
+
+.novidade-tab.active::after {
+    background: #FF7800;
+}
+
+.novidade-tab.unvisited::after {
+    animation: novidade-tab-breathe 2.2s ease-in-out infinite;
+}
+
+@keyframes novidade-tab-breathe {
+
+    0%,
+    100% {
+        background: rgba(255, 120, 0, 0.35)
+    }
+
+    50% {
+        background: rgba(255, 120, 0, 0.85)
+    }
+}
+
+.novidade-tab-sep {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    user-select: none;
+}
+
+@media (max-width: 600px) {
+    .novidade-tabs {
+        gap: 8px;
+    }
+
+    .novidade-tab {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+}
+
+/* ── Novidade — painéis (troca via JS) ─────────────── */
+.novidade-panel {
+    display: none;
+}
+
+.novidade-panel.active {
+    display: block;
+}
+
+/* ── Novidade — carrossel de imagens (dots only) ───── */
+.novidade-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.novidade-carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.novidade-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.novidade-slide {
+    position: relative;
+    flex: 0 0 100%;
+    height: 100%;
+    scroll-snap-align: start;
+}
+
+.novidade-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.novidade-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.novidade-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.novidade-dot:not(.active) {
+    animation: depo-dot-pulse 1.8s ease-in-out infinite;
+}
+
+.novidade-dot.active {
+    background: #FF7800;
+    border-color: #FF7800;
+    transform: scale(1.2);
     animation: none;
 }
