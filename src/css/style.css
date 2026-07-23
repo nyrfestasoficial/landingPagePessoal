@@ -5257,7 +5257,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 /* ── Novidade — card maior (≥ 1920px) ────────────── */
 @media (min-width: 1920px) {
     .novidade-hl .container {
-        max-width: 1300px
+        max-width: 1200px
     }
 
     /* .novidade-card {
