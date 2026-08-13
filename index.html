@@ -90,6 +90,59 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'AW-18386450761');
+
+        function gtag_report_conversion_contato(url) {
+            var callback = function () {
+                if (typeof url != 'undefined') {
+                    window.open(url, '_blank');
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-18386450761/zUNpCNaw5uAcEMnyq79E',
+                'event_callback': callback,
+                'event_timeout': 2000
+            });
+            return false;
+        }
+
+        function gtag_report_conversion_lead(url) {
+            var callback = function () {
+                if (typeof url != 'undefined') {
+                    window.open(url, '_blank');
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-18386450761/u0AyCJ736OAcEMnyq79E',
+                'event_callback': callback,
+                'event_timeout': 2000
+            });
+            return false;
+        }
+
+        function gtag_report_lead_e_contato(url) {
+            var opened = false;
+            var openOnce = function () {
+                if (opened || typeof url == 'undefined') return;
+                opened = true;
+                window.open(url, '_blank');
+            };
+            if (typeof gtag !== 'function') {
+                openOnce();
+                return false;
+            }
+            gtag('event', 'conversion', {
+                'send_to': 'AW-18386450761/u0AyCJ736OAcEMnyq79E',
+                'event_callback': openOnce,
+                'event_timeout': 2000
+            });
+            gtag('event', 'conversion', {
+                'send_to': 'AW-18386450761/zUNpCNaw5uAcEMnyq79E',
+                'event_callback': openOnce,
+                'event_timeout': 2000
+            });
+            setTimeout(openOnce, 2000);
+            return false;
+        }
     </script>
 
     <script>
@@ -3232,7 +3285,7 @@
                     `Cheguei até aqui pelo site oficial e gostaria de mais informações.`,
                     `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
                 ].map(encodeURIComponent).join('%0A');
-                window.open(`https://wa.me/${WA}?text=${msg}`, '_blank');
+                gtag_report_lead_e_contato(`https://wa.me/${WA}?text=${msg}`);
             });
         })();
 
@@ -3352,7 +3405,7 @@
                 if (rsErr) setFieldError(inputRS, errRS, rsErr);
                 if (cnpjErr) setFieldError(inputCNPJ, errCNPJ, cnpjErr);
                 if (rsErr || cnpjErr) return;
-                window.open(`https://wa.me/${WA_NUM}?text=${buildWAMsg(rs, cnpj)}`, '_blank');
+                gtag_report_lead_e_contato(`https://wa.me/${WA_NUM}?text=${buildWAMsg(rs, cnpj)}`);
                 closeModal();
             });
 
