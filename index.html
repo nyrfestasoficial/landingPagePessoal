@@ -251,23 +251,8 @@
                         <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
                             <span></span><span></span><span></span>
                         </button>
-                        <button class="height-hamburger" id="height-hamburger" aria-label="Abrir menu"
-                            aria-expanded="false">
-                            <span></span><span></span><span></span>
-                        </button>
                     </nav>
                     <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
-                        <ul>
-                            <li><a href="#servicos">Sazonalidades</a></li>
-                            <li><a href="#produtos">Produtos</a></li>
-                            <li><a href="#novidade">Novidades</a></li>
-                            <li><a href="#sobre">Sobre</a></li>
-                            <li><a href="#redecomercial">Rede Comercial</a></li>
-                            <li><a href="#faq">FAQ</a></li>
-                            <li><a href="#contato">Contato</a></li>
-                        </ul>
-                    </div>
-                    <div class="height-nav" id="height-nav" aria-hidden="true">
                         <ul>
                             <li><a href="#servicos">Sazonalidades</a></li>
                             <li><a href="#produtos">Produtos</a></li>
@@ -2233,41 +2218,6 @@
             });
         })();
 
-
-        /* ═══════════════════════════════════════════════
-           HEIGHT-HAMBURGER — menu para tablet landscape comprimido
-           Mesmo comportamento do hamburger hero.
-        ═══════════════════════════════════════════════ */
-        const heightHamburger = document.getElementById('height-hamburger');
-        const heightNav = document.getElementById('height-nav');
-
-        heightHamburger.addEventListener('click', () => {
-            const open = heightNav.classList.toggle('open');
-            heightHamburger.classList.toggle('open', open);
-            siteHeader.classList.toggle('height-menu-open', open);
-            heightHamburger.setAttribute('aria-expanded', open);
-            heightNav.setAttribute('aria-hidden', !open);
-        });
-
-        heightNav.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                heightNav.classList.remove('open');
-                heightHamburger.classList.remove('open');
-                siteHeader.classList.remove('height-menu-open');
-                heightHamburger.setAttribute('aria-expanded', false);
-                heightNav.setAttribute('aria-hidden', true);
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (heightNav.classList.contains('open') && !siteHeader.contains(e.target)) {
-                heightNav.classList.remove('open');
-                heightHamburger.classList.remove('open');
-                siteHeader.classList.remove('height-menu-open');
-                heightHamburger.setAttribute('aria-expanded', false);
-                heightNav.setAttribute('aria-hidden', true);
-            }
-        });
 
         /* ═══════════════════════════════════════════════
            PAGE LOADER — Promise.all waits for real load
