@@ -4437,3 +4437,82 @@ button {
         display: none;
     }
 }
+
+/* ─── LEGIBILIDADE DO TEXTO — text-shadow ─────────────────────
+   Reforça o contraste do texto sobre a foto sem alterar o
+   filter da imagem nem o gradiente do overlay. Duas sombras
+   por elemento: uma mais larga/suave (halo) e uma mais justa/
+   escura (define a borda da letra). */
+.hero-lp-eyebrow {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+.hero-lp-title {
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65), 0 2px 6px rgba(0, 0, 0, 0.85);
+}
+
+.hero-lp-sub {
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* ─── ENTRADA DO HERO ──────────────────────────────────────────
+   O hero já aparece na tela no carregamento (não dá pra usar o
+   .reveal padrão do site, que dispara ao rolar). O gatilho é o
+   fim do page-loader: a classe .hero-in é adicionada no JS no
+   exato momento em que ele termina de sumir — o que é MAIS
+   preciso que um animation-delay fixo, porque o loader só
+   começa depois que fontes/imagem da logo terminam de carregar
+   (document.fonts.ready + logo), então o tempo real varia com a
+   rede. Um delay fixo poderia rodar a animação atrás do loader
+   ainda visível em conexões lentas (o público desta campanha é
+   majoritariamente mobile/4G). Sem fallback pra JS desabilitado
+   aqui: a página inteira já depende do loader (via JS) pra
+   sequer ficar visível, então não existe cenário de "JS falhou,
+   mas o resto do site funciona" pra este elemento especificamente.
+   Intensidade "mais notável": subida de 32px, 900ms, com
+   escalonamento de 150ms entre eyebrow → título → subtítulo →
+   form card. */
+.hero-lp-eyebrow,
+.hero-lp-title,
+.hero-lp-sub,
+.hero-lp-form-card {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-lp.hero-in .hero-lp-eyebrow {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+}
+
+.hero-lp.hero-in .hero-lp-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.25s;
+}
+
+.hero-lp.hero-in .hero-lp-sub {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+.hero-lp.hero-in .hero-lp-form-card {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.55s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-lp-eyebrow,
+    .hero-lp-title,
+    .hero-lp-sub,
+    .hero-lp-form-card {
+        transition: opacity 0.4s ease;
+        transform: none;
+    }
+}
