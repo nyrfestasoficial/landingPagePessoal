@@ -1818,7 +1818,7 @@
                 if (rsErr || cnpjErr) return;
                 const msg = [
                     `Olá, Nyr Festas!`,
-                    `Cheguei até aqui pelo site oficial e gostaria de mais informações.`,
+                    `Cheguei até aqui pela página de vendas e gostaria de mais informações.`,
                     `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
                 ].map(encodeURIComponent).join('%0A');
                 gtag_report_lead_e_contato(`https://wa.me/${WA}?text=${msg}`);
@@ -1846,7 +1846,7 @@
                 if (rsErr || cnpjErr) return;
                 const msg = [
                     `Olá, Nyr Festas!`,
-                    `Cheguei até aqui pelo anúncio de Halloween e gostaria de solicitar o catálogo.`,
+                    `Cheguei até aqui pela página de vendas e gostaria de solicitar o catálogo completo de Halloween.`,
                     `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
                 ].map(encodeURIComponent).join('%0A');
                 gtag_report_lead_e_contato(`https://wa.me/${WA}?text=${msg}`);
@@ -1871,12 +1871,12 @@
             const lines = _catalogSeason
                 ? [
                     `Olá, Nyr Festas!`,
-                    `Cheguei até aqui pelo site oficial e gostaria de solicitar o catálogo de ${_catalogSeason}.`,
+                    `Cheguei até aqui pela página de vendas e gostaria de solicitar o catálogo de ${_catalogSeason}.`,
                     `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
                 ]
                 : [
                     `Olá, Nyr Festas!`,
-                    `Cheguei até aqui pelo site oficial e gostaria de mais informações.`,
+                    `Cheguei até aqui pela página de vendas e gostaria de mais informações.`,
                     `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
                 ];
             return lines.map(encodeURIComponent).join('%0A');
@@ -2004,7 +2004,7 @@
             document.querySelectorAll('[data-novidade-wa-btn]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const nome = btn.dataset.novidadeWaBtn;
-                    _novWAMsg = `Olá, Nyr Festas!\nCheguei até aqui pelo site oficial e estou interessado no item lançamento ${nome}.\nRazão Social: {rs}  |  CNPJ: {cnpj}`;
+                    _novWAMsg = `Olá, Nyr Festas!\nCheguei até aqui pela página de vendas e estou interessado no item lançamento ${nome}.\nRazão Social: {rs}  |  CNPJ: {cnpj}`;
                     openModal(null);
                 });
             });
@@ -2061,7 +2061,7 @@
             document.querySelectorAll('[data-video]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     if (btn.dataset.novidadeWa) {
-                        _novWAMsg = `Olá, Nyr Festas!\nCheguei até aqui pelo site oficial e estou interessado no item lançamento ${btn.dataset.novidadeWa}.\nRazão Social: {rs}  |  CNPJ: {cnpj}`;
+                        _novWAMsg = `Olá, Nyr Festas!\nCheguei até aqui pela página de vendas e estou interessado no item lançamento ${btn.dataset.novidadeWa}.\nRazão Social: {rs}  |  CNPJ: {cnpj}`;
                     }
                     openModal(btn.dataset.video, btn.dataset.name, btn.dataset.ref, btn.dataset.desc);
                 });

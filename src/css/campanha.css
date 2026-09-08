@@ -4444,15 +4444,15 @@ button {
    por elemento: uma mais larga/suave (halo) e uma mais justa/
    escura (define a borda da letra). */
 .hero-lp-eyebrow {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 1);
 }
 
 .hero-lp-title {
-    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65), 0 2px 6px rgba(0, 0, 0, 0.85);
+    text-shadow: 0 6px 32px rgba(0, 0, 0, 0.8), 0 3px 10px rgba(0, 0, 0, 0.95), 0 1px 2px rgba(0, 0, 0, 1);
 }
 
 .hero-lp-sub {
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 3px 16px rgba(0, 0, 0, 0.75), 0 1px 5px rgba(0, 0, 0, 0.95);
 }
 
 /* ─── ENTRADA DO HERO ──────────────────────────────────────────
