@@ -4381,6 +4381,25 @@ button {
     max-width: 560px;
 }
 
+/* ─── ALTURA CURTA (mobile empilhado) ────────────────────────
+   Com o hero empilhado (≤891px de largura), o conteúdo real
+   (header + texto + form) soma ≈968px — mais alto que a
+   maioria das telas de celular em pé. Abaixo de 960px de
+   altura, soltamos o height fixo (mantendo só o min-height,
+   que nunca deixa o hero MENOR que uma tela) e escondemos o
+   "Ver mais", já que nesse caso a rolagem já fica óbvia.
+   Combinado com max-width pra não afetar janelas de desktop
+   baixas e largas, que cabem tranquilo no layout lado a lado. */
+@media (max-width: 891px) and (max-height: 960px) {
+    .hero {
+        height: auto;
+    }
+
+    .hero-lp .hero-bottom {
+        display: none;
+    }
+}
+
 .hero-lp-eyebrow {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 15px;
