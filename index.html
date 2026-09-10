@@ -84,72 +84,21 @@
         rel="stylesheet">
     <link rel="stylesheet" href="src/css/style.css">
 
+    <!-- ═══════════════════ GOOGLE ADS (gtag.js) ═══════════════════ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18386450761"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'AW-18386450761');
-
-        function gtag_report_conversion_contato(url) {
-            var callback = function () {
-                if (typeof url != 'undefined') {
-                    window.open(url, '_blank');
-                }
-            };
-            gtag('event', 'conversion', {
-                'send_to': 'AW-18386450761/zUNpCNaw5uAcEMnyq79E',
-                'event_callback': callback,
-                'event_timeout': 2000
-            });
-            return false;
-        }
-
-        function gtag_report_conversion_lead(url) {
-            var callback = function () {
-                if (typeof url != 'undefined') {
-                    window.open(url, '_blank');
-                }
-            };
-            gtag('event', 'conversion', {
-                'send_to': 'AW-18386450761/u0AyCJ736OAcEMnyq79E',
-                'event_callback': callback,
-                'event_timeout': 2000
-            });
-            return false;
-        }
-
-        function gtag_report_lead_e_contato(url) {
-            var opened = false;
-            var openOnce = function () {
-                if (opened || typeof url == 'undefined') return;
-                opened = true;
-                window.open(url, '_blank');
-            };
-            if (typeof gtag !== 'function') {
-                openOnce();
-                return false;
-            }
-            gtag('event', 'conversion', {
-                'send_to': 'AW-18386450761/u0AyCJ736OAcEMnyq79E',
-                'event_callback': openOnce,
-                'event_timeout': 2000
-            });
-            gtag('event', 'conversion', {
-                'send_to': 'AW-18386450761/zUNpCNaw5uAcEMnyq79E',
-                'event_callback': openOnce,
-                'event_timeout': 2000
-            });
-            setTimeout(openOnce, 2000);
-            return false;
-        }
     </script>
 
+    <!-- ═══════════════════ META PIXEL ═══════════════════ -->
     <script>
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             };
             if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
             n.queue = []; t = b.createElement(e); t.async = !0;
@@ -159,6 +108,123 @@
             'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1263940769105902');
         fbq('track', 'PageView');
+    </script>
+
+    <!-- ══════════ CAMADA DE CONVERSÕES — Google Ads + Meta ══════════
+         Ponto único de disparo para as duas plataformas.
+             nyrTrackLead(url, nome)     -> formulário enviado
+             nyrTrackContato(url, nome)  -> contato direto (tel / e-mail)
+    ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        (function (w) {
+            'use strict';
+
+            /* Ações de conversão configuradas na conta do Google Ads */
+            var GADS = {
+                LEAD: 'AW-18386450761/u0AyCJ736OAcEMnyq79E',    // [NYR] Enviar formulário de lead
+                CONTATO: 'AW-18386450761/zUNpCNaw5uAcEMnyq79E'  // [NYR] CONTATO
+            };
+
+            /* ── CONFIG ────────────────────────────────────────────────
+               Quais ações o ENVIO DE FORMULÁRIO dispara no Google Ads.
+               Padrão: só LEAD — ou seja, 1 envio = 1 conversão.
+
+               Antes, o mesmo clique disparava LEAD **e** CONTATO juntas.
+               Isso dobrava o número de conversões no painel e fazia o
+               lance automático (Target CPA/ROAS) enxergar um custo por
+               conversão artificialmente baixo, já que via o dobro de
+               conversões pelo mesmo gasto.
+
+               Se o Marketing confirmar que CONTATO é uma métrica
+               separada e proposital, basta voltar a incluí-la aqui:
+                   var FORM_CONVERSIONS = [GADS.LEAD, GADS.CONTATO];
+               ──────────────────────────────────────────────────────── */
+            var FORM_CONVERSIONS = [GADS.LEAD];
+
+            /* ID único por evento — permite ao Meta deduplicar Pixel x
+               API de Conversões, caso a CAPI seja ativada no futuro. */
+            function newEventId() {
+                return 'nyr-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+            }
+
+            /* Trava de 1s contra duplo-clique: evita 2 conversões e 2 abas */
+            var lastFire = 0;
+            function isTooSoon() {
+                var now = Date.now();
+                if (now - lastFire < 1000) return true;
+                lastFire = now;
+                return false;
+            }
+
+            /* Abre o destino AINDA DENTRO do clique do usuário.
+               O código anterior abria dentro do 'event_callback' do gtag,
+               que roda de forma assíncrona — nesse momento o navegador já
+               não reconhece mais o gesto e bloqueia a aba como pop-up
+               (Safari/iOS bloqueia sempre). Resultado: o lojista clicava
+               em "Enviar pelo WhatsApp" e nada acontecia. */
+            function openNow(url) {
+                if (!url) return;
+                var win = w.open(url, '_blank');
+                if (win) {
+                    win.opener = null;   // evita reverse tabnabbing
+                } else {
+                    /* pop-up bloqueado mesmo assim: navega na mesma aba,
+                       com uma folga curta para os pixels saírem antes */
+                    setTimeout(function () { w.location.href = url; }, 200);
+                }
+            }
+
+            /* Dispara a conversão nas duas plataformas */
+            function fire(gadsActions, metaEvent, nome) {
+                var eventId = newEventId();
+
+                if (typeof w.gtag === 'function') {
+                    for (var i = 0; i < gadsActions.length; i++) {
+                        w.gtag('event', 'conversion', { 'send_to': gadsActions[i] });
+                    }
+                }
+
+                if (typeof w.fbq === 'function') {
+                    w.fbq('track', metaEvent, {
+                        content_name: nome,
+                        content_category: 'Atacado'
+                    }, { eventID: eventId });
+                }
+
+                return eventId;
+            }
+
+            /**
+             * LEAD — formulário enviado (Razão Social + CNPJ).
+             * Google Ads: "Enviar formulário de lead"   |   Meta: "Lead"
+             * @param {string} url   destino do WhatsApp (aberto na hora)
+             * @param {string} nome  qual formulário originou o lead
+             */
+            w.nyrTrackLead = function (url, nome) {
+                if (isTooSoon()) return false;
+                fire(FORM_CONVERSIONS, 'Lead', nome || 'Formulário WhatsApp');
+                openNow(url);
+                return false;
+            };
+
+            /**
+             * CONTATO — contato direto, sem formulário (telefone, e-mail).
+             * Google Ads: "CONTATO"   |   Meta: "Contact"
+             * Passe url = null para deixar o navegador seguir o link
+             * sozinho — é o caso de tel: e mailto:.
+             */
+            w.nyrTrackContato = function (url, nome) {
+                if (isTooSoon()) return false;
+                fire([GADS.CONTATO], 'Contact', nome || 'Contato direto');
+                openNow(url);
+                return false;
+            };
+
+            /* Compatibilidade com os nomes antigos das funções */
+            w.gtag_report_lead_e_contato = w.nyrTrackLead;
+            w.gtag_report_conversion_lead = w.nyrTrackLead;
+            w.gtag_report_conversion_contato = w.nyrTrackContato;
+        })(window);
     </script>
 </head>
 
@@ -3220,6 +3286,9 @@
                     input.value = '';
                     input.placeholder = 'Obrigado!';
                     showNote('E-mail cadastrado com sucesso!', false);
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'Subscribe', { content_name: 'Newsletter Rodapé' });
+                    }
                 }).catch(() => {
                     btn.textContent = 'Inscrever';
                     btn.disabled = false;
@@ -3260,6 +3329,10 @@
             const addr = ['vendas', 'mm88.com.br'].join('@');
             el.href = 'mailto:' + addr;
             el.textContent = addr;
+            /* Contato direto por e-mail: ação CONTATO (não é lead de formulário) */
+            el.addEventListener('click', function () {
+                nyrTrackContato(null, 'E-mail — Rodapé');
+            });
         })();
 
         // ─── CTA FORM → WHATSAPP ──────────────────────────────────
@@ -3287,7 +3360,7 @@
                     `Cheguei até aqui pelo site oficial e gostaria de mais informações.`,
                     `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
                 ].map(encodeURIComponent).join('%0A');
-                gtag_report_lead_e_contato(`https://wa.me/${WA}?text=${msg}`);
+                nyrTrackLead(`https://wa.me/${WA}?text=${msg}`, 'Formulário CTA — Mais informações');
             });
         })();
 
@@ -3407,7 +3480,8 @@
                 if (rsErr) setFieldError(inputRS, errRS, rsErr);
                 if (cnpjErr) setFieldError(inputCNPJ, errCNPJ, cnpjErr);
                 if (rsErr || cnpjErr) return;
-                gtag_report_lead_e_contato(`https://wa.me/${WA_NUM}?text=${buildWAMsg(rs, cnpj)}`);
+                const origem = _catalogSeason ? `Catálogo ${_catalogSeason}` : 'Catálogo';
+                nyrTrackLead(`https://wa.me/${WA_NUM}?text=${buildWAMsg(rs, cnpj)}`, `Formulário Modal — ${origem}`);
                 closeModal();
             });
 
