@@ -89,6 +89,37 @@
             'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1263940769105902');
         fbq('track', 'PageView');
+
+        /* ── LEAD DUPLICADO: A CAUSA **NAO** ESTA NESTE ARQUIVO ──────
+           Diagnostico de 10/09/2026. Um unico clique gerava 2 eventos
+           Lead. O codigo desta pagina dispara apenas 1 (verificado:
+           1 chamada fbq por clique, em todos os formularios).
+
+           O segundo Lead vem da Ferramenta de Configuracao de Eventos
+           (Event Setup Tool) do Gerenciador de Eventos da Meta. Existe
+           uma regra ATIVA no proprio pixel, entregue pelo servidor da
+           Meta em connect.facebook.net/signals/config/1263940769105902:
+
+               rule_id ............ 1689604965462613
+               condicao ........... texto do botao contem
+                                    "enviar pelo whatsapp"
+               derived_event_name . Lead
+               rule_status ........ ACTIVE
+
+           O evento fantasma sai com es=automatic, cs_est=true e
+           est_source=1689604965462613 — marcas de evento gerado pela
+           Meta, sem codigo. O nosso sai com eventID "nyr-...".
+
+           COMO RESOLVER: apagar a regra no Gerenciador de Eventos
+           (Pixel > Configuracoes > Configuracao automatica de eventos /
+           Eventos sem codigo). NAO tem correcao possivel via HTML:
+           fbq('set','autoConfig',false) e fbq('set','smartSetup',false)
+           nao desligam o motor de regras EST (testado, sem efeito).
+
+           NAO renomear os botoes para "fugir" da regra: resolve por
+           tabela, mas volta a duplicar assim que alguem aceitar de novo
+           uma sugestao de evento automatico no Gerenciador.
+           ──────────────────────────────────────────────────────────── */
     </script>
 
     <!-- ══════════ CAMADA DE CONVERSÕES — Google Ads + Meta ══════════
