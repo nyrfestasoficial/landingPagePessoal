@@ -2980,14 +2980,63 @@
             setInterval(() => updateCountdown(key), 1000);
         });
 
-        // ─── STICKY NAV ───────────────────────────────────────────
+        // ─── STICKY NAV (inteligente: esconde ao descer, mostra ao subir) ──
         const stickyNav = document.getElementById('sticky-nav');
         const heroEl = document.getElementById('hero');
 
-        window.addEventListener('scroll', () => {
-            const heroBottom = heroEl.getBoundingClientRect().bottom;
-            stickyNav.classList.toggle('visible', heroBottom < 60);
-        }, { passive: true });
+        (function () {
+            const DELTA = 10;            // px acumulados na mesma direção para esconder/mostrar (sensibilidade)
+            const HERO_OFFSET = 60;      // a barra só entra em cena depois do hero (igual ao comportamento anterior)
+            let lastY = window.scrollY;
+            let acc = 0;                 // movimento acumulado na direção atual (+ desce, − sobe)
+            let shown = false;
+            let ticking = false;
+
+            function setShown(v) {
+                if (v === shown) return;
+                shown = v;
+                stickyNav.classList.toggle('visible', v);
+            }
+
+            // Mantém a barra visível enquanto o menu mobile estiver aberto
+            // (ele mora dentro da barra; esconder a barra o faria sumir junto).
+            function menuOpen() {
+                return !!stickyNav.querySelector('.sticky-mobile-nav.open');
+            }
+
+            // Foco de teclado dentro da barra (foco por mouse/toque não conta).
+            function keyboardFocusInside() {
+                try { return !!stickyNav.querySelector(':focus-visible'); }
+                catch (e) { return false; }
+            }
+
+            function update() {
+                const maxY = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+                // limita ao intervalo real: ignora o "elástico" do iOS no topo e no fim da página
+                const y = Math.min(Math.max(window.scrollY, 0), maxY);
+                const dy = y - lastY;
+                lastY = y;
+
+                const pastHero = heroEl.getBoundingClientRect().bottom < HERO_OFFSET;
+                if (!pastHero) { acc = 0; setShown(false); return; }
+                if (menuOpen() || keyboardFocusInside()) { acc = 0; setShown(true); return; }
+                if (dy === 0) return;
+
+                if (Math.sign(dy) !== Math.sign(acc)) acc = 0;   // inverteu a direção → recomeça a contagem
+                acc += dy;
+
+                if (acc > DELTA) setShown(false);
+                else if (acc < -DELTA) setShown(true);
+            }
+
+            window.addEventListener('scroll', () => {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => { update(); ticking = false; });
+            }, { passive: true });
+
+            update();
+        })();
 
         // ─── HAMBURGER HEADER ─────────────────────────────────────
         const hamburger = document.getElementById('hamburger');
