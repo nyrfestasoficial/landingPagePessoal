@@ -82,7 +82,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Creepster&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="preload" href="src/fonts/edo-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="src/css/teste.css">
 
     <!-- ═══════════════════ GOOGLE ADS (gtag.js) ═══════════════════ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18386450761"></script>
@@ -215,7 +216,7 @@
                     }
                 }
 
-                if (typeof w.fbq === 'function') {
+                if (metaEvent && typeof w.fbq === 'function') {
                     w.fbq('track', metaEvent, {
                         content_name: nome,
                         content_category: 'Atacado'
@@ -233,7 +234,7 @@
              */
             w.nyrTrackLead = function (url, nome) {
                 if (isTooSoon()) return false;
-                fire(FORM_CONVERSIONS, 'Lead', nome || 'Formulário WhatsApp');
+                fire(FORM_CONVERSIONS, null, nome || 'Formulário WhatsApp');
                 openNow(url);
                 return false;
             };
@@ -301,8 +302,7 @@
                 <li><a href="#contato">Contato</a></li>
             </ul>
             <div class="sticky-logins">
-                <a href="login.html" class="btn-login">Login Representante</a>
-                <a class="btn-login btn-login-primary">Login Cliente</a>
+                <a href="login.html" class="btn-login btn-login-primary">Login</a>
             </div>
             <button class="sticky-hamburger" id="sticky-hamburger" aria-label="Abrir menu" aria-expanded="false">
                 <span></span><span></span><span></span>
@@ -318,8 +318,7 @@
                     <li><a href="#contato">Contato</a></li>
                 </ul>
                 <div class="sticky-mobile-logins">
-                    <a href="login.html" class="btn-login">Login Representante</a>
-                    <a class="btn-login btn-login-primary">Login Cliente</a>
+                    <a href="login.html" class="btn-login btn-login-primary">Login</a>
                 </div>
             </div>
         </div>
@@ -386,14 +385,13 @@
         <header class="site-header" id="site-header">
             <div class="header-row-1" id="header-row-1">
                 <div class="header-container">
-                    <a href="login.html" class="btn-login">Login Representante</a>
-                    <a class="btn-login btn-login-primary">Login Cliente</a>
+                    <a href="login.html" class="btn-login btn-login-primary">Login</a>
                 </div>
             </div>
             <div class="header-row-2">
                 <div class="header-container">
                     <a href="#" class="nav-logo">
-                        <span class="nav-logo-text">NYR<em>·</em>FESTAS</span>
+                        <span class="nav-logo-text">NYR<em>|</em>FESTAS</span>
                         <img class="nav-logo-img"
                             src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778845994/LOGO_NYR_pvsjqk.webp"
                             alt="Nyr Festas">
@@ -427,8 +425,7 @@
                             <li><a href="#contato">Contato</a></li>
                         </ul>
                         <div class="mobile-logins">
-                            <a href="login.html" class="btn-login">Login Representante</a>
-                            <a class="btn-login btn-login-primary">Login Cliente</a>
+                            <a href="login.html" class="btn-login btn-login-primary">Login</a>
                         </div>
                     </div>
                     <div class="height-nav" id="height-nav" aria-hidden="true">
@@ -442,8 +439,7 @@
                             <li><a href="#contato">Contato</a></li>
                         </ul>
                         <div class="height-nav-logins">
-                            <a href="login.html" class="btn-login">Login Representante</a>
-                            <a class="btn-login btn-login-primary">Login Cliente</a>
+                            <a href="login.html" class="btn-login btn-login-primary">Login</a>
                         </div>
                     </div>
                 </div>
@@ -617,9 +613,26 @@
                     <p class="service-desc"><strong>Não adianta pedir fantasia em fevereiro.</strong> O Carnaval exige
                         antecipação: os melhores lotes saem nos primeiros meses do ano. Nossa linha cobre do acessório
                         básico à fantasia completa, com variedade para todos os perfis de loja.</p>
-                    <button class="btn-ver-produtos" data-season="carnaval">
-                        Ver Produtos <span class="btn-arrow">→</span>
-                    </button>
+                    <div class="service-actions">
+                        <button class="btn-ver-produtos" data-season="carnaval">
+                            Ver Produtos <span class="btn-arrow">→</span>
+                        </button>
+                        <a class="insp-microlink"
+                            href="nyr-inspira?utm_source=lp&amp;utm_medium=microlink&amp;utm_campaign=carnaval2027"
+                            target="_blank" rel="noopener">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path
+                                    d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z" />
+                            </svg>
+                            <span>Ideias de kits para o Carnaval</span>
+                            <svg class="insp-microlink__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg>
+                        </a>
+                    </div>
                     <div class="service-countdown" id="cd-carnaval-wrap">
                         <div class="service-countdown-unit"><span class="service-countdown-val"
                                 id="cd-carnaval-d">--</span><span class="service-countdown-label">dias</span></div>
@@ -2300,6 +2313,54 @@
         </div>
     </section>
 
+    <!-- NYR INSPIRA — seção promocional -->
+    <section class="insp-promo" id="inspira" aria-labelledby="insp-promo-title">
+        <div class="container">
+            <div class="insp-promo__grid">
+
+                <div class="insp-promo__text">
+                    <span class="insp-promo__badge">Novo · Carnaval 2027</span>
+                    <h2 class="insp-promo__title" id="insp-promo-title">NYR <em>Inspira</em></h2>
+                    <p class="insp-promo__lead"><strong>Ideias que vendem.</strong> Looks e cenários prontos com peças
+                        do
+                        catálogo, para você levar direto para a vitrine.</p>
+
+                    <ul class="insp-promo__facts">
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12.5l4.5 4.5L19 7.5" />
+                            </svg>10 looks completos</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12.5l4.5 4.5L19 7.5" />
+                            </svg>5 cenários de decoração</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12.5l4.5 4.5L19 7.5" />
+                            </svg>Código de cada peça</li>
+                    </ul>
+
+                    <a class="insp-promo__cta"
+                        href="nyr-inspira?utm_source=lp&amp;utm_medium=secao&amp;utm_campaign=carnaval2027"
+                        target="_blank" rel="noopener">
+                        Conhecer o NYR Inspira
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="insp-promo__media reveal">
+                    <img loading="lazy" decoding="async"
+                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1790767835/NYR-INSPIRA_MOCKUP_LP_okjsmu.webp"
+                        alt="Página NYR Inspira em tablet e celular: kits de acessórios com produtos indicados e cenários de decoração">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- SOBRE -->
     <section class="sobre" id="sobre">
         <div class="container">
@@ -2920,14 +2981,63 @@
             setInterval(() => updateCountdown(key), 1000);
         });
 
-        // ─── STICKY NAV ───────────────────────────────────────────
+        // ─── STICKY NAV (inteligente: esconde ao descer, mostra ao subir) ──
         const stickyNav = document.getElementById('sticky-nav');
         const heroEl = document.getElementById('hero');
 
-        window.addEventListener('scroll', () => {
-            const heroBottom = heroEl.getBoundingClientRect().bottom;
-            stickyNav.classList.toggle('visible', heroBottom < 60);
-        }, { passive: true });
+        (function () {
+            const DELTA = 10;            // px acumulados na mesma direção para esconder/mostrar (sensibilidade)
+            const HERO_OFFSET = 60;      // a barra só entra em cena depois do hero (igual ao comportamento anterior)
+            let lastY = window.scrollY;
+            let acc = 0;                 // movimento acumulado na direção atual (+ desce, − sobe)
+            let shown = false;
+            let ticking = false;
+
+            function setShown(v) {
+                if (v === shown) return;
+                shown = v;
+                stickyNav.classList.toggle('visible', v);
+            }
+
+            // Mantém a barra visível enquanto o menu mobile estiver aberto
+            // (ele mora dentro da barra; esconder a barra o faria sumir junto).
+            function menuOpen() {
+                return !!stickyNav.querySelector('.sticky-mobile-nav.open');
+            }
+
+            // Foco de teclado dentro da barra (foco por mouse/toque não conta).
+            function keyboardFocusInside() {
+                try { return !!stickyNav.querySelector(':focus-visible'); }
+                catch (e) { return false; }
+            }
+
+            function update() {
+                const maxY = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+                // limita ao intervalo real: ignora o "elástico" do iOS no topo e no fim da página
+                const y = Math.min(Math.max(window.scrollY, 0), maxY);
+                const dy = y - lastY;
+                lastY = y;
+
+                const pastHero = heroEl.getBoundingClientRect().bottom < HERO_OFFSET;
+                if (!pastHero) { acc = 0; setShown(false); return; }
+                if (menuOpen() || keyboardFocusInside()) { acc = 0; setShown(true); return; }
+                if (dy === 0) return;
+
+                if (Math.sign(dy) !== Math.sign(acc)) acc = 0;   // inverteu a direção → recomeça a contagem
+                acc += dy;
+
+                if (acc > DELTA) setShown(false);
+                else if (acc < -DELTA) setShown(true);
+            }
+
+            window.addEventListener('scroll', () => {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => { update(); ticking = false; });
+            }, { passive: true });
+
+            update();
+        })();
 
         // ─── HAMBURGER HEADER ─────────────────────────────────────
         const hamburger = document.getElementById('hamburger');
