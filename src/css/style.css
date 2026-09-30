@@ -3525,13 +3525,39 @@ body[data-mode="apresentacao"] .site-header:not(.menu-open) .btn-login:hover {
     background: var(--brand-orange);
     color: #f5f5f5 !important;
     border-color: transparent !important;
-    /* transition: 0.3s; */
-    cursor: auto;
-    opacity: 0.7;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition), filter var(--transition),
+        border-color 0.32s ease, color 0.32s ease;
 }
 
-.btn-login-primary:hover {
-    /* opacity: 0.83; */
+/* hover: levanta, brilha e clareia levemente (não depende do background,
+   então funciona também no header com menu aberto) */
+@media (hover: hover) {
+    .btn-login-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(244, 160, 0, 0.38);
+        filter: brightness(1.08);
+    }
+}
+
+.btn-login-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(244, 160, 0, 0.3);
+}
+
+.btn-login-primary:focus-visible {
+    outline: 2px solid var(--brand-orange);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .btn-login-primary,
+    .btn-login-primary:hover,
+    .btn-login-primary:active {
+        transform: none;
+        transition: none;
+    }
 }
 
 /* ─── HAMBURGER ──────────────────────────── */
@@ -5475,4 +5501,288 @@ body[data-mode="apresentacao"] .height-hamburger span {
     border-color: #FF7800;
     transform: scale(1.2);
     animation: none;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   NYR INSPIRA — seção promocional + microlink do Carnaval
+   Breakpoints alinhados à LP: mobile ≤768 · tablet 769–1024 · desktop ≥1025.
+   Tablet em pé (retrato) usa layout empilhado + arte de tablet;
+   tablet deitado usa duas colunas + arte de desktop.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Microlink na linha do Carnaval ── */
+.service-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.service-actions .btn-ver-produtos {
+    margin-bottom: 0;
+}
+
+.insp-microlink {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.72);
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    transition: color var(--transition), border-color var(--transition);
+}
+
+.insp-microlink svg {
+    flex: none;
+    color: #ffd200;
+}
+
+.insp-microlink .insp-microlink__arrow {
+    transition: transform var(--transition);
+}
+
+.insp-microlink:hover,
+.insp-microlink:focus-visible {
+    color: #fff;
+    border-color: var(--brand-orange);
+}
+
+.insp-microlink:hover .insp-microlink__arrow {
+    transform: translateX(4px);
+}
+
+.insp-microlink:focus-visible {
+    outline: 2px solid var(--brand-orange);
+    outline-offset: 5px;
+    border-radius: 2px;
+}
+
+/* ── Seção ── */
+.insp-promo {
+    --scrim: 0.6;
+    /* intensidade da película sobre a estampa (0–1) */
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: #fff;
+    padding: 60px 0 52px;
+    background-color: var(--brand-bg);
+    /* padrão = desktop (paisagem) */
+    background-image: url('https://res.cloudinary.com/dzt1kqdbc/image/upload/v1790262976/INSPIRA_PAGE-LOADER_BACKGROUND-DESKTOP_twzmmx.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* faixa de confete: separa da seção preta acima e carrega a identidade do Inspira */
+.insp-promo::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 6px;
+    z-index: 2;
+    background: repeating-linear-gradient(90deg,
+            #ff2fa0 0 64px, #ffd200 64px 128px, #00c8ff 128px 192px, #2fb344 192px 256px, #ff7a00 256px 320px);
+}
+
+/* película: escurece o lado do texto para garantir leitura sobre a estampa */
+.insp-promo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(90deg,
+            rgba(13, 13, 13, calc(var(--scrim) * .95)) 0%,
+            rgba(13, 13, 13, calc(var(--scrim) * .60)) 42%,
+            rgba(13, 13, 13, 0) 80%);
+}
+
+.insp-promo__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.insp-promo__badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    background: var(--brand-orange);
+    color: var(--black);
+    margin-bottom: 16px;
+}
+
+.insp-promo__title {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(40px, 5.2vw, 62px);
+    line-height: 1.02;
+    margin-bottom: 16px;
+}
+
+.insp-promo__title em {
+    color: var(--brand-orange);
+    font-style: normal;
+}
+
+.insp-promo__lead {
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.74);
+    max-width: 440px;
+    margin-bottom: 22px;
+}
+
+.insp-promo__lead strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.insp-promo__facts {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin: 0 0 30px;
+    padding: 0;
+}
+
+.insp-promo__facts li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.insp-promo__facts svg {
+    flex: none;
+    color: var(--brand-orange);
+}
+
+.insp-promo__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Anton', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--brand-orange);
+    color: var(--black);
+    padding: 16px 26px;
+    border-radius: 10px;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.insp-promo__cta svg {
+    transition: transform var(--transition);
+}
+
+.insp-promo__cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(244, 160, 0, 0.35);
+}
+
+.insp-promo__cta:hover svg {
+    transform: translateX(4px);
+}
+
+.insp-promo__cta:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+}
+
+.insp-promo__media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.insp-promo__media img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 600px;
+    filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.5));
+}
+
+/* Tablet deitado / janelas estreitas em paisagem: duas colunas mais compactas */
+@media (max-width: 1024px) {
+    .insp-promo__grid {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+        gap: 32px;
+    }
+
+    .insp-promo__media img {
+        max-height: 520px;
+    }
+}
+
+/* Tablet em pé (769–1024 retrato) e celular (≤768): layout empilhado */
+@media (max-width: 768px),
+(max-width: 1024px) and (orientation: portrait) {
+    .insp-promo {
+        padding: 56px 0 48px;
+        background-image: url('https://res.cloudinary.com/dzt1kqdbc/image/upload/v1790262976/INSPIRA_PAGE-LOADER_BACKGROUND-TABLET_vdlx1p.webp');
+    }
+
+    .insp-promo::after {
+        background: linear-gradient(180deg,
+                rgba(13, 13, 13, calc(var(--scrim) * .95)) 0%,
+                rgba(13, 13, 13, calc(var(--scrim) * .65)) 45%,
+                rgba(13, 13, 13, calc(var(--scrim) * .15)) 100%);
+    }
+
+    .insp-promo__grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .insp-promo__media img {
+        max-height: 460px;
+    }
+}
+
+/* Celular: arte própria */
+@media (max-width: 768px) {
+    .insp-promo {
+        background-image: url('https://res.cloudinary.com/dzt1kqdbc/image/upload/v1790262975/INSPIRA_PAGE-LOADER_BACKGROUND-MOBILE_odfdte.webp');
+    }
+}
+
+@media (max-width: 480px) {
+    .insp-promo__cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .insp-promo__cta,
+    .insp-promo__cta svg,
+    .insp-microlink,
+    .insp-microlink .insp-microlink__arrow {
+        transition: none;
+    }
 }

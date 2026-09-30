@@ -215,7 +215,7 @@
                     }
                 }
 
-                if (metaEvent && typeof w.fbq === 'function') {
+                if (typeof w.fbq === 'function') {
                     w.fbq('track', metaEvent, {
                         content_name: nome,
                         content_category: 'Atacado'
@@ -233,7 +233,7 @@
              */
             w.nyrTrackLead = function (url, nome) {
                 if (isTooSoon()) return false;
-                fire(FORM_CONVERSIONS, null, nome || 'Formulário WhatsApp');
+                fire(FORM_CONVERSIONS, 'Lead', nome || 'Formulário WhatsApp');
                 openNow(url);
                 return false;
             };
