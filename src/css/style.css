@@ -1,3 +1,21 @@
+/* ─── FONTE EDO (Vic Fieger · freeware) ───────────────────────────
+   Hospedada localmente, subset latino (~13 KB). Usada apenas no logo do
+   cabeçalho (.nav-logo-text).
+   size-adjust: iguala a altura das maiúsculas à da Anton (a Edo é ~24% mais baixa).
+   ascent/descent/line-gap-override: preservam o alinhamento vertical que as
+   linhas tinham com a Anton. Para ajustar o tamanho geral, altere só o size-adjust. */
+@font-face {
+    font-family: 'Edo';
+    src: url('../fonts/edo-latin.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 125%;
+    ascent-override: 85.2%;
+    descent-override: 26.5%;
+    line-gap-override: 0%;
+}
+
 /* ─── PAGE LOADER ────────────────────────────────── */
 
 
@@ -3449,11 +3467,26 @@ body[data-mode="apresentacao"] .nav-logo {
 /* Logo swap: text visible by default, image hidden */
 .nav-logo-text {
     display: block;
+    font-family: 'Edo', 'Anton', sans-serif;
+    letter-spacing: 1px;
 }
 
 .nav-logo em {
     color: var(--brand-orange);
     font-style: normal
+}
+
+/* Separador "|" do logo. Na Edo o glifo "|" é vazio, então a barra é desenhada em CSS.
+   Ajustes: height (comprimento), width (espessura), margin (respiro), vertical-align (altura). */
+.nav-logo-text em {
+    display: inline-block;
+    width: 0.056em;
+    height: 0.85em;
+    margin: 0 0.35em 0.04em 0.35em;
+    vertical-align: -0.1em;
+    background: var(--brand-orange);
+    color: transparent;
+    overflow: hidden;
 }
 
 .nav-logo-img {
@@ -4394,7 +4427,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
     .apres-body {
         font-size: 19px;
-        max-width: 600px;
+        /* max-width: 600px; */
         line-height: 1.65;
     }
 
@@ -4456,8 +4489,8 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .apres-body {
-        font-size: 17px;
-        max-width: 340px;
+        font-size: 20px;
+        max-width: 400px;
         line-height: 1.6;
     }
 
@@ -4532,8 +4565,8 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .apres-body {
-        font-size: 15px;
-        max-width: 300px;
+        font-size: 18px;
+        max-width: 340px;
         line-height: 1.6;
     }
 
