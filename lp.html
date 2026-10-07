@@ -6952,91 +6952,366 @@
             display: none
         }
 
-        /* ═══════════════════════════════════════════════════════════════════════
-           RESPONSIVO POP — telas largas (≥900px) com pouca altura
-           Reaproveita os valores da LP e só limita pela altura (vh), então nada muda em telas altas.
-           ═══════════════════════════════════════════════════════════════════════ */
-        @media (min-width: 900px) {
-            body[data-variant="q1"] .apres-title {
-                --lgW: clamp(80px, 13vw, 148px);
-                --lgF: min(var(--lgW), var(--lgK, 20vh))
+        @media (max-width: 768px) {
+            .dots-switch>span:not(.track) {
+                display: none
             }
 
-            body[data-variant="q1"] .apres-line-lg {
-                font-size: var(--lgF)
-            }
-
-            body[data-variant="q1"] .apres-line-sm,
-            body[data-variant="q1"] .apres-line-md {
-                font-size: calc(var(--lgF) * .42)
-            }
-
-            body[data-variant="q1"] .apres-body {
-                --bodyW: 20px;
-                font-size: max(15px, min(var(--bodyW), 2.45vh));
-                padding: clamp(6px, 1.4vh, 14px) clamp(14px, 1.8vw, 22px)
-            }
-
-            body[data-variant="q1"] .toggle-btn {
-                padding: clamp(6px, 1.2vh, 11px) clamp(16px, 1.6vw, 22px)
-            }
-
-            body[data-variant="q1"] .hero-logo {
-                max-width: 40vh;
-                max-height: 40vh
+            .dots-switch {
+                padding: 6px 8px
             }
         }
 
-        @media (min-width: 900px) and (max-width: 1024px) {
-            body[data-variant="q1"] .apres-title {
-                --lgW: clamp(86px, 13vw, 138px)
+        /* ═══ Formas coloridas (rosa, azul, amarelo e bolinha) acima dos contêineres ═══ */
+        .geo-top {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+            overflow: hidden;
+            pointer-events: none
+        }
+
+        /* ═══ FORMAS COLORIDAS — alternativas ao desvio por JS (body[data-geo]) ═══
+           0 atrás do conteúdo (original) · 1 adesivos presos aos contêineres · 2 bordas da tela (posições fixas por CSS) · 3 acima do conteúdo, posição original */
+        .stk {
+            display: none
+        }
+
+        .hero-logo-wrap,
+        .inicio-text,
+        .apres-title,
+        .apres-body {
+            position: relative
+        }
+
+        body[data-geo="0"] .geo-top {
+            z-index: 2
+        }
+
+        body[data-geo="1"] .geo-top {
+            display: none
+        }
+
+        body[data-geo="1"] .stk {
+            display: block;
+            position: absolute;
+            z-index: 3;
+            pointer-events: none;
+            border: 3px solid rgb(var(--tx));
+            animation: stk-bob 3.4s ease-in-out infinite alternate
+        }
+
+        body[data-geo="1"] .stk-ball {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--yl);
+            box-shadow: 4px 4px 0 rgb(var(--tx))
+        }
+
+        body[data-geo="1"] .stk-pink {
+            width: 26px;
+            height: 26px;
+            background: var(--pk);
+            box-shadow: 4px 4px 0 rgb(var(--tx));
+            animation-delay: -1s
+        }
+
+        body[data-geo="1"] .stk-cyan {
+            width: 15px;
+            height: 15px;
+            border-width: 2px;
+            background: var(--cy);
+            box-shadow: 3px 3px 0 rgb(var(--tx));
+            animation-delay: -2s
+        }
+
+        body[data-geo="1"] .stk-ysq {
+            width: 11px;
+            height: 11px;
+            border-width: 2px;
+            background: var(--yl);
+            animation-delay: -.5s
+        }
+
+        @keyframes stk-bob {
+            from {
+                translate: 0 0;
+                rotate: 0deg
             }
 
-            body[data-variant="q1"] .apres-body {
-                --bodyW: 21px
+            to {
+                translate: 0 -5px;
+                rotate: 18deg
             }
         }
 
-        @media (min-width: 1500px) {
-            body[data-variant="q1"] .apres-body {
-                --bodyW: 20px
+        /* Início */
+        body[data-geo="1"] .hero-logo-wrap .stk-ball {
+            top: -28px;
+            right: -30px
+        }
+
+        body[data-geo="1"] .hero-logo-wrap .stk-pink {
+            bottom: -16px;
+            left: -16px
+        }
+
+        body[data-geo="1"] .inicio-text .stk-cyan {
+            top: -16px;
+            right: -20px
+        }
+
+        body[data-geo="1"] .inicio-text .stk-ysq {
+            bottom: -14px;
+            left: 34%
+        }
+
+        /* Apresentação */
+        body[data-geo="1"] .apres-title .stk-pink {
+            top: 2px;
+            right: 13%
+        }
+
+        body[data-geo="1"] .apres-title .stk-ysq {
+            bottom: -4px;
+            left: 3%
+        }
+
+        body[data-geo="1"] .apres-body .stk-ball {
+            bottom: -28px;
+            left: -30px
+        }
+
+        body[data-geo="1"] .apres-body .stk-cyan {
+            top: -10px;
+            right: -10px
+        }
+
+        @media (max-width: 768px) {
+            body[data-geo="1"] .stk-ball {
+                width: 44px;
+                height: 44px
+            }
+
+            body[data-geo="1"] .hero-logo-wrap .stk-ball {
+                top: -22px;
+                right: -18px
+            }
+
+            body[data-geo="1"] .apres-body .stk-ball {
+                bottom: -22px;
+                left: -16px
+            }
+
+            body[data-geo="1"] .apres-title .stk-pink {
+                right: 8%
             }
         }
 
-        @media (min-width: 1500px) and (min-height: 800px) {
-            body[data-variant="q1"] .apres-title {
-                --lgW: clamp(148px, 9.38vw, 180px)
-            }
-
-            body[data-variant="q1"] .apres-body {
-                --bodyW: 24px
+        @media (prefers-reduced-motion: reduce) {
+            body[data-geo="1"] .stk {
+                animation: none
             }
         }
 
-        @media (min-width: 900px) and (max-height: 860px) {
-            body[data-variant="q1"] .apres-body {
-                max-width: 720px;
-                line-height: 1.5
+        body:is([data-geo="2"], [data-geo="3"]) .geo-top {
+            z-index: 20
+        }
+
+        body[data-geo="2"] :is(.geo-sq-1, .geo-sq-2, .geo-sq-3, .geo-ring-4) {
+            top: auto;
+            right: auto;
+            bottom: auto;
+            left: auto
+        }
+
+        body[data-geo="2"][data-mode="inicio"] .geo-sq-1 {
+            right: 3%;
+            top: 20%
+        }
+
+        body[data-geo="2"][data-mode="inicio"] .geo-ring-4 {
+            right: 3%;
+            bottom: 24%
+        }
+
+        body[data-geo="2"][data-mode="inicio"] .geo-sq-2 {
+            left: 3%;
+            top: 28%
+        }
+
+        body[data-geo="2"][data-mode="inicio"] .geo-sq-3 {
+            right: 7%;
+            top: 46%
+        }
+
+        body[data-geo="2"][data-mode="apresentacao"] .geo-sq-1 {
+            left: 8%;
+            top: 24%
+        }
+
+        body[data-geo="2"][data-mode="apresentacao"] .geo-ring-4 {
+            right: 8%;
+            top: 30%
+        }
+
+        body[data-geo="2"][data-mode="apresentacao"] .geo-sq-2 {
+            left: 12%;
+            bottom: 22%
+        }
+
+        body[data-geo="2"][data-mode="apresentacao"] .geo-sq-3 {
+            right: 14%;
+            bottom: 30%
+        }
+
+
+        /* opção 2: tablets em pé e celulares usam as faixas livres acima e abaixo do conteúdo */
+        @media (orientation: portrait) and (min-width: 600px) and (max-width: 1100px) {
+            body[data-geo="2"][data-mode] .geo-sq-1 {
+                left: 12%;
+                right: auto;
+                top: 14%;
+                bottom: auto
+            }
+
+            body[data-geo="2"][data-mode] .geo-sq-2 {
+                right: 12%;
+                left: auto;
+                top: 20%;
+                bottom: auto
+            }
+
+            body[data-geo="2"][data-mode] .geo-ring-4 {
+                left: 10%;
+                right: auto;
+                bottom: 20%;
+                top: auto
+            }
+
+            body[data-geo="2"][data-mode] .geo-sq-3 {
+                right: 14%;
+                left: auto;
+                bottom: 24%;
+                top: auto
             }
         }
 
-        @media (min-width: 900px) and (max-height: 700px) {
-            body[data-variant="q1"] .apres-body {
-                max-width: 800px
+        @media (max-width: 599px) {
+            body[data-geo="2"][data-mode] .geo-sq-1 {
+                left: auto;
+                right: 12%;
+                top: 98px;
+                bottom: auto
             }
 
-            body[data-variant="q1"] .scroll-arrow {
-                height: 22px
+            body[data-geo="2"][data-mode] .geo-sq-2 {
+                left: 14%;
+                right: auto;
+                top: 112px;
+                bottom: auto
             }
 
-            body[data-variant="q1"] .hero-scroll {
-                gap: 4px
+            body[data-geo="2"][data-mode] .geo-ring-4 {
+                width: 44px;
+                height: 44px;
+                left: 12%;
+                right: auto;
+                top: auto;
+                bottom: calc(164px + (100vh - 667px) * .1)
+            }
+
+            body[data-geo="2"][data-mode] .geo-sq-3 {
+                right: 16%;
+                left: auto;
+                top: auto;
+                bottom: calc(172px + (100vh - 667px) * .1)
+            }
+        }
+
+        @media (max-width: 599px) and (max-height: 760px) {
+            body[data-geo="2"][data-mode="apresentacao"] :is(.geo-ring-4, .geo-sq-3) {
+                display: none
+            }
+
+            body[data-geo="2"][data-mode="apresentacao"] .geo-sq-1 {
+                right: 6px;
+                left: auto;
+                top: 124px
+            }
+
+            body[data-geo="2"][data-mode="apresentacao"] .geo-sq-2 {
+                left: 10px;
+                right: auto;
+                top: 132px
+            }
+        }
+
+        .geo-panel {
+            position: fixed;
+            left: 16px;
+            bottom: 66px;
+            z-index: 61;
+            width: 272px;
+            font: 600 12px/1.2 'Barlow Condensed', sans-serif;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #111;
+            background: #fff;
+            border: 3px solid #111;
+            box-shadow: 4px 4px 0 #f4a000
+        }
+
+        .geo-panel b {
+            display: block;
+            padding: 8px 12px;
+            background: #ffd200;
+            letter-spacing: .16em
+        }
+
+        .geo-panel .rb {
+            display: flex;
+            gap: 5px;
+            padding: 10px 12px 4px
+        }
+
+        .geo-panel button {
+            flex: 1;
+            padding: 7px 0;
+            font: 700 13px/1 'Barlow Condensed', sans-serif;
+            color: #111;
+            background: #fff;
+            border: 2px solid #111;
+            cursor: pointer
+        }
+
+        .geo-panel button[aria-pressed="true"] {
+            background: #f4a000;
+            box-shadow: 2px 2px 0 #111
+        }
+
+        .geo-panel small {
+            display: block;
+            padding: 4px 12px 10px;
+            min-height: 14px;
+            font: 500 13px/1.2 'Barlow Condensed', sans-serif;
+            letter-spacing: .06em;
+            text-transform: none;
+            color: #555
+        }
+
+        @media (max-width: 768px) {
+            .geo-panel {
+                left: 10px;
+                bottom: 52px;
+                width: 248px
             }
         }
     </style>
 </head>
 
-<body data-variant="q1" data-mode="inicio" data-init-mode="inicio">
+<body data-variant="q1" data-mode="inicio" data-init-mode="inicio" data-geo="1">
     <section class="hero" id="hero">
 
         <!-- Background clip: canvas + geo confined here, doesn't clip mobile-nav -->
@@ -7056,20 +7331,8 @@
                 <div class="geo-px" data-depth="0.35">
                     <div class="geo-ring-3"></div>
                 </div>
-                <div class="geo-px" data-depth="0.55">
-                    <div class="geo-ring-4"></div>
-                </div>
                 <div class="geo-px" data-depth="0.12">
                     <div class="geo-ring-5"></div>
-                </div>
-                <div class="geo-px" data-depth="0.45">
-                    <div class="geo-sq-1"></div>
-                </div>
-                <div class="geo-px" data-depth="0.60">
-                    <div class="geo-sq-2"></div>
-                </div>
-                <div class="geo-px" data-depth="0.50">
-                    <div class="geo-sq-3"></div>
                 </div>
                 <div class="geo-px" data-depth="0.40">
                     <div class="geo-dot geo-dot-1"></div>
@@ -7091,6 +7354,22 @@
                 </svg>
             </div><!-- /.geo-layer -->
         </div><!-- /.hero-bg-clip -->
+
+        <!-- Formas coloridas acima do conteúdo: nunca ficam cobertas pelos contêineres e se afastam dos textos (JS abaixo) -->
+        <div class="geo-top" id="geo-top" aria-hidden="true">
+            <div class="geo-px" data-depth="0.55">
+                <div class="geo-ring-4"></div>
+            </div>
+            <div class="geo-px" data-depth="0.45">
+                <div class="geo-sq-1"></div>
+            </div>
+            <div class="geo-px" data-depth="0.60">
+                <div class="geo-sq-2"></div>
+            </div>
+            <div class="geo-px" data-depth="0.50">
+                <div class="geo-sq-3"></div>
+            </div>
+        </div>
 
         <!-- Geo layer above -->
 
@@ -7197,13 +7476,13 @@
                     <div class="hero-panel" id="panel-inicio">
                         <div class="inicio-content">
                             <div class="hero-logo-outer" id="hero-logo-outer">
-                                <div class="hero-logo-wrap">
+                                <div class="hero-logo-wrap"><i class="stk stk-ball"></i><i class="stk stk-pink"></i>
                                     <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1784644787/LOGO-NYR-BORDA_easifb.webp"
                                         alt="Nyr Festas" class="hero-logo" id="hero-logo-img" fetchpriority="high">
                                 </div>
                             </div>
                             <div class="hero-separator"></div>
-                            <div class="inicio-text">
+                            <div class="inicio-text"><i class="stk stk-cyan"></i><i class="stk stk-ysq"></i>
                                 <span class="inicio-label-top">Distribuidora B2B</span>
                                 <span class="inicio-label-bottom">Artigos de Festas Sazonais</span>
                             </div>
@@ -7213,12 +7492,13 @@
                     <!-- Panel: Apresentação (back face) -->
                     <div class="hero-panel" id="panel-apresentacao">
                         <div class="apres-content">
-                            <h1 class="apres-title">
+                            <h1 class="apres-title"><i class="stk stk-pink"></i><i class="stk stk-ysq"></i>
                                 <span class="apres-line-sm">Sua</span>
                                 <span class="apres-line-lg">Festa</span>
                                 <span class="apres-line-md">Começa Aqui.</span>
                             </h1>
-                            <p class="apres-body">Distribuidora B2B especializada nas principais datas do calendário
+                            <p class="apres-body"><i class="stk stk-ball"></i><i class="stk stk-cyan"></i>Distribuidora
+                                B2B especializada nas principais datas do calendário
                                 festivo — Carnaval, Festa Junina, Copa, Halloween e Páscoa. <strong>Mais de 7.000
                                     lojistas em todos os 27 estados</strong> contam com a Nyr para garantir variedade,
                                 preço competitivo e o mix ideal em cada temporada.</p>
@@ -7266,6 +7546,9 @@
                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
             </svg>
         </a>
+    </div>
+    <div class="geo-panel" id="geo-panel"><b>Formas coloridas</b>
+        <div class="rb"></div><small></small>
     </div>
     <button type="button" class="dots-switch" id="dots-switch" role="switch" aria-checked="true"
         title="Liga/desliga o fundo pontilhado (tecla P)"><span class="track"><span
@@ -7843,6 +8126,23 @@
                 if ((e.key === 'p' || e.key === 'P') && !e.metaKey && !e.ctrlKey && !e.altKey) { on = !on; apply() }
             });
             apply();
+        })();
+    </script>
+    <script>
+        /* painel das formas coloridas (protótipo): ajusta body[data-geo] */
+        (function () {
+            var names = ['Atrás do conteúdo (original)', 'Adesivos presos aos contêineres', 'Bordas da tela (posições fixas)', 'Acima do conteúdo, posição original'];
+            var p = document.getElementById('geo-panel'), rb = p.querySelector('.rb'), cap = p.querySelector('small');
+            function set(v) {
+                document.body.setAttribute('data-geo', v);
+                rb.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.v === String(v))) });
+                cap.textContent = names[v];
+            }
+            names.forEach(function (n, i) {
+                var x = document.createElement('button'); x.type = 'button'; x.dataset.v = i; x.textContent = i; x.title = n;
+                x.addEventListener('click', function () { set(i) }); rb.appendChild(x);
+            });
+            set(1);
         })();
     </script>
 </body>

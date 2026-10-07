@@ -3539,49 +3539,231 @@ body[data-mode="apresentacao"] .site-header:not(.menu-open) .btn-login:hover {
     color: var(--brand-orange);
 }
 
-/* Botão "Login": contornado em repouso (herda as cores de cada contexto do .btn-login:
-   header escuro, Apresentação clara, barra fixa e menu aberto) e preenchido em laranja
-   apenas quando o cursor, o toque ou o teclado o acionam. */
-.btn-login-primary {
+/* Botão "Fazer login"
+   · Em repouso: contornado (nunca preenchido), mas com presença: contorno laranja suave,
+     brilho discreto, um feixe de luz que percorre a borda e uma seta laranja.
+   · Ao acionar (cursor, toque ou teclado): preenche de laranja, sobe, a seta avança e o feixe
+     de luz continua percorrendo a borda, agora em preto.
+   · No clique: ripple a partir do ponto clicado, leve "afundar" e estado de carregamento
+     (a seta vira um spinner) enquanto a página de login abre. */
+@property --bl-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+a.btn-login.btn-login-primary {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7em;
     cursor: pointer;
+    border-color: rgba(244, 160, 0, 0.5) !important;
+    box-shadow: 0 0 22px rgba(244, 160, 0, 0.14);
     transition: transform var(--transition), box-shadow var(--transition),
         background-color 0.32s ease, border-color 0.32s ease, color 0.32s ease;
 }
 
+/* feixe de luz percorrendo a borda (anel recortado por máscara) */
+a.btn-login.btn-login-primary::before {
+    content: "";
+    position: absolute;
+    inset: -1.5px;
+    padding: 1.5px;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+    background: conic-gradient(from var(--bl-angle), transparent 0 58%, #f4a000 82%, #ffd27a 94%, transparent 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: login-beam 5s linear infinite;
+    transition: opacity 0.3s ease;
+}
+
+/* feixe preto: aparece por cima do preenchimento laranja quando o botão é acionado */
+a.btn-login.btn-login-primary::after {
+    content: "";
+    position: absolute;
+    inset: -1.5px;
+    padding: 2.5px;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: conic-gradient(from var(--bl-angle), transparent 0 56%, rgba(13, 13, 13, 0.55) 76%, #0d0d0d 92%, transparent 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: login-beam 5s linear infinite;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes login-beam {
+    to {
+        --bl-angle: 360deg;
+    }
+}
+
+.btn-login__label,
+.btn-login__icon {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-login__icon {
+    width: 1em;
+    height: 1em;
+    display: inline-grid;
+    place-items: center;
+    color: var(--brand-orange);
+    transition: transform var(--transition), color 0.32s ease;
+}
+
+.btn-login__icon svg {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.btn-login__spin {
+    opacity: 0;
+    transform: scale(0.6);
+}
+
+/* camada que recorta o ripple dentro da pílula */
+.btn-login__fx {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.btn-login__ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.65);
+    transform: scale(0);
+    animation: login-ripple 0.75s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+}
+
+@keyframes login-ripple {
+    to {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes login-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* acionado: cursor, toque (pressionando) ou teclado */
 @media (hover: hover) {
-    .btn-login.btn-login-primary:hover {
+    a.btn-login.btn-login-primary:hover {
         background-color: var(--brand-orange);
         color: var(--black) !important;
         border-color: var(--brand-orange) !important;
         transform: translateY(-2px);
-        box-shadow: 0 8px 22px rgba(244, 160, 0, 0.38);
+        box-shadow: 0 10px 26px rgba(244, 160, 0, 0.42);
+    }
+
+    a.btn-login.btn-login-primary:hover::before {
+        opacity: 0;
+    }
+
+    a.btn-login.btn-login-primary:hover::after {
+        opacity: 1;
+    }
+
+    a.btn-login.btn-login-primary:hover .btn-login__icon {
+        color: currentColor;
+        transform: translateX(3px);
     }
 }
 
-.btn-login.btn-login-primary:active,
-.btn-login.btn-login-primary:focus-visible {
+a.btn-login.btn-login-primary:active,
+a.btn-login.btn-login-primary:focus-visible,
+a.btn-login.btn-login-primary.is-loading {
     background-color: var(--brand-orange);
     color: var(--black) !important;
     border-color: var(--brand-orange) !important;
 }
 
-.btn-login.btn-login-primary:active {
-    transform: translateY(0);
+a.btn-login.btn-login-primary:active::before,
+a.btn-login.btn-login-primary:focus-visible::before,
+a.btn-login.btn-login-primary.is-loading::before {
+    opacity: 0;
+}
+
+a.btn-login.btn-login-primary:active::after,
+a.btn-login.btn-login-primary:focus-visible::after,
+a.btn-login.btn-login-primary.is-loading::after {
+    opacity: 1;
+}
+
+a.btn-login.btn-login-primary:active .btn-login__icon,
+a.btn-login.btn-login-primary:focus-visible .btn-login__icon,
+a.btn-login.btn-login-primary.is-loading .btn-login__icon {
+    color: currentColor;
+}
+
+a.btn-login.btn-login-primary:active {
+    transform: scale(0.965);
     box-shadow: 0 3px 10px rgba(244, 160, 0, 0.3);
 }
 
-.btn-login-primary:focus-visible {
+a.btn-login.btn-login-primary:focus-visible {
     outline: 2px solid var(--brand-orange);
     outline-offset: 3px;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* carregando: a seta vira spinner */
+a.btn-login.btn-login-primary.is-loading {
+    pointer-events: none;
+}
 
-    .btn-login-primary,
-    .btn-login-primary:hover,
-    .btn-login-primary:active {
-        transform: none;
+a.btn-login.btn-login-primary.is-loading .btn-login__arrow {
+    opacity: 0;
+    transform: scale(0.6);
+}
+
+a.btn-login.btn-login-primary.is-loading .btn-login__spin {
+    opacity: 1;
+    transform: none;
+    animation: login-spin 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    a.btn-login.btn-login-primary {
+        border-color: rgba(244, 160, 0, 0.75) !important;
+        box-shadow: none;
         transition: none;
+    }
+
+    a.btn-login.btn-login-primary::before,
+    a.btn-login.btn-login-primary::after,
+    .btn-login__ripple {
+        display: none;
+    }
+
+    a.btn-login.btn-login-primary:hover,
+    a.btn-login.btn-login-primary:active,
+    a.btn-login.btn-login-primary:hover .btn-login__icon {
+        transform: none;
+    }
+
+    a.btn-login.btn-login-primary.is-loading .btn-login__spin {
+        animation: none;
     }
 }
 
@@ -4817,7 +4999,8 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
     /* ── Textos de leitura (px fixo) ── */
     .apres-body {
-        font-size: 20px
+        font-size: 20px;
+        max-width: 600px
     }
 
 
@@ -5781,6 +5964,8 @@ body[data-mode="apresentacao"] .height-hamburger span {
         width: 100%;
         justify-content: center;
     }
+
+    
 }
 
 @media (prefers-reduced-motion: reduce) {
