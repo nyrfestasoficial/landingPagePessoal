@@ -7868,3 +7868,54 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
         font-size: calc(14px / var(--nv-z));
     }
 }
+
+/* telas ≥1500px já usam textos maiores na página: o mesmo vale aqui, para não encolhê-los */
+@media (min-width: 1500px) and (max-height: 770px) {
+    #redecomercial .depo-text {
+        font-size: calc(17px / var(--nv-z));
+    }
+
+    #produtos .card-desc {
+        font-size: calc(15px / var(--nv-z));
+    }
+
+    #produtos .season-tab {
+        font-size: calc(15px / var(--nv-z));
+    }
+
+    #produtos .products-row-label {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #redecomercial .depo-role {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #numeros .number-label {
+        font-size: calc(15px / var(--nv-z));
+    }
+
+    #contato .form-label {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #contato .form-submit {
+        font-size: calc(16px / var(--nv-z));
+    }
+
+    #contato .form-note {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #novidade .novidade-btn-video {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #novidade .novidade-btn-wa {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #novidade .novidade-sku-info>span {
+        font-size: calc(15px / var(--nv-z));
+    }
+}
