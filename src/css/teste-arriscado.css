@@ -320,7 +320,7 @@ button {
 .service-badge {
     display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -1148,7 +1148,7 @@ button {
 }
 
 .card-desc {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--gray-text);
     line-height: 1.6;
     flex: 1;
@@ -1380,7 +1380,7 @@ button {
 }
 
 .sobre-para {
-    font-size: 15px;
+    font-size: 17px;
     color: var(--gray-text);
     line-height: 1.75
 }
@@ -1448,7 +1448,7 @@ button {
 }
 
 .pilar-desc {
-    font-size: 14px;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.48);
     line-height: 1.65
 }
@@ -1514,7 +1514,7 @@ button {
 }
 
 .depo-text {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--gray-text);
     line-height: 1.75;
     flex: 1;
@@ -1758,7 +1758,7 @@ button {
 }
 
 .cta-sub {
-    font-size: 16px;
+    font-size: 18px;
     color: rgba(255, 255, 255, 0.55);
     line-height: 1.75
 }
@@ -1838,7 +1838,7 @@ button {
 }
 
 .form-note {
-    font-size: 12px;
+    font-size: 14px;
     color: rgba(255, 255, 255, 0.28);
     text-align: center;
     margin-top: 14px
@@ -4934,7 +4934,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .sobre-para {
-        font-size: 19px
+        font-size: 21px
     }
 
     .sobre-sub {
@@ -4946,7 +4946,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .pilar-desc {
-        font-size: 17px
+        font-size: 19px
     }
 
     .faq-question-text {
@@ -4958,11 +4958,11 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .cta-sub {
-        font-size: 20px
+        font-size: 22px
     }
 
     .depo-text {
-        font-size: 17px
+        font-size: 19px
     }
 
     .depo-name {
@@ -4978,7 +4978,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .card-desc {
-        font-size: 15px
+        font-size: 17px
     }
 
     /* ── Navegação ── */
@@ -5080,7 +5080,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .form-note {
-        font-size: 14px
+        font-size: 16px
     }
 
     /* ── Footer ── */
@@ -5234,7 +5234,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
 .novidade-ref {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -5715,7 +5715,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 .insp-promo__badge {
     display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -7392,7 +7392,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
 
 /* selo: mesma peça do selo do Novidades */
 .insp-promo .insp-promo__badge {
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 2px;
     padding: 3px 10px;
     border-radius: 4px;
@@ -7729,7 +7729,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 
     .card-desc {
-        font-size: calc((13px) / var(--nv-z));
+        font-size: calc((15px) / var(--nv-z));
     }
 
     .card-video-btn-primary {
@@ -7749,7 +7749,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 
     .sobre-para {
-        font-size: calc((15px) / var(--nv-z));
+        font-size: calc((17px) / var(--nv-z));
     }
 
     .pilar-title {
@@ -7757,7 +7757,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 
     .pilar-desc {
-        font-size: calc((14px) / var(--nv-z));
+        font-size: calc((16px) / var(--nv-z));
     }
 
     .depo-quote {
@@ -7765,7 +7765,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 
     .depo-text {
-        font-size: calc((14px) / var(--nv-z));
+        font-size: calc((16px) / var(--nv-z));
     }
 
     .depo-name {
@@ -7793,7 +7793,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 
     .cta-sub {
-        font-size: calc((16px) / var(--nv-z));
+        font-size: calc((18px) / var(--nv-z));
     }
 
     :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .form-label {
@@ -7809,7 +7809,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 
     .form-note {
-        font-size: calc((12px) / var(--nv-z));
+        font-size: calc((14px) / var(--nv-z));
     }
 
     :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .field-error {
@@ -7858,7 +7858,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
         }
 
         .sobre-para {
-            font-size: calc((19px) / var(--nv-z));
+            font-size: calc((21px) / var(--nv-z));
         }
 
         .sobre-sub {
@@ -7870,7 +7870,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
         }
 
         .pilar-desc {
-            font-size: calc((17px) / var(--nv-z));
+            font-size: calc((19px) / var(--nv-z));
         }
 
         .faq-question-text {
@@ -7882,11 +7882,11 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
         }
 
         .cta-sub {
-            font-size: calc((20px) / var(--nv-z));
+            font-size: calc((22px) / var(--nv-z));
         }
 
         .depo-text {
-            font-size: calc((17px) / var(--nv-z));
+            font-size: calc((19px) / var(--nv-z));
         }
 
         .depo-name {
@@ -7902,7 +7902,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
         }
 
         .card-desc {
-            font-size: calc((15px) / var(--nv-z));
+            font-size: calc((17px) / var(--nv-z));
         }
 
         .season-tab {
@@ -7934,7 +7934,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
         }
 
         .form-note {
-            font-size: calc((14px) / var(--nv-z));
+            font-size: calc((16px) / var(--nv-z));
         }
 
         .footer-tagline {
@@ -7971,7 +7971,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 
     .novidade-ref {
-        font-size: calc((12px) / var(--nv-z));
+        font-size: calc((14px) / var(--nv-z));
     }
 
     .novidade-nome {
@@ -8032,7 +8032,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 
     .insp-promo__badge {
-        font-size: calc((11px) / var(--nv-z));
+        font-size: calc((13px) / var(--nv-z));
     }
 
     .insp-promo__title {
@@ -8122,7 +8122,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 
     .insp-promo .insp-promo__badge {
-        font-size: calc((10px) / var(--nv-z));
+        font-size: calc((12px) / var(--nv-z));
     }
 
     .insp-promo .insp-promo__lead strong {
