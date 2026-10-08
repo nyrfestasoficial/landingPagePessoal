@@ -7638,9 +7638,10 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
 }
 
 /* ── Telas de notebook (largas, porém baixas): equivale a 1–2 "Ctrl + menos" do navegador.
-      O layout (espaços, imagens, cards) encolhe, mas os textos pequenos mantêm o tamanho real
-      para não perder legibilidade. Só as seções de conteúdo; Hero e Services (que já se
-      ajustam à altura) e o menu/botões fixos ficam como estão. Para desfazer, apague o bloco. ── */
+      O layout (espaços, imagens, cards) encolhe, mas TODOS os textos mantêm o tamanho que já
+      tinham em cada largura (as regras abaixo são geradas a partir dos font-size do arquivo,
+      divididos pelo zoom). Só as seções de conteúdo; Hero, Services, menu e botões fixos ficam
+      como estão. Para desfazer, apague este bloco. ── */
 @media (min-width: 1024px) and (max-height: 770px) {
 
     #numeros,
@@ -7648,110 +7649,14 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     #novidade,
     #inspira,
     #sobre,
-    #pilares,
+    section.pilares,
     #redecomercial,
     #faq,
     #contato,
     body>footer {
         --nv-z: 0.9;
         zoom: 0.9;
-    }
-
-    /* textos pequenos mantêm o tamanho real na tela (a divisão desfaz o zoom) */
-    #contato .form-label {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #contato .form-note {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #contato .form-submit {
-        font-size: calc(14px / var(--nv-z));
-    }
-
-    #inspira .insp-promo__badge {
-        font-size: calc(10px / var(--nv-z));
-    }
-
-    #inspira .insp-promo__cta {
-        font-size: calc(14px / var(--nv-z));
-    }
-
-    #novidade .novidade-sku-info b {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #novidade .novidade-sku-info>span {
-        font-size: calc(14px / var(--nv-z));
-    }
-
-    #novidade .novidade-badge {
-        font-size: calc(10px / var(--nv-z));
-    }
-
-    #novidade .novidade-btn-video {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #novidade .novidade-btn-wa {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #novidade .novidade-ref {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #novidade .novidade-sku-novideo {
-        font-size: calc(11px / var(--nv-z));
-    }
-
-    #novidade .novidade-tab {
-        font-size: calc(14px / var(--nv-z));
-    }
-
-    #numeros .number-label {
-        font-size: calc(13px / var(--nv-z));
-    }
-
-    #produtos .card-cta-secondary {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #produtos .card-desc {
-        font-size: calc(13px / var(--nv-z));
-    }
-
-    #produtos .card-ref {
-        font-size: calc(12.5px / var(--nv-z));
-    }
-
-    #produtos .card-video-btn-no-video {
-        font-size: calc(13px / var(--nv-z));
-    }
-
-    #produtos .card-video-btn-primary {
-        font-size: calc(13px / var(--nv-z));
-    }
-
-    #produtos .no-video-msg {
-        font-size: calc(11px / var(--nv-z));
-    }
-
-    #produtos .products-row-label {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #produtos .season-tab {
-        font-size: calc(13px / var(--nv-z));
-    }
-
-    #redecomercial .depo-role {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #redecomercial .depo-text {
-        font-size: calc(14px / var(--nv-z));
+        font-size: calc(16px / 0.9);
     }
 }
 
@@ -7762,160 +7667,475 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     #novidade,
     #inspira,
     #sobre,
-    #pilares,
+    section.pilares,
     #redecomercial,
     #faq,
     #contato,
     body>footer {
         --nv-z: 0.85;
         zoom: 0.85;
-    }
-
-    /* textos pequenos mantêm o tamanho real na tela (a divisão desfaz o zoom) */
-    #contato .form-label {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #contato .form-note {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #contato .form-submit {
-        font-size: calc(14px / var(--nv-z));
-    }
-
-    #inspira .insp-promo__badge {
-        font-size: calc(10px / var(--nv-z));
-    }
-
-    #inspira .insp-promo__cta {
-        font-size: calc(14px / var(--nv-z));
-    }
-
-    #novidade .novidade-sku-info b {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #novidade .novidade-sku-info>span {
-        font-size: calc(14px / var(--nv-z));
-    }
-
-    #novidade .novidade-badge {
-        font-size: calc(10px / var(--nv-z));
-    }
-
-    #novidade .novidade-btn-video {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #novidade .novidade-btn-wa {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #novidade .novidade-ref {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #novidade .novidade-sku-novideo {
-        font-size: calc(11px / var(--nv-z));
-    }
-
-    #novidade .novidade-tab {
-        font-size: calc(14px / var(--nv-z));
-    }
-
-    #numeros .number-label {
-        font-size: calc(13px / var(--nv-z));
-    }
-
-    #produtos .card-cta-secondary {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #produtos .card-desc {
-        font-size: calc(13px / var(--nv-z));
-    }
-
-    #produtos .card-ref {
-        font-size: calc(12.5px / var(--nv-z));
-    }
-
-    #produtos .card-video-btn-no-video {
-        font-size: calc(13px / var(--nv-z));
-    }
-
-    #produtos .card-video-btn-primary {
-        font-size: calc(13px / var(--nv-z));
-    }
-
-    #produtos .no-video-msg {
-        font-size: calc(11px / var(--nv-z));
-    }
-
-    #produtos .products-row-label {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #produtos .season-tab {
-        font-size: calc(13px / var(--nv-z));
-    }
-
-    #redecomercial .depo-role {
-        font-size: calc(12px / var(--nv-z));
-    }
-
-    #redecomercial .depo-text {
-        font-size: calc(14px / var(--nv-z));
+        font-size: calc(16px / 0.85);
     }
 }
 
-/* telas ≥1500px já usam textos maiores na página: o mesmo vale aqui, para não encolhê-los */
-@media (min-width: 1500px) and (max-height: 770px) {
-    #redecomercial .depo-text {
-        font-size: calc(17px / var(--nv-z));
+@media (min-width: 1024px) and (max-height: 770px) {
+    .number-value {
+        font-size: calc((clamp(44px, 5vw, 68px)) / var(--nv-z));
     }
 
-    #produtos .card-desc {
-        font-size: calc(15px / var(--nv-z));
+    .number-label {
+        font-size: calc((13px) / var(--nv-z));
     }
 
-    #produtos .season-tab {
-        font-size: calc(15px / var(--nv-z));
+    .section-eyebrow {
+        font-size: calc((15px) / var(--nv-z));
     }
 
-    #produtos .products-row-label {
-        font-size: calc(14px / var(--nv-z));
+    .section-title {
+        font-size: calc((clamp(32px, 5vw, 52px)) / var(--nv-z));
     }
 
-    #redecomercial .depo-role {
-        font-size: calc(14px / var(--nv-z));
+    .title-dark {
+        font-size: calc((clamp(32px, 4vw, 48px)) / var(--nv-z));
     }
 
-    #numeros .number-label {
-        font-size: calc(15px / var(--nv-z));
+    .season-tab {
+        font-size: calc((13px) / var(--nv-z));
     }
 
-    #contato .form-label {
-        font-size: calc(14px / var(--nv-z));
+    .products-row-label {
+        font-size: calc((12px) / var(--nv-z));
     }
 
-    #contato .form-submit {
-        font-size: calc(16px / var(--nv-z));
+    .card-prev,
+    .card-next {
+        font-size: calc((15px) / var(--nv-z));
     }
 
-    #contato .form-note {
-        font-size: calc(14px / var(--nv-z));
+    .card-ref {
+        font-size: calc((12.5px) / var(--nv-z));
     }
 
-    #novidade .novidade-btn-video {
-        font-size: calc(14px / var(--nv-z));
+    .card-video-btn-no-video {
+        font-size: calc((13px) / var(--nv-z));
     }
 
-    #novidade .novidade-btn-wa {
-        font-size: calc(14px / var(--nv-z));
+    .no-video-msg {
+        font-size: calc((11px) / var(--nv-z));
     }
 
-    #novidade .novidade-sku-info>span {
-        font-size: calc(15px / var(--nv-z));
+    .card-name {
+        font-size: calc((18px) / var(--nv-z));
+    }
+
+    .card-desc {
+        font-size: calc((13px) / var(--nv-z));
+    }
+
+    .card-video-btn-primary {
+        font-size: calc((13px) / var(--nv-z));
+    }
+
+    .card-cta-secondary {
+        font-size: calc((12px) / var(--nv-z));
+    }
+
+    .sobre-title {
+        font-size: calc((clamp(30px, 4vw, 46px)) / var(--nv-z));
+    }
+
+    .sobre-sub {
+        font-size: calc((15px) / var(--nv-z));
+    }
+
+    .sobre-para {
+        font-size: calc((15px) / var(--nv-z));
+    }
+
+    .pilar-title {
+        font-size: calc((16px) / var(--nv-z));
+    }
+
+    .pilar-desc {
+        font-size: calc((14px) / var(--nv-z));
+    }
+
+    .depo-quote {
+        font-size: calc((52px) / var(--nv-z));
+    }
+
+    .depo-text {
+        font-size: calc((14px) / var(--nv-z));
+    }
+
+    .depo-name {
+        font-size: calc((15px) / var(--nv-z));
+    }
+
+    .depo-role {
+        font-size: calc((12px) / var(--nv-z));
+    }
+
+    .faq-question-text {
+        font-size: calc((18px) / var(--nv-z));
+    }
+
+    .faq-answer p {
+        font-size: calc((15px) / var(--nv-z));
+    }
+
+    .cta-eyebrow {
+        font-size: calc((15px) / var(--nv-z));
+    }
+
+    .cta-title {
+        font-size: calc((clamp(34px, 4.5vw, 56px)) / var(--nv-z));
+    }
+
+    .cta-sub {
+        font-size: calc((16px) / var(--nv-z));
+    }
+
+    :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .form-label {
+        font-size: calc((12px) / var(--nv-z));
+    }
+
+    :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .form-input {
+        font-size: calc((15px) / var(--nv-z));
+    }
+
+    .form-submit {
+        font-size: calc((14px) / var(--nv-z));
+    }
+
+    .form-note {
+        font-size: calc((12px) / var(--nv-z));
+    }
+
+    :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .field-error {
+        font-size: calc((11px) / var(--nv-z));
+    }
+
+    .footer-tagline {
+        font-size: calc((12px) / var(--nv-z));
+    }
+
+    .footer-nav a {
+        font-size: calc((13px) / var(--nv-z));
+    }
+
+    .footer-contact-badge {
+        font-size: calc((11px) / var(--nv-z));
+    }
+
+    .footer-contact-item {
+        font-size: calc((14px) / var(--nv-z));
+    }
+
+    .footer-copy {
+        font-size: calc((12px) / var(--nv-z));
+    }
+
+    @media (min-width: 1500px) {
+        .number-value {
+            font-size: calc((clamp(68px, 4.27vw, 82px)) / var(--nv-z));
+        }
+
+        .section-title {
+            font-size: calc((clamp(52px, 3.33vw, 64px)) / var(--nv-z));
+        }
+
+        .title-dark {
+            font-size: calc((clamp(48px, 3.02vw, 58px)) / var(--nv-z));
+        }
+
+        .sobre-title {
+            font-size: calc((clamp(46px, 2.92vw, 56px)) / var(--nv-z));
+        }
+
+        .cta-title {
+            font-size: calc((clamp(56px, 3.54vw, 68px)) / var(--nv-z));
+        }
+
+        .sobre-para {
+            font-size: calc((19px) / var(--nv-z));
+        }
+
+        .sobre-sub {
+            font-size: calc((18px) / var(--nv-z));
+        }
+
+        .pilar-title {
+            font-size: calc((19px) / var(--nv-z));
+        }
+
+        .pilar-desc {
+            font-size: calc((17px) / var(--nv-z));
+        }
+
+        .faq-question-text {
+            font-size: calc((22px) / var(--nv-z));
+        }
+
+        .faq-answer p {
+            font-size: calc((18px) / var(--nv-z));
+        }
+
+        .cta-sub {
+            font-size: calc((20px) / var(--nv-z));
+        }
+
+        .depo-text {
+            font-size: calc((17px) / var(--nv-z));
+        }
+
+        .depo-name {
+            font-size: calc((18px) / var(--nv-z));
+        }
+
+        .section-eyebrow {
+            font-size: calc((17px) / var(--nv-z));
+        }
+
+        .card-name {
+            font-size: calc((20px) / var(--nv-z));
+        }
+
+        .card-desc {
+            font-size: calc((15px) / var(--nv-z));
+        }
+
+        .season-tab {
+            font-size: calc((15px) / var(--nv-z));
+        }
+
+        .products-row-label {
+            font-size: calc((14px) / var(--nv-z));
+        }
+
+        .depo-role {
+            font-size: calc((14px) / var(--nv-z));
+        }
+
+        .number-label {
+            font-size: calc((15px) / var(--nv-z));
+        }
+
+        :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .form-label {
+            font-size: calc((14px) / var(--nv-z));
+        }
+
+        :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .form-input {
+            font-size: calc((17px) / var(--nv-z));
+        }
+
+        .form-submit {
+            font-size: calc((16px) / var(--nv-z));
+        }
+
+        .form-note {
+            font-size: calc((14px) / var(--nv-z));
+        }
+
+        .footer-tagline {
+            font-size: calc((14px) / var(--nv-z));
+        }
+
+        .footer-nav a {
+            font-size: calc((15px) / var(--nv-z));
+        }
+
+        .footer-contact-badge {
+            font-size: calc((13px) / var(--nv-z));
+        }
+
+        .footer-contact-item {
+            font-size: calc((16px) / var(--nv-z));
+        }
+
+        .footer-copy {
+            font-size: calc((13px) / var(--nv-z));
+        }
+    }
+
+    .novidade-eyebrow {
+        font-size: calc((19px) / var(--nv-z));
+    }
+
+    .novidade-title {
+        font-size: calc((clamp(38px, 5.5vw, 62px)) / var(--nv-z));
+    }
+
+    .novidade-badge {
+        font-size: calc((10px) / var(--nv-z));
+    }
+
+    .novidade-ref {
+        font-size: calc((12px) / var(--nv-z));
+    }
+
+    .novidade-nome {
+        font-size: calc((clamp(28px, 3.6vw, 44px)) / var(--nv-z));
+    }
+
+    .novidade-desc {
+        font-size: calc((16px) / var(--nv-z));
+    }
+
+    .novidade-obs {
+        font-size: calc((14px) / var(--nv-z));
+    }
+
+    .novidade-btn-video {
+        font-size: calc((12px) / var(--nv-z));
+    }
+
+    .novidade-btn-wa {
+        font-size: calc((12px) / var(--nv-z));
+    }
+
+    @media (min-width: 1500px) {
+        .novidade-nome {
+            font-size: calc((clamp(36px, 2.5vw, 46px)) / var(--nv-z));
+        }
+
+        .novidade-desc {
+            font-size: calc((20px) / var(--nv-z));
+        }
+
+        .novidade-obs {
+            font-size: calc((17px) / var(--nv-z));
+        }
+
+        .novidade-eyebrow {
+            font-size: calc((23px) / var(--nv-z));
+        }
+
+        .novidade-btn-video,
+        .novidade-btn-wa {
+            font-size: calc((14px) / var(--nv-z));
+        }
+    }
+
+    .novidade-tab {
+        font-size: calc((14px) / var(--nv-z));
+    }
+
+    .novidade-tab-sep {
+        font-size: calc((14px) / var(--nv-z));
+    }
+
+    @media (max-width: 600px) {
+        .novidade-tab {
+            font-size: calc((12px) / var(--nv-z));
+        }
+    }
+
+    .insp-promo__badge {
+        font-size: calc((11px) / var(--nv-z));
+    }
+
+    .insp-promo__title {
+        font-size: calc((clamp(40px, 5.2vw, 62px)) / var(--nv-z));
+    }
+
+    .insp-promo__lead {
+        font-size: calc((17px) / var(--nv-z));
+    }
+
+    .insp-promo__facts li {
+        font-size: calc((17px) / var(--nv-z));
+    }
+
+    .insp-promo__cta {
+        font-size: calc((14px) / var(--nv-z));
+    }
+
+    .nv-carnaval .novidade-eyebrow {
+        font-size: calc((15px) / var(--nv-z));
+    }
+
+    .nv-carnaval .novidade-title {
+        font-size: calc((clamp(32px, 5vw, 52px)) / var(--nv-z));
+    }
+
+    @media (min-width:1500px) {
+        .nv-carnaval .novidade-eyebrow {
+            font-size: calc((17px) / var(--nv-z));
+        }
+
+        .nv-carnaval .novidade-title {
+            font-size: calc((clamp(52px, 3.33vw, 64px)) / var(--nv-z));
+        }
+    }
+
+    .nv-carnaval .novidade-nome {
+        font-size: calc((clamp(46px, 5.2vw, 64px)) / var(--nv-z));
+    }
+
+    .nv-carnaval .novidade-obs {
+        font-size: calc((22px) / var(--nv-z));
+    }
+
+    @media (min-width:1500px) {
+        .nv-carnaval .novidade-nome {
+            font-size: calc((clamp(56px, 3.6vw, 70px)) / var(--nv-z));
+        }
+
+        .nv-carnaval .novidade-obs {
+            font-size: calc((26px) / var(--nv-z));
+        }
+    }
+
+    .nv-carnaval .novidade-sku-info b {
+        font-size: calc((12px) / var(--nv-z));
+    }
+
+    .nv-carnaval .novidade-sku-info span {
+        font-size: calc((14px) / var(--nv-z));
+    }
+
+    .nv-carnaval .novidade-sku-btn {
+        font-size: calc((11px) / var(--nv-z));
+    }
+
+    .nv-carnaval .novidade-sku-novideo {
+        font-size: calc((11px) / var(--nv-z));
+    }
+
+    .nv-carnaval .novidade-features li {
+        font-size: calc((15px) / var(--nv-z));
+    }
+
+    @media (min-width: 1500px) {
+        .nv-carnaval .novidade-features li {
+            font-size: calc((17px) / var(--nv-z));
+        }
+
+        .nv-carnaval .novidade-sku-info span {
+            font-size: calc((15px) / var(--nv-z));
+        }
+    }
+
+    .nv-carnaval .novidade-nome {
+        font-size: calc((clamp(26px, 7vw, 40px)) / var(--nv-z));
+    }
+
+    .insp-promo .insp-promo__badge {
+        font-size: calc((10px) / var(--nv-z));
+    }
+
+    .insp-promo .insp-promo__lead strong {
+        font-size: calc((32px) / var(--nv-z));
+    }
+
+    .insp-promo .insp-promo__cta {
+        font-size: calc((14px) / var(--nv-z));
+    }
+
+    @media (min-width: 1500px) {
+        .insp-promo .insp-promo__lead strong {
+            font-size: calc((36px) / var(--nv-z));
+        }
     }
 }
