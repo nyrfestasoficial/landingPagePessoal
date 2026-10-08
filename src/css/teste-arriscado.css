@@ -7638,8 +7638,9 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
 }
 
 /* ── Telas de notebook (largas, porém baixas): equivale a 1–2 "Ctrl + menos" do navegador.
-      Só as seções de conteúdo; Hero e Services (que já se ajustam à altura) e o menu/botões
-      fixos ficam como estão. Para desfazer, basta apagar este bloco. ── */
+      O layout (espaços, imagens, cards) encolhe, mas os textos pequenos mantêm o tamanho real
+      para não perder legibilidade. Só as seções de conteúdo; Hero e Services (que já se
+      ajustam à altura) e o menu/botões fixos ficam como estão. Para desfazer, apague o bloco. ── */
 @media (min-width: 1024px) and (max-height: 770px) {
 
     #numeros,
@@ -7652,7 +7653,105 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     #faq,
     #contato,
     body>footer {
+        --nv-z: 0.9;
         zoom: 0.9;
+    }
+
+    /* textos pequenos mantêm o tamanho real na tela (a divisão desfaz o zoom) */
+    #contato .form-label {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #contato .form-note {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #contato .form-submit {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #inspira .insp-promo__badge {
+        font-size: calc(10px / var(--nv-z));
+    }
+
+    #inspira .insp-promo__cta {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #novidade .novidade-sku-info b {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #novidade .novidade-sku-info>span {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #novidade .novidade-badge {
+        font-size: calc(10px / var(--nv-z));
+    }
+
+    #novidade .novidade-btn-video {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #novidade .novidade-btn-wa {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #novidade .novidade-ref {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #novidade .novidade-sku-novideo {
+        font-size: calc(11px / var(--nv-z));
+    }
+
+    #novidade .novidade-tab {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #numeros .number-label {
+        font-size: calc(13px / var(--nv-z));
+    }
+
+    #produtos .card-cta-secondary {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #produtos .card-desc {
+        font-size: calc(13px / var(--nv-z));
+    }
+
+    #produtos .card-ref {
+        font-size: calc(12.5px / var(--nv-z));
+    }
+
+    #produtos .card-video-btn-no-video {
+        font-size: calc(13px / var(--nv-z));
+    }
+
+    #produtos .card-video-btn-primary {
+        font-size: calc(13px / var(--nv-z));
+    }
+
+    #produtos .no-video-msg {
+        font-size: calc(11px / var(--nv-z));
+    }
+
+    #produtos .products-row-label {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #produtos .season-tab {
+        font-size: calc(13px / var(--nv-z));
+    }
+
+    #redecomercial .depo-role {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #redecomercial .depo-text {
+        font-size: calc(14px / var(--nv-z));
     }
 }
 
@@ -7668,6 +7767,104 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     #faq,
     #contato,
     body>footer {
-        zoom: 0.8;
+        --nv-z: 0.85;
+        zoom: 0.85;
+    }
+
+    /* textos pequenos mantêm o tamanho real na tela (a divisão desfaz o zoom) */
+    #contato .form-label {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #contato .form-note {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #contato .form-submit {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #inspira .insp-promo__badge {
+        font-size: calc(10px / var(--nv-z));
+    }
+
+    #inspira .insp-promo__cta {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #novidade .novidade-sku-info b {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #novidade .novidade-sku-info>span {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #novidade .novidade-badge {
+        font-size: calc(10px / var(--nv-z));
+    }
+
+    #novidade .novidade-btn-video {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #novidade .novidade-btn-wa {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #novidade .novidade-ref {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #novidade .novidade-sku-novideo {
+        font-size: calc(11px / var(--nv-z));
+    }
+
+    #novidade .novidade-tab {
+        font-size: calc(14px / var(--nv-z));
+    }
+
+    #numeros .number-label {
+        font-size: calc(13px / var(--nv-z));
+    }
+
+    #produtos .card-cta-secondary {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #produtos .card-desc {
+        font-size: calc(13px / var(--nv-z));
+    }
+
+    #produtos .card-ref {
+        font-size: calc(12.5px / var(--nv-z));
+    }
+
+    #produtos .card-video-btn-no-video {
+        font-size: calc(13px / var(--nv-z));
+    }
+
+    #produtos .card-video-btn-primary {
+        font-size: calc(13px / var(--nv-z));
+    }
+
+    #produtos .no-video-msg {
+        font-size: calc(11px / var(--nv-z));
+    }
+
+    #produtos .products-row-label {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #produtos .season-tab {
+        font-size: calc(13px / var(--nv-z));
+    }
+
+    #redecomercial .depo-role {
+        font-size: calc(12px / var(--nv-z));
+    }
+
+    #redecomercial .depo-text {
+        font-size: calc(14px / var(--nv-z));
     }
 }
