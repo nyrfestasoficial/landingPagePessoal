@@ -7486,16 +7486,17 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 }
 
-/* ── Divisa Novidades ↔ Nyr Inspira: fio de 2px, rosa → roxo, com as pontas esmaecidas.
+/* ── Divisa Novidades ↔ Nyr Inspira: fio de 3px, rosa → roxo, com as pontas esmaecidas.
       Desenha-se do centro para as bordas ao entrar na tela (usa o .is-armed/.is-in que o JS
       da seção já aplica) e depois passa um brilho bem sutil, devagar. Sem JS ou com
       movimento reduzido, fica estático e visível. ── */
 .insp-promo::before {
-    height: 2px;
-    opacity: 0.8;
+    height: 3px;
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(224, 25, 125, 0.35);
     background:
-        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent) no-repeat -50% 0 / 28% 100%,
-        linear-gradient(90deg, transparent 0%, var(--ip-a1) 22%, var(--ip-btn) 50%, var(--ip-a1) 78%, transparent 100%);
+        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent) no-repeat -50% 0 / 26% 100%,
+        linear-gradient(90deg, transparent 0%, var(--ip-a1) 14%, var(--ip-btn) 50%, var(--ip-a1) 86%, transparent 100%);
 }
 
 .insp-promo.is-armed::before {
@@ -7529,4 +7530,109 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
 .insp-promo .insp-promo__lead {
     text-wrap: pretty;
     max-width: 460px;
+}
+
+/* ── Novidades: setas de navegação nas extremidades do card ──
+      Cada clique avança uma aba (circular). Cor do botão = roxo da paleta; no hover só muda a
+      cor e o chevron avança 2px (sem zoom), no mesmo ritmo dos demais botões da seção. ── */
+.novidade-stage {
+    position: relative;
+    /* tamanho da seta: encolhe aos poucos com a largura da tela (46px → 26px) */
+    --nv-arr: clamp(26px, calc(14px + 2.4vw), 46px);
+}
+
+.nv-carnaval .novidade-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    width: var(--nv-arr);
+    height: var(--nv-arr);
+    margin-top: calc(var(--nv-arr) / -2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: var(--nv-btn);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 6px 18px var(--nv-glow), 0 2px 6px rgba(42, 15, 77, 0.25);
+    transition: background-color .3s var(--nv-ease), box-shadow .3s var(--nv-ease);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nv-carnaval .novidade-arrow svg {
+    width: 48%;
+    height: 48%;
+    transition: transform .3s var(--nv-ease);
+}
+
+.nv-carnaval .novidade-arrow--prev {
+    left: calc(var(--nv-arr) * -1 - 16px);
+}
+
+.nv-carnaval .novidade-arrow--next {
+    right: calc(var(--nv-arr) * -1 - 16px);
+}
+
+.nv-carnaval .novidade-arrow:active {
+    background: var(--nv-btn-h);
+}
+
+.nv-carnaval .novidade-arrow:focus-visible {
+    outline: 3px solid var(--nv-a1);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .nv-carnaval .novidade-arrow:hover {
+        background: var(--nv-btn-h);
+        box-shadow: 0 8px 22px var(--nv-glow), 0 2px 6px rgba(42, 15, 77, 0.3);
+    }
+
+    .nv-carnaval .novidade-arrow--prev:hover svg {
+        transform: translateX(-2px);
+    }
+
+    .nv-carnaval .novidade-arrow--next:hover svg {
+        transform: translateX(2px);
+    }
+}
+
+/* sem folga lateral na tela: a seta fica rente à borda da tela (faixa de 24px do contêiner) e,
+   conforme cresce, invade só um pouco o card. Área de toque ampliada por ::after. */
+@media (max-width: 1160px) {
+    .nv-carnaval .novidade-arrow {
+        border-width: 1.5px;
+        box-shadow: 0 3px 10px var(--nv-glow);
+    }
+
+    .nv-carnaval .novidade-arrow::after {
+        content: "";
+        position: absolute;
+        inset: -8px;
+    }
+
+    .nv-carnaval .novidade-arrow--prev {
+        left: -23px;
+    }
+
+    .nv-carnaval .novidade-arrow--next {
+        right: -23px;
+    }
+}
+
+/* celular: na altura do centro da foto */
+@media (max-width: 768px) {
+    .nv-carnaval .novidade-arrow {
+        top: calc((100vw - 48px) * 0.667);
+    }
+}
+
+/* de 800px para baixo a escala das setas recomeça: 40px em 800px → 26px em 390px */
+@media (max-width: 800px) {
+    .novidade-stage {
+        --nv-arr: clamp(26px, calc(12.7px + 3.415vw), 40px);
+    }
 }
