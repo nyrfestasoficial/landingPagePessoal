@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Protótipo — Novidades Carnaval</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Caveat:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+    <style>
+        /* barra de rótulo do protótipo */
+        .proto-label {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 14px 24px;
+            background: #000;
+            color: #fff;
+            font: 700 13px 'Barlow Condensed', sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+
+        .proto-label span {
+            font-weight: 500;
+            opacity: .55;
+            letter-spacing: 1px
+        }
+
+        /* ── paletas (todas claras; cartão sempre #FFFFFF = fundo das imagens) ── */
+        .nv-confete {
+            --nv-bg: #FFF4E0;
+            --nv-card: #FFFFFF;
+            --nv-ink: #2A0F4D;
+            --nv-body: rgba(42, 15, 77, 0.78);
+            --nv-muted: rgba(42, 15, 77, 0.5);
+            --nv-a1: #E0197D;
+            --nv-a1t: #FFFFFF;
+            --nv-a2: #F59E0B;
+            --nv-a3: #0EA5C6;
+            --nv-btn: #6D28D9;
+            --nv-btn-h: #5B21B6;
+            --nv-btn-ink: #fff;
+            --nv-line: rgba(224, 25, 125, 0.35);
+            --nv-glow: rgba(109, 40, 217, 0.16);
+            --nv-tab: rgba(42, 15, 77, 0.5);
+            --nv-tab-on: #2A0F4D;
+            --nv-sep: rgba(42, 15, 77, 0.25)
+        }
+
+        .nv-tropical {
+            --nv-bg: #E7F8EE;
+            --nv-card: #FFFFFF;
+            --nv-ink: #0B2E22;
+            --nv-body: rgba(11, 46, 34, 0.78);
+            --nv-muted: rgba(11, 46, 34, 0.5);
+            --nv-a1: #08894A;
+            --nv-a1t: #FFFFFF;
+            --nv-a2: #FFC400;
+            --nv-a3: #2563EB;
+            --nv-btn: #0B6B3A;
+            --nv-btn-h: #08532D;
+            --nv-btn-ink: #fff;
+            --nv-line: rgba(10, 157, 88, 0.35);
+            --nv-glow: rgba(11, 107, 58, 0.16);
+            --nv-tab: rgba(11, 46, 34, 0.5);
+            --nv-tab-on: #0B2E22;
+            --nv-sep: rgba(11, 46, 34, 0.25)
+        }
+
+        .nv-algodao {
+            --nv-bg: #FCE8FA;
+            --nv-card: #FFFFFF;
+            --nv-ink: #3B0A5C;
+            --nv-body: rgba(59, 10, 92, 0.78);
+            --nv-muted: rgba(59, 10, 92, 0.5);
+            --nv-a1: #C026D3;
+            --nv-a1t: #FFFFFF;
+            --nv-a2: #FB923C;
+            --nv-a3: #38BDF8;
+            --nv-btn: #7E22CE;
+            --nv-btn-h: #6B21A8;
+            --nv-btn-ink: #fff;
+            --nv-line: rgba(192, 38, 211, 0.35);
+            --nv-glow: rgba(126, 34, 206, 0.16);
+            --nv-tab: rgba(59, 10, 92, 0.5);
+            --nv-tab-on: #3B0A5C;
+            --nv-sep: rgba(59, 10, 92, 0.25)
+        }
+
+        .nv-sol {
+            --nv-bg: #FFF6CC;
+            --nv-card: #FFFFFF;
+            --nv-ink: #3A1A00;
+            --nv-body: rgba(58, 26, 0, 0.78);
+            --nv-muted: rgba(58, 26, 0, 0.5);
+            --nv-a1: #D9480F;
+            --nv-a1t: #FFFFFF;
+            --nv-a2: #EC4899;
+            --nv-a3: #06B6D4;
+            --nv-btn: #C2410C;
+            --nv-btn-h: #9A3412;
+            --nv-btn-ink: #fff;
+            --nv-line: rgba(249, 115, 22, 0.35);
+            --nv-glow: rgba(194, 65, 12, 0.16);
+            --nv-tab: rgba(58, 26, 0, 0.5);
+            --nv-tab-on: #3A1A00;
+            --nv-sep: rgba(58, 26, 0, 0.25)
+        }
+
+        .nv-frevo {
+            --nv-bg: #E4F2FF;
+            --nv-card: #FFFFFF;
+            --nv-ink: #0B2447;
+            --nv-body: rgba(11, 36, 71, 0.78);
+            --nv-muted: rgba(11, 36, 71, 0.5);
+            --nv-a1: #2563EB;
+            --nv-a1t: #FFFFFF;
+            --nv-a2: #F43F5E;
+            --nv-a3: #FACC15;
+            --nv-btn: #1D4ED8;
+            --nv-btn-h: #1E40AF;
+            --nv-btn-ink: #fff;
+            --nv-line: rgba(37, 99, 235, 0.35);
+            --nv-glow: rgba(29, 78, 216, 0.16);
+            --nv-tab: rgba(11, 36, 71, 0.5);
+            --nv-tab-on: #0B2447;
+            --nv-sep: rgba(11, 36, 71, 0.25)
+        }
+
+        .nv-branco {
+            --nv-bg: #FFFFFF;
+            --nv-card: #FFFFFF;
+            --nv-ink: #16161A;
+            --nv-body: rgba(22, 22, 26, 0.78);
+            --nv-muted: rgba(22, 22, 26, 0.5);
+            --nv-a1: #E11D74;
+            --nv-a1t: #FFFFFF;
+            --nv-a2: #FFB300;
+            --nv-a3: #00B8D9;
+            --nv-btn: #16161A;
+            --nv-btn-h: #3A3A42;
+            --nv-btn-ink: #fff;
+            --nv-line: rgba(225, 29, 116, 0.35);
+            --nv-glow: rgba(22, 22, 26, 0.16);
+            --nv-tab: rgba(22, 22, 26, 0.5);
+            --nv-tab-on: #16161A;
+            --nv-sep: rgba(22, 22, 26, 0.25)
+        }
+
+        .nv-carnaval {
+            background: var(--nv-bg)
+        }
+
+        /* ── tipografia ──────────────────────────────────────
+   Eyebrow e título seguem o padrão da LP (.section-eyebrow / .section-title: Barlow Condensed + Anton).
+   A Caveat (a mesma do Nyr Inspira) fica DENTRO do cartão: nome do produto e observação. */
+        .nv-carnaval .novidade-eyebrow {
+            margin-bottom: 12px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--nv-a1)
+        }
+
+        .nv-carnaval .novidade-eyebrow::before {
+            background: var(--nv-a1)
+        }
+
+        .nv-carnaval .novidade-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(32px, 5vw, 52px);
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.05;
+            color: var(--nv-ink)
+        }
+
+        @media (min-width:1500px) {
+            .nv-carnaval .novidade-eyebrow {
+                font-size: 17px
+            }
+
+            .nv-carnaval .novidade-title {
+                font-size: clamp(52px, 3.33vw, 64px)
+            }
+        }
+
+        .nv-carnaval .novidade-nome {
+            font-family: 'Caveat', cursive;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: .95;
+            font-size: clamp(46px, 5.2vw, 64px)
+        }
+
+        .nv-carnaval .novidade-obs {
+            color: var(--nv-body);
+            font-family: 'Caveat', cursive;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 1.3
+        }
+
+        @media (min-width:1500px) {
+            .nv-carnaval .novidade-nome {
+                font-size: clamp(56px, 3.6vw, 70px)
+            }
+
+            .nv-carnaval .novidade-obs {
+                font-size: 26px
+            }
+        }
+
+        /* ── tabs ── */
+        .nv-carnaval .novidade-tab {
+            color: var(--nv-tab)
+        }
+
+        .nv-carnaval .novidade-tab.unvisited {
+            color: var(--nv-ink);
+            opacity: .8
+        }
+
+        .nv-carnaval .novidade-tab:hover {
+            color: var(--nv-ink)
+        }
+
+        .nv-carnaval .novidade-tab.active {
+            color: var(--nv-tab-on);
+            opacity: 1
+        }
+
+        .nv-carnaval .novidade-tab::after {
+            background: var(--nv-sep)
+        }
+
+        .nv-carnaval .novidade-tab.active::after {
+            background: var(--nv-a1)
+        }
+
+        .nv-carnaval .novidade-tab.unvisited::after {
+            animation: nv-tab-breathe 2.2s ease-in-out infinite
+        }
+
+        .nv-carnaval .novidade-tab-sep {
+            color: var(--nv-sep)
+        }
+
+        @keyframes nv-tab-breathe {
+
+            0%,
+            100% {
+                background: var(--nv-sep)
+            }
+
+            50% {
+                background: var(--nv-a1)
+            }
+        }
+
+        /* ── cartão e imagem (imagem com o MESMO fundo do cartão) ── */
+        .nv-carnaval .novidade-card {
+            background: var(--nv-card);
+            border: 1px solid var(--nv-line);
+            box-shadow: 0 0 60px var(--nv-glow), 0 0 0 1px var(--nv-line)
+        }
+
+        .nv-carnaval .novidade-card-img,
+        .nv-carnaval .novidade-card-img img,
+        .nv-carnaval .novidade-slide {
+            background: var(--nv-card)
+        }
+
+        .nv-carnaval .novidade-card-body::before {
+            background: linear-gradient(90deg, var(--nv-a1) 0%, var(--nv-a2) 55%, var(--nv-a3) 100%)
+        }
+
+        .nv-carnaval .novidade-badge {
+            background: var(--nv-a1);
+            color: var(--nv-a1t)
+        }
+
+        .nv-carnaval .novidade-ref {
+            color: var(--nv-muted)
+        }
+
+        .nv-carnaval .novidade-nome {
+            color: var(--nv-ink)
+        }
+
+        .nv-carnaval .novidade-nome em {
+            color: var(--nv-a1)
+        }
+
+        .nv-carnaval .novidade-desc {
+            color: var(--nv-body)
+        }
+
+        .nv-carnaval .novidade-desc strong {
+            color: var(--nv-ink)
+        }
+
+        .nv-carnaval .novidade-selo {
+            color: var(--nv-muted)
+        }
+
+        /* ── botões ── */
+        .nv-carnaval .novidade-btn-video {
+            background: var(--nv-btn);
+            color: var(--nv-btn-ink);
+            animation: nv-video-pulse 2.5s ease-in-out infinite 1.25s
+        }
+
+        .nv-carnaval .novidade-btn-video:hover {
+            background: var(--nv-btn-h);
+            animation: none
+        }
+
+        .nv-carnaval .novidade-btn-wa {
+            color: var(--nv-a1);
+            border-color: var(--nv-line);
+            animation: nv-wa-pulse 2.5s ease-in-out infinite
+        }
+
+        .nv-carnaval .novidade-btn-wa:hover {
+            background: color-mix(in srgb, var(--nv-a1) 8%, transparent);
+            border-color: var(--nv-a1);
+            animation: none
+        }
+
+        @keyframes nv-video-pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 transparent
+            }
+
+            50% {
+                box-shadow: 0 0 0 4px var(--nv-glow)
+            }
+        }
+
+        @keyframes nv-wa-pulse {
+
+            0%,
+            100% {
+                border-color: var(--nv-line)
+            }
+
+            50% {
+                border-color: var(--nv-a1);
+                box-shadow: 0 0 12px var(--nv-line)
+            }
+        }
+
+        /* ── dots do carrossel ── */
+        .nv-carnaval .novidade-dot {
+            border-color: var(--nv-a1)
+        }
+
+        .nv-carnaval .novidade-dot:not(.active) {
+            animation: none;
+            opacity: .55
+        }
+
+        .nv-carnaval .novidade-dot.active {
+            background: var(--nv-a1);
+            border-color: var(--nv-a1)
+        }
+
+        @media (max-width:800px) {
+            .nv-carnaval .novidade-card-body {
+                border-top: 1px solid var(--nv-line)
+            }
+
+            .nv-carnaval .novidade-card-body::before {
+                background: linear-gradient(90deg, var(--nv-a1) 0%, var(--nv-a2) 55%, var(--nv-a3) 100%)
+            }
+        }
+
+        .nv-branco .novidade-card {
+            border-color: rgba(22, 22, 26, .14);
+            box-shadow: 0 18px 50px rgba(22, 22, 26, .10), 0 0 0 1px rgba(22, 22, 26, .04)
+        }
+    </style>
+</head>
+
+<body style="background:#111">
+
+    <div class="proto-label"><b>PALETA 1 — CONFETE</b><span>fundo #FFF4E0 · texto #2A0F4D · destaque #E0197D · #F59E0B ·
+            botão #6D28D9 · cartão/imagem #FFFFFF</span></div>
+    <section class="novidade-hl nv-carnaval nv-confete" style="padding: 80px 0;">
+        <div class="container">
+            <div class="novidade-header">
+                <div class="novidade-eyebrow">Novidade Carnaval 2027</div>
+                <h2 class="novidade-title">Em primeira mão</h2>
+            </div>
+            <div class="novidade-tabs"><button class="novidade-tab active" data-novidade-panel="confete-p1">Produto
+                    01</button><span class="novidade-tab-sep">·</span><button class="novidade-tab unvisited"
+                    data-novidade-panel="confete-p2">Produto 02</button><span class="novidade-tab-sep">·</span><button
+                    class="novidade-tab unvisited" data-novidade-panel="confete-p3">Produto 03</button></div>
+            <div class="novidade-panel active" data-novidade-panel="confete-p1">
+                <div class="novidade-card">
+                    <div class="novidade-card-img"><img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F59E0B%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E0197D%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F59E0B%22%3E01%3C/text%3E%3C/svg%3E"
+                            alt="Placeholder produto 01"></div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0001</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 01</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="confete-p2">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F59E0B%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E0197D%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F59E0B%22%3E02%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F59E0B%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E0197D%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F59E0B%22%3E02%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F59E0B%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E0197D%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F59E0B%22%3E02%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0002</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 02</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="confete-p3">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F59E0B%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E0197D%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F59E0B%22%3E03%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F59E0B%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E0197D%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F59E0B%22%3E03%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E0197D%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F59E0B%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E0197D%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F59E0B%22%3E03%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0003</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 03</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="proto-label"><b>PALETA 2 — TROPICAL</b><span>fundo #E7F8EE · texto #0B2E22 · destaque #08894A · #FFC400
+            · botão #0B6B3A · cartão/imagem #FFFFFF</span></div>
+    <section class="novidade-hl nv-carnaval nv-tropical" style="padding: 80px 0;">
+        <div class="container">
+            <div class="novidade-header">
+                <div class="novidade-eyebrow">Novidade Carnaval 2027</div>
+                <h2 class="novidade-title">Em primeira mão</h2>
+            </div>
+            <div class="novidade-tabs"><button class="novidade-tab active" data-novidade-panel="tropical-p1">Produto
+                    01</button><span class="novidade-tab-sep">·</span><button class="novidade-tab unvisited"
+                    data-novidade-panel="tropical-p2">Produto 02</button><span class="novidade-tab-sep">·</span><button
+                    class="novidade-tab unvisited" data-novidade-panel="tropical-p3">Produto 03</button></div>
+            <div class="novidade-panel active" data-novidade-panel="tropical-p1">
+                <div class="novidade-card">
+                    <div class="novidade-card-img"><img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFC400%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%2308894A%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFC400%22%3E01%3C/text%3E%3C/svg%3E"
+                            alt="Placeholder produto 01"></div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0001</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 01</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="tropical-p2">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFC400%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%2308894A%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFC400%22%3E02%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFC400%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%2308894A%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFC400%22%3E02%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFC400%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%2308894A%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFC400%22%3E02%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0002</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 02</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="tropical-p3">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFC400%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%2308894A%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFC400%22%3E03%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFC400%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%2308894A%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFC400%22%3E03%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2308894A%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFC400%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%2308894A%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFC400%22%3E03%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0003</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 03</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="proto-label"><b>PALETA 3 — ALGODÃO-DOCE</b><span>fundo #FCE8FA · texto #3B0A5C · destaque #C026D3 ·
+            #FB923C · botão #7E22CE · cartão/imagem #FFFFFF</span></div>
+    <section class="novidade-hl nv-carnaval nv-algodao" style="padding: 80px 0;">
+        <div class="container">
+            <div class="novidade-header">
+                <div class="novidade-eyebrow">Novidade Carnaval 2027</div>
+                <h2 class="novidade-title">Em primeira mão</h2>
+            </div>
+            <div class="novidade-tabs"><button class="novidade-tab active" data-novidade-panel="algodao-p1">Produto
+                    01</button><span class="novidade-tab-sep">·</span><button class="novidade-tab unvisited"
+                    data-novidade-panel="algodao-p2">Produto 02</button><span class="novidade-tab-sep">·</span><button
+                    class="novidade-tab unvisited" data-novidade-panel="algodao-p3">Produto 03</button></div>
+            <div class="novidade-panel active" data-novidade-panel="algodao-p1">
+                <div class="novidade-card">
+                    <div class="novidade-card-img"><img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FB923C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23C026D3%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FB923C%22%3E01%3C/text%3E%3C/svg%3E"
+                            alt="Placeholder produto 01"></div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0001</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 01</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="algodao-p2">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FB923C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23C026D3%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FB923C%22%3E02%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FB923C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23C026D3%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FB923C%22%3E02%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FB923C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23C026D3%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FB923C%22%3E02%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0002</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 02</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="algodao-p3">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FB923C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23C026D3%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FB923C%22%3E03%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FB923C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23C026D3%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FB923C%22%3E03%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C026D3%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FB923C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23C026D3%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FB923C%22%3E03%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0003</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 03</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="proto-label"><b>PALETA 4 — SOL DE VERÃO</b><span>fundo #FFF6CC · texto #3A1A00 · destaque #D9480F ·
+            #EC4899 · botão #C2410C · cartão/imagem #FFFFFF</span></div>
+    <section class="novidade-hl nv-carnaval nv-sol" style="padding: 80px 0;">
+        <div class="container">
+            <div class="novidade-header">
+                <div class="novidade-eyebrow">Novidade Carnaval 2027</div>
+                <h2 class="novidade-title">Em primeira mão</h2>
+            </div>
+            <div class="novidade-tabs"><button class="novidade-tab active" data-novidade-panel="sol-p1">Produto
+                    01</button><span class="novidade-tab-sep">·</span><button class="novidade-tab unvisited"
+                    data-novidade-panel="sol-p2">Produto 02</button><span class="novidade-tab-sep">·</span><button
+                    class="novidade-tab unvisited" data-novidade-panel="sol-p3">Produto 03</button></div>
+            <div class="novidade-panel active" data-novidade-panel="sol-p1">
+                <div class="novidade-card">
+                    <div class="novidade-card-img"><img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23EC4899%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23D9480F%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23EC4899%22%3E01%3C/text%3E%3C/svg%3E"
+                            alt="Placeholder produto 01"></div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0001</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 01</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="sol-p2">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23EC4899%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23D9480F%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23EC4899%22%3E02%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23EC4899%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23D9480F%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23EC4899%22%3E02%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23EC4899%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23D9480F%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23EC4899%22%3E02%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0002</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 02</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="sol-p3">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23EC4899%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23D9480F%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23EC4899%22%3E03%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23EC4899%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23D9480F%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23EC4899%22%3E03%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23D9480F%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23EC4899%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23D9480F%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23EC4899%22%3E03%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0003</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 03</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="proto-label"><b>PALETA 5 — CÉU DE FREVO</b><span>fundo #E4F2FF · texto #0B2447 · destaque #2563EB ·
+            #F43F5E · botão #1D4ED8 · cartão/imagem #FFFFFF</span></div>
+    <section class="novidade-hl nv-carnaval nv-frevo" style="padding: 80px 0;">
+        <div class="container">
+            <div class="novidade-header">
+                <div class="novidade-eyebrow">Novidade Carnaval 2027</div>
+                <h2 class="novidade-title">Em primeira mão</h2>
+            </div>
+            <div class="novidade-tabs"><button class="novidade-tab active" data-novidade-panel="frevo-p1">Produto
+                    01</button><span class="novidade-tab-sep">·</span><button class="novidade-tab unvisited"
+                    data-novidade-panel="frevo-p2">Produto 02</button><span class="novidade-tab-sep">·</span><button
+                    class="novidade-tab unvisited" data-novidade-panel="frevo-p3">Produto 03</button></div>
+            <div class="novidade-panel active" data-novidade-panel="frevo-p1">
+                <div class="novidade-card">
+                    <div class="novidade-card-img"><img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F43F5E%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%232563EB%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F43F5E%22%3E01%3C/text%3E%3C/svg%3E"
+                            alt="Placeholder produto 01"></div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0001</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 01</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="frevo-p2">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F43F5E%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%232563EB%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F43F5E%22%3E02%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F43F5E%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%232563EB%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F43F5E%22%3E02%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F43F5E%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%232563EB%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F43F5E%22%3E02%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0002</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 02</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="frevo-p3">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F43F5E%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%232563EB%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F43F5E%22%3E03%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F43F5E%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%232563EB%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F43F5E%22%3E03%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23F43F5E%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%232563EB%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23F43F5E%22%3E03%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0003</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 03</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="proto-label"><b>PALETA 6 — BRANCO TOTAL</b><span>fundo #FFFFFF · texto #16161A · destaque #E11D74 ·
+            #FFB300 · botão #16161A · cartão/imagem #FFFFFF</span></div>
+    <section class="novidade-hl nv-carnaval nv-branco" style="padding: 80px 0;">
+        <div class="container">
+            <div class="novidade-header">
+                <div class="novidade-eyebrow">Novidade Carnaval 2027</div>
+                <h2 class="novidade-title">Em primeira mão</h2>
+            </div>
+            <div class="novidade-tabs"><button class="novidade-tab active" data-novidade-panel="branco-p1">Produto
+                    01</button><span class="novidade-tab-sep">·</span><button class="novidade-tab unvisited"
+                    data-novidade-panel="branco-p2">Produto 02</button><span class="novidade-tab-sep">·</span><button
+                    class="novidade-tab unvisited" data-novidade-panel="branco-p3">Produto 03</button></div>
+            <div class="novidade-panel active" data-novidade-panel="branco-p1">
+                <div class="novidade-card">
+                    <div class="novidade-card-img"><img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFB300%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E11D74%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFB300%22%3E01%3C/text%3E%3C/svg%3E"
+                            alt="Placeholder produto 01"></div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0001</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 01</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="branco-p2">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFB300%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E11D74%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFB300%22%3E02%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFB300%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E11D74%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFB300%22%3E02%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFB300%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E11D74%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFB300%22%3E02%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 02"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0002</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 02</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="novidade-panel" data-novidade-panel="branco-p3">
+                <div class="novidade-card">
+                    <div class="novidade-card-img">
+                        <div class="novidade-carousel" data-novidade-carousel>
+                            <div class="novidade-carousel-track">
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFB300%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E11D74%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFB300%22%3E03%20%C2%B7%20IMAGEM%201%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFB300%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E11D74%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFB300%22%3E03%20%C2%B7%20IMAGEM%202%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                                <div class="novidade-slide"><img
+                                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20800%22%3E%3Crect%20x%3D%2240%22%20y%3D%2240%22%20width%3D%22520%22%20height%3D%22720%22%20rx%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%225%22%20stroke-dasharray%3D%2222%2016%22%20opacity%3D%22.75%22/%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23E11D74%22%20stroke-width%3D%229%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Crect%20x%3D%22215%22%20y%3D%22330%22%20width%3D%22170%22%20height%3D%22120%22%20rx%3D%2218%22/%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22390%22%20r%3D%2232%22/%3E%3Cpath%20d%3D%22M255%20330l12-22h66l12%2022%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22365%22%20cy%3D%22355%22%20r%3D%227%22%20fill%3D%22%23FFB300%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2234%22%20letter-spacing%3D%226%22%20fill%3D%22%23E11D74%22%3EFOTO%20DO%20PRODUTO%3C/text%3E%3Ctext%20x%3D%22300%22%20y%3D%22565%22%20text-anchor%3D%22middle%22%20font-family%3D%22Barlow%20Condensed%2CArial%2Csans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2226%22%20letter-spacing%3D%224%22%20fill%3D%22%23FFB300%22%3E03%20%C2%B7%20IMAGEM%203%3C/text%3E%3C/svg%3E"
+                                        alt="Placeholder produto 03"></div>
+                            </div>
+                            <div class="novidade-dots"></div>
+                        </div>
+                    </div>
+                    <div class="novidade-card-body">
+                        <span class="novidade-badge">Novo para 2027</span>
+                        <p class="novidade-ref">REF · 0003</p>
+                        <h3 class="novidade-nome">Nome do <em>Produto 03</em></h3>
+                        <p class="novidade-desc">Texto de apoio do produto: <strong>destaque comercial em uma
+                                frase</strong>. Aqui entra o argumento de venda para o lojista, curto e direto, no mesmo
+                            tamanho do Halloween.</p>
+                        <p class="novidade-obs">Observação sobre medidas, quantidade ou antecipação de pedido — texto
+                            placeholder.</p>
+                        <div class="novidade-actions">
+                            <button class="novidade-btn-video"><svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>Ver vídeo do produto</button>
+                            <button class="novidade-btn-wa">Falar com atendente</button>
+                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.querySelectorAll('.nv-carnaval').forEach(function (sec) {
+            var tabs = sec.querySelectorAll('.novidade-tab'), panels = sec.querySelectorAll('.novidade-panel');
+            tabs.forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    tab.classList.remove('unvisited');
+                    tabs.forEach(function (t) { t.classList.toggle('active', t === tab) });
+                    panels.forEach(function (p) {
+                        var on = p.dataset.novidadePanel === tab.dataset.novidadePanel; p.classList.toggle('active', on);
+                        var c = p.querySelector('[data-novidade-carousel]'); if (c && c._start) { on ? c._start() : c._stop() }
+                    });
+                })
+            });
+            sec.querySelectorAll('[data-novidade-carousel]').forEach(function (c) {
+                var tr = c.querySelector('.novidade-carousel-track'), n = c.querySelectorAll('.novidade-slide').length, dw = c.querySelector('.novidade-dots'), cur = 0, t = null;
+                for (var i = 0; i < n; i++) { (function (i) { var d = document.createElement('button'); d.className = 'novidade-dot' + (i ? '' : ' active'); d.setAttribute('aria-label', 'Imagem ' + (i + 1)); d.onclick = function () { go(i) }; dw.appendChild(d) })(i) }
+                function mark() { dw.querySelectorAll('.novidade-dot').forEach(function (d, i) { d.className = 'novidade-dot' + (i === cur ? ' active' : '') }) }
+                function go(i) { cur = (i + n) % n; tr.scrollTo({ left: cur * tr.offsetWidth, behavior: 'smooth' }); mark() }
+                tr.addEventListener('scroll', function () { var i = Math.round(tr.scrollLeft / tr.offsetWidth); if (i !== cur) { cur = i; mark() } }, { passive: true });
+                c._stop = function () { clearInterval(t) }; c._start = function () { clearInterval(t); t = setInterval(function () { go(cur + 1) }, 4000) };
+            });
+        });
+    </script>
+</body>
+
+</html>
