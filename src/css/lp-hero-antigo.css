@@ -320,7 +320,7 @@ button {
 .service-badge {
     display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -611,6 +611,25 @@ button {
 .svc-dot.active {
     background: var(--brand-orange);
     transform: scale(1.3)
+}
+
+/* ─── SVC CAROUSEL — PEEK ────────────────────── */
+@keyframes svc-peek {
+    0% {
+        transform: translateX(0)
+    }
+
+    65% {
+        transform: translateX(var(--svc-peek-offset, -50%))
+    }
+
+    100% {
+        transform: translateX(0)
+    }
+}
+
+.svc-carousel-track.peeking {
+    animation: svc-peek 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards
 }
 
 /* ─── SVC CAROUSEL — PULSE ───────────────────── */
@@ -1148,7 +1167,7 @@ button {
 }
 
 .card-desc {
-    font-size: 15px;
+    font-size: 13px;
     color: var(--gray-text);
     line-height: 1.6;
     flex: 1;
@@ -1325,18 +1344,6 @@ button {
     overflow: hidden
 }
 
-.sobre-img-right {
-    display: flex;
-}
-
-/* desktop: o card do logo ocupa toda a altura da linha, então o logo fica centralizado na vertical */
-@media (min-width: 951px) {
-    .sobre-img-right .sobre-visual {
-        height: 100%;
-        aspect-ratio: auto;
-    }
-}
-
 .sobre-logo-wrap {
     position: absolute;
     inset: 0;
@@ -1346,8 +1353,8 @@ button {
 }
 
 .sobre-logo {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     object-fit: contain;
     display: block;
     animation: sobre-logo-pulse 3.5s ease-in-out infinite,
@@ -1386,13 +1393,13 @@ button {
 }
 
 .sobre-sub {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--gray-text);
     line-height: 1.75
 }
 
 .sobre-para {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--gray-text);
     line-height: 1.75
 }
@@ -1460,7 +1467,7 @@ button {
 }
 
 .pilar-desc {
-    font-size: 15px;
+    font-size: 14px;
     color: rgba(255, 255, 255, 0.48);
     line-height: 1.65
 }
@@ -1526,7 +1533,7 @@ button {
 }
 
 .depo-text {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--gray-text);
     line-height: 1.75;
     flex: 1;
@@ -1770,7 +1777,7 @@ button {
 }
 
 .cta-sub {
-    font-size: 18px;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.55);
     line-height: 1.75
 }
@@ -1850,7 +1857,7 @@ button {
 }
 
 .form-note {
-    font-size: 13px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.28);
     text-align: center;
     margin-top: 14px
@@ -2284,6 +2291,13 @@ button {
     margin-bottom: 8px
 }
 
+.footer-email-note {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 6px;
+    min-height: 16px
+}
+
 /* ─── FOOTER ──────────────────────────────────── */
 .footer {
     background: #111111;
@@ -2397,6 +2411,55 @@ button {
 
 .footer-contact-item strong {
     color: rgba(255, 255, 255, 0.75)
+}
+
+.footer-newsletter-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 16px
+}
+
+.footer-email-row {
+    display: flex;
+    border-radius: 100px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14)
+}
+
+.footer-email-input {
+    flex: 1;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: var(--white);
+    outline: none;
+    min-width: 0
+}
+
+.footer-email-input::placeholder {
+    color: rgba(255, 255, 255, 0.28)
+}
+
+.footer-email-btn {
+    padding: 14px 24px;
+    background: var(--brand-orange);
+    color: var(--black);
+    font-family: 'Anton', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    border: none;
+    white-space: nowrap;
+    transition: opacity var(--transition)
+}
+
+.footer-email-btn:hover {
+    opacity: 0.85
 }
 
 .footer-bottom {
@@ -2858,8 +2921,8 @@ button {
     }
 
     .sobre-logo {
-        width: 280px;
-        height: 280px
+        width: 240px;
+        height: 240px
     }
 }
 
@@ -4946,11 +5009,11 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .sobre-para {
-        font-size: 20px
+        font-size: 19px
     }
 
     .sobre-sub {
-        font-size: 20px
+        font-size: 18px
     }
 
     .pilar-title {
@@ -4958,7 +5021,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .pilar-desc {
-        font-size: 18px
+        font-size: 17px
     }
 
     .faq-question-text {
@@ -4970,11 +5033,11 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .cta-sub {
-        font-size: 22px
+        font-size: 20px
     }
 
     .depo-text {
-        font-size: 18px
+        font-size: 17px
     }
 
     .depo-name {
@@ -4990,7 +5053,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .card-desc {
-        font-size: 17px
+        font-size: 15px
     }
 
     /* ── Navegação ── */
@@ -5092,7 +5155,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .form-note {
-        font-size: 15px
+        font-size: 14px
     }
 
     /* ── Footer ── */
@@ -5114,6 +5177,18 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
     .footer-contact-item {
         font-size: 16px
+    }
+
+    .footer-newsletter-title {
+        font-size: 15px
+    }
+
+    .footer-email-input {
+        font-size: 16px
+    }
+
+    .footer-email-btn {
+        font-size: 14px
     }
 
     .footer-copy {
@@ -5246,7 +5321,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
 .novidade-ref {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -5509,7 +5584,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     border: none;
     padding: 6px 0;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -5574,7 +5649,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .novidade-tab {
-        font-size: 14px;
+        font-size: 12px;
         letter-spacing: 1px;
     }
 }
@@ -5679,17 +5754,18 @@ body[data-mode="apresentacao"] .height-hamburger span {
     background-color: var(--brand-bg);
 }
 
-/* camada da estampa: cobre a seção, sem efeito de rolagem */
+/* camada da estampa: mais alta que a seção para permitir o parallax (ver animações) */
 .insp-promo__bg {
     position: absolute;
-    inset: 0;
+    inset: -56px 0;
     z-index: -2;
     pointer-events: none;
     /* padrão = desktop (paisagem) */
-    background-image: url('https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791472644/mario-background-nyr-inspira-desktop_bgqw4l.webp');
+    background-image: url('https://res.cloudinary.com/dzt1kqdbc/image/upload/v1790262976/INSPIRA_PAGE-LOADER_BACKGROUND-DESKTOP_twzmmx.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    will-change: transform;
 }
 
 /* faixa de confete: separa da seção preta acima e carrega a identidade do Inspira */
@@ -5726,7 +5802,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
 .insp-promo__badge {
     display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -5888,6 +5964,8 @@ body[data-mode="apresentacao"] .height-hamburger span {
         width: 100%;
         justify-content: center;
     }
+
+    
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6054,2160 +6132,5 @@ body[data-mode="apresentacao"] .height-hamburger span {
 
     .insp-promo__cta::after {
         display: none;
-    }
-}
-
-/* ═════════════════════════════════════════════════════════════════
-   HERO POP — visual "Q1 Marca" (aprovado no protótipo)
-   · escopado em body.hero-pop; o resto do CSS acima continua sendo a base do Hero
-   · modos: body[data-mode="inicio"] (fundo preto) e body[data-mode="apresentacao"] (creme)
-   ═════════════════════════════════════════════════════════════════ */
-.fx {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    display: none;
-}
-
-body.hero-pop .fx {
-    display: block;
-}
-
-.fx-under {
-    position: absolute;
-    inset: 0;
-}
-
-.fx-under {
-    z-index: 0;
-}
-
-.fx-bg {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity .9s ease;
-}
-
-body[data-mode="inicio"] .fx-bg-d {
-    opacity: 1;
-}
-
-body[data-mode="apresentacao"] .fx-bg-l {
-    opacity: 1;
-}
-
-/* o halo do parágrafo (solução B) passa a usar a cor local do fundo*/
-body.hero-pop .apres-body {
-    text-shadow: 0 0 8px rgb(var(--halo, 245, 245, 245)), 0 0 3px rgb(var(--halo, 245, 245, 245));
-}
-
-body.hero-pop .apres-body::before {
-    background: radial-gradient(ellipse closest-side at 50% 50%, rgba(var(--halo, 245, 245, 245), .94) 62%, rgba(var(--halo, 245, 245, 245), 0) 100%);
-}
-
-body.hero-pop .hero {
-    background: transparent;
-}
-
-body.hero-pop[data-mode="apresentacao"] .hero {
-    background: transparent;
-}
-
-body.hero-pop .toggle-indicator.hinting {
-    animation: none;
-}
-
-.fx-stream {
-    display: none;
-}
-
-/* ═════════════════════════════════════════════════════════════════
-   V5 · POP BRUTALISTA — gráfico, chapado, contornos grossos e sombras duras
-   ═════════════════════════════════════════════════════════════════*/
-body.hero-pop[data-mode="inicio"] {
-    --ac: 255, 210, 0;
-    --tx: 255, 255, 255;
-    --ink: 17, 17, 17;
-    --edge1: #f4a000;
-    --edge2: #111111;
-    --card: #111111;
-    --halo: 255, 241, 214;
-}
-
-body.hero-pop[data-mode="apresentacao"] {
-    --ac: 244, 160, 0;
-    --tx: 17, 17, 17;
-    --ink: 17, 17, 17;
-    --edge1: #111111;
-    --edge2: #ffd200;
-    --card: #ffffff;
-    --halo: 255, 246, 227;
-}
-
-body.hero-pop .header-row-2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 3px;
-    background: rgb(var(--tx));
-}
-
-body.hero-pop .header-nav a {
-    color: rgb(var(--tx));
-    font-weight: 700;
-    letter-spacing: .14em;
-    text-shadow: none;
-    padding: 5px 9px;
-    margin: -5px -9px;
-    transition: background .2s, color .2s, box-shadow .2s;
-}
-
-body.hero-pop .header-nav a:hover {
-    background: #ffd200;
-    color: #111;
-    box-shadow: 3px 3px 0 rgb(var(--tx));
-}
-
-body.hero-pop .nav-logo {
-    color: rgb(var(--tx));
-}
-
-body.hero-pop .hero-logo-wrap {
-    padding: 16px 24px;
-    background: #111;
-    border: 3px solid #fff;
-    box-shadow: 8px 8px 0 #f4a000;
-    transform: rotate(-2deg);
-}
-
-body.hero-pop .hero-separator {
-    width: 5px;
-    border-radius: 5px;
-    background: #f4a000;
-}
-
-body.hero-pop .inicio-label-top {
-    color: #fff;
-    letter-spacing: 5px;
-    text-shadow: 3px 3px 0 #f4a000;
-}
-
-body.hero-pop .inicio-label-bottom {
-    color: #ffd200;
-    font-weight: 600;
-    letter-spacing: 5px;
-}
-
-body.hero-pop .apres-line-lg {
-    color: #f4a000;
-    -webkit-text-stroke: 3px #111;
-    paint-order: stroke fill;
-    text-shadow: 6px 6px 0 #111;
-    letter-spacing: 2px;
-}
-
-body.hero-pop .apres-line-sm,
-body.hero-pop .apres-line-md {
-    color: #111;
-    width: fit-content;
-    margin-inline: auto;
-    padding: 0 .16em;
-    background: linear-gradient(transparent 56%, #ffd200 56% 90%, transparent 90%);
-}
-
-body.hero-pop .apres-body {
-    color: #111;
-    background: #fff;
-    border: 3px solid #111;
-    padding: 14px 22px;
-    box-shadow: 7px 7px 0 #111;
-    max-width: 560px;
-    text-shadow: none;
-}
-
-body.hero-pop .apres-body::before {
-    display: none;
-}
-
-body.hero-pop .toggle-wrap {
-    gap: 0;
-    padding: 0;
-    border: 3px solid rgb(var(--tx));
-    background: var(--card);
-    box-shadow: 5px 5px 0 #f4a000;
-    border-radius: 0;
-}
-
-body.hero-pop[data-mode="apresentacao"] .toggle-wrap {
-    box-shadow: 5px 5px 0 #111;
-}
-
-body.hero-pop .toggle-btn {
-    padding: 11px 22px;
-    color: rgba(var(--tx), .75);
-    letter-spacing: .2em;
-}
-
-body.hero-pop .toggle-btn.active {
-    color: #111;
-}
-
-body.hero-pop .toggle-btn:not(.active):hover {
-    color: rgb(var(--tx));
-    background: rgba(var(--tx), .08);
-}
-
-body.hero-pop .toggle-indicator {
-    top: 0;
-    bottom: 0;
-    height: auto;
-    border-radius: 0;
-    background: #ffd200 !important;
-}
-
-body.hero-pop .scroll-label {
-    color: rgb(var(--tx));
-}
-
-body.hero-pop .scroll-arrow {
-    width: 40px;
-    height: 40px;
-    display: grid;
-    place-items: center;
-    font-size: 22px;
-    color: #111;
-    background: #ffd200;
-    border: 3px solid rgb(var(--tx));
-    box-shadow: 4px 4px 0 #f4a000;
-    animation: v5-bounce 1.6s cubic-bezier(.5, 0, .3, 1) infinite;
-}
-
-@keyframes v5-bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    45% {
-        transform: translateY(6px);
-    }
-}
-
-body.hero-pop .hero-edge {
-    height: 9px;
-    background: repeating-linear-gradient(90deg, var(--edge1) 0 22px, var(--edge2) 22px 44px);
-}
-
-body.hero-pop :where(.hero) a.btn-login.btn-login-primary {
-    background: var(--card);
-    border-width: 3px;
-    border-radius: 0;
-    border-color: rgb(var(--tx)) !important;
-    box-shadow: 4px 4px 0 #f4a000;
-    color: rgb(var(--tx));
-    padding-block: 8px;
-}
-
-body.hero-pop[data-mode="apresentacao"] :where(.hero) a.btn-login.btn-login-primary {
-    box-shadow: 4px 4px 0 #111;
-}
-
-body.hero-pop :where(.hero) a.btn-login.btn-login-primary::before,
-body.hero-pop :where(.hero) a.btn-login.btn-login-primary::after {
-    display: none;
-}
-
-body.hero-pop :where(.hero) .btn-login__icon {
-    color: #f4a000;
-}
-
-/* ═════════════════════════════════════════════════════════════════
-   ▌POP DA MARCA — Q1 a Q5 (DNA do V5 + cores da LP e do logo)
-   Início = fundo preto · Apresentação = fundo branco. Sem teal.
-   Os componentes (cartão do logo, toggle, título, cartão de papel, faixa) vêm das regras do V5.
-   ═════════════════════════════════════════════════════════════════*/
-body.hero-pop {
-    --or: #f4a000;
-    --yl: #ffd547;
-    --cy: #00b6fb;
-    --pk: #e46ce7;
-}
-
-
-/* ═════════ Q1 · POP MARCA — o V5 com a paleta da LP e o confete do Hero ═════════*/
-body.hero-pop .fx-bg-d {
-    background: radial-gradient(circle, var(--dot-d) 1.4px, transparent 1.9px) 0 0 / 22px 22px, #0a0a0a;
-}
-
-body.hero-pop .fx-bg-l {
-    background: radial-gradient(circle, var(--dot-l) 1.4px, transparent 1.9px) 0 0 / 22px 22px, #ffffff;
-}
-
-body.hero-pop .geo-ring-4 {
-    border: 3px solid rgb(var(--tx));
-    background: var(--yl);
-    box-shadow: 5px 5px 0 rgb(var(--tx));
-}
-
-body.hero-pop .geo-sq-1 {
-    border: 3px solid rgb(var(--tx)) !important;
-    background: var(--pk);
-    box-shadow: 4px 4px 0 rgb(var(--tx));
-}
-
-body.hero-pop .geo-sq-2 {
-    border: 2px solid rgb(var(--tx)) !important;
-    background: var(--cy);
-    box-shadow: 3px 3px 0 rgb(var(--tx));
-}
-
-body.hero-pop .geo-sq-3 {
-    background: var(--yl) !important;
-    border: 2px solid rgb(var(--tx));
-}
-
-body.hero-pop .geo-dot {
-    background: rgb(var(--tx)) !important;
-}
-
-/* ═════════ MESCLA (Q1 Marca + confete do Q2 com a transparência da LP + logo sem brilho + creme do V5) ═════════*/
-/* Apresentação: o mesmo "branco meio creme" do V5 Pop*/
-body.hero-pop .fx-bg-l {
-    background: radial-gradient(circle, var(--dot-l) 1.4px, transparent 1.9px) 0 0 / 22px 22px, #fff6e3;
-}
-
-/* Logo: sem o efeito de luz (a animação de entrada terminava com um drop-shadow laranja)*/
-body.hero-pop .hero-logo,
-body.hero-pop .hero-logo-outer.logo-floating .hero-logo {
-    filter: none !important;
-}
-
-/* Fundo pontilhado: ligado/desligado (a cor dos pontos faz a transição suave quando o navegador suporta @property)*/
-@property --dot-d {
-    syntax: "<color>";
-    inherits: true;
-    initial-value: rgba(255, 255, 255, .15);
-}
-
-@property --dot-l {
-    syntax: "<color>";
-    inherits: true;
-    initial-value: rgba(13, 13, 13, .16);
-}
-
-body.hero-pop {
-    --dot-d: rgba(255, 255, 255, .15);
-    --dot-l: rgba(13, 13, 13, .16);
-}
-
-@media (max-width: 768px) {
-    body.hero-pop .hero-logo-wrap {
-        padding: 12px 16px;
-        box-shadow: 6px 6px 0 #f4a000;
-    }
-
-    body.hero-pop .apres-body {
-        padding: 12px 16px;
-        box-shadow: 5px 5px 0 #111;
-    }
-
-}
-
-/* ═════════ VER MAIS (estilo V1 Noir adaptado ao Q1) + remoção das duas linhas ═════════
-           Rótulo: mesmas cores do texto do modo; linha fina com degradê + ponto que escorre (como no V1).
-           Cor do traço/ponto: laranja da LP (um tom mais escuro no modo claro, para manter o contraste no creme).*/
-body.hero-pop[data-mode="inicio"] {
-    --scroll-ac: 244, 160, 0;
-}
-
-body.hero-pop[data-mode="apresentacao"] {
-    --scroll-ac: 224, 135, 0;
-}
-
-body.hero-pop .scroll-label {
-    color: rgb(var(--tx));
-    letter-spacing: .3em;
-}
-
-body.hero-pop .scroll-arrow {
-    display: block;
-    position: relative;
-    width: 1px;
-    height: 36px;
-    font-size: 0;
-    border: 0;
-    box-shadow: none;
-    background: linear-gradient(to bottom, rgba(var(--scroll-ac), 0), rgba(var(--scroll-ac), .8));
-    filter: none;
-    opacity: 1;
-    will-change: auto;
-    animation: none;
-}
-
-body.hero-pop .scroll-arrow::after {
-    content: "";
-    position: absolute;
-    left: -2px;
-    top: 0;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: rgb(var(--scroll-ac));
-    animation: q1-drop 2.4s cubic-bezier(.5, 0, .3, 1) infinite;
-}
-
-@keyframes q1-drop {
-    0% {
-        transform: translateY(0);
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    85% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(32px);
-        opacity: 0;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    body.hero-pop .scroll-arrow::after {
-        animation: none;
-    }
-
-}
-
-/* linha abaixo do header e faixa listrada na extremidade inferior do Hero: removidas*/
-body.hero-pop .header-row-2::after,
-body.hero-pop .hero-edge {
-    display: none;
-}
-
-/* ═══ DECISÕES FINAIS DO HERO ═══*/
-/* Ver mais: linha vertical visível e baixa, com ponto descendo*/
-body.hero-pop .hero-scroll {
-    gap: 8px;
-}
-
-body.hero-pop .scroll-arrow {
-    width: 2px;
-    height: 30px;
-    background: linear-gradient(to bottom, rgba(var(--scroll-ac), .3), rgb(var(--scroll-ac)));
-    box-shadow: 0 0 8px rgba(var(--scroll-ac), .55);
-}
-
-body.hero-pop .scroll-arrow::after {
-    left: -3px;
-    width: 8px;
-    height: 8px;
-    box-shadow: 0 0 8px rgba(var(--scroll-ac), .9);
-    animation: q1-drop2 2.2s cubic-bezier(.5, 0, .3, 1) infinite;
-}
-
-@keyframes q1-drop2 {
-    0% {
-        transform: translateY(0);
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    85% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(24px);
-        opacity: 0;
-    }
-}
-
-/* Fazer login: no hover o texto não some mais (antes ficava preto sobre preto); movimento original mantido*/
-body.hero-pop :where(.hero) a.btn-login.btn-login-primary:is(:hover, :active, :focus-visible) {
-    color: rgb(var(--tx)) !important;
-}
-
-body.hero-pop :where(.hero) a.btn-login.btn-login-primary:is(:hover, :active, :focus-visible) .btn-login__icon {
-    color: #f4a000;
-}
-
-/* Incentivo nas abas: brilho varrendo + sacudida na aba inativa*/
-body.hero-pop .toggle-btn:not(.active) {
-    overflow: hidden;
-    color: rgb(var(--tx));
-    animation: hint-nudge 3.6s ease-in-out infinite;
-}
-
-body.hero-pop .toggle-btn:not(.active)::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, transparent 30%, rgba(244, 160, 0, .6) 50%, transparent 70%);
-    transform: translateX(-130%);
-    animation: hint-shine 3.6s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes hint-shine {
-
-    0%,
-    40% {
-        transform: translateX(-130%);
-    }
-
-    75%,
-    100% {
-        transform: translateX(130%);
-    }
-}
-
-@keyframes hint-nudge {
-
-    0%,
-    40%,
-    72%,
-    100% {
-        transform: none;
-    }
-
-    46% {
-        transform: translateX(-3px);
-    }
-
-    52% {
-        transform: translateX(3px);
-    }
-
-    58% {
-        transform: translateX(-2px);
-    }
-
-    64% {
-        transform: translateX(2px);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    body.hero-pop .toggle-btn:not(.active),
-    body.hero-pop .toggle-btn:not(.active)::after,
-    body.hero-pop .scroll-arrow::after {
-        animation: none !important;
-    }
-
-}
-
-/* ═══════════════════════════════════════════════════════════════════════
-           RESPONSIVO POP — telas largas (≥900px) com pouca altura
-           Reaproveita os valores da LP e só limita pela altura (vh), então nada muda em telas altas.
-           ═══════════════════════════════════════════════════════════════════════*/
-@media (min-width: 900px) {
-    body.hero-pop .apres-title {
-        --lgW: clamp(80px, 13vw, 148px);
-        --lgF: min(var(--lgW), var(--lgK, 20vh));
-    }
-
-    body.hero-pop .apres-line-lg {
-        font-size: var(--lgF);
-    }
-
-    body.hero-pop .apres-line-sm,
-    body.hero-pop .apres-line-md {
-        font-size: calc(var(--lgF) * .42);
-    }
-
-    body.hero-pop .apres-body {
-        font-size: clamp(17px, 2.9vh, 24px);
-        line-height: 1.4;
-        padding: clamp(5px, 1vh, 10px) clamp(14px, 1.6vw, 20px);
-    }
-
-    body.hero-pop .apres-content {
-        gap: clamp(12px, 2.4vh, 24px);
-    }
-
-    body.hero-pop .toggle-btn {
-        padding: clamp(6px, 1.2vh, 11px) clamp(16px, 1.6vw, 22px);
-    }
-
-    body.hero-pop .hero-logo {
-        max-width: 40vh;
-        max-height: 40vh;
-    }
-
-}
-
-@media (min-width: 900px) and (max-width: 1024px) {
-    body.hero-pop .apres-title {
-        --lgW: clamp(86px, 13vw, 138px);
-    }
-
-}
-
-@media (min-width: 1500px) and (min-height: 800px) {
-    body.hero-pop .apres-title {
-        --lgW: clamp(148px, 9.38vw, 180px);
-        --lgK: 19vh;
-    }
-
-    body.hero-pop .apres-content {
-        gap: clamp(20px, 2.6vh, 30px);
-    }
-
-}
-
-@media (min-width: 900px) and (max-height: 860px) {
-    body.hero-pop .apres-body {
-        max-width: 720px;
-    }
-
-}
-
-@media (min-width: 900px) and (max-height: 700px) {
-    body.hero-pop .apres-body {
-        max-width: 800px;
-    }
-
-    body.hero-pop .scroll-arrow {
-        height: 22px;
-    }
-
-    body.hero-pop .hero-scroll {
-        gap: 4px;
-    }
-
-}
-
-/* ═════════ DECIDIDO · fundo da Apresentação (creme claro #fff6e3) e proteção do texto do Início (sombra dura preta) ═════════*/
-body.hero-pop .inicio-label-top {
-    text-shadow: 3px 3px 0 #111;
-}
-
-body.hero-pop .inicio-label-bottom {
-    text-shadow: 2px 2px 0 #111;
-}
-
-/* ═════════════════════════════════════════════════════════════════
-   FAZER LOGIN (barra fixa e menu da barra fixa) — o mesmo botão Pop do Hero.
-   A barra é sempre branca, então usa o visual claro do Hero (cartão branco, contorno e sombra pretos, seta laranja).
-   ═════════════════════════════════════════════════════════════════ */
-body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) {
-    --tx: 17, 17, 17;
-    --card: #ffffff;
-}
-
-body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary {
-    background: var(--card);
-    border-width: 3px;
-    border-radius: 0;
-    border-color: rgb(var(--tx)) !important;
-    box-shadow: 4px 4px 0 #111;
-    color: rgba(13, 13, 13, 0.75);
-    padding-block: 8px;
-}
-
-body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary::before,
-body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary::after {
-    display: none;
-}
-
-body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) .btn-login__icon {
-    color: #f4a000;
-}
-
-body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary:is(:hover, :active, :focus-visible) {
-    color: rgb(var(--tx)) !important;
-}
-
-body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary:is(:hover, :active, :focus-visible) .btn-login__icon {
-    color: #f4a000;
-}
-
-/* ─── SVC CAROUSEL — setas menores no mobile ─── */
-@media (max-width: 600px) {
-
-    .svc-prev,
-    .svc-next {
-        width: 26px;
-        height: 26px;
-        padding-bottom: 2px;
-        font-size: 20px;
-        border-width: 1.5px;
-    }
-
-    .svc-prev span,
-    .svc-next span {
-        padding-bottom: 2.5px;
-    }
-
-    .svc-prev {
-        left: 6px;
-    }
-
-    .svc-next {
-        right: 6px;
-    }
-}
-
-/* ══════════════════════════════════════════════════════
-   NOVIDADE CARNAVAL 2027 — paleta "Confete" (clara)
-   Mesma estrutura do Novidade Halloween; só muda a paleta.
-   O cartão é #FFFFFF e é também o fundo das imagens dos produtos.
-   Eyebrow e título seguem o padrão da LP (Barlow Condensed + Anton);
-   a Caveat (a mesma do Nyr Inspira) fica dentro do cartão.
-══════════════════════════════════════════════════════ */
-.nv-confete {
-    --nv-bg: #FFF4E0;
-    --nv-card: #FFFFFF;
-    --nv-ink: #2A0F4D;
-    --nv-body: rgba(42, 15, 77, 0.78);
-    --nv-muted: rgba(42, 15, 77, 0.5);
-    --nv-a1: #E0197D;
-    --nv-a1t: #FFFFFF;
-    --nv-a2: #F59E0B;
-    --nv-a3: #0EA5C6;
-    --nv-btn: #6D28D9;
-    --nv-btn-h: #5B21B6;
-    --nv-btn-ink: #fff;
-    --nv-line: rgba(224, 25, 125, 0.35);
-    --nv-glow: rgba(109, 40, 217, 0.16);
-    --nv-tab: rgba(42, 15, 77, 0.5);
-    --nv-tab-on: #2A0F4D;
-    --nv-sep: rgba(42, 15, 77, 0.25)
-}
-
-.nv-carnaval {
-    background: var(--nv-bg)
-}
-
-/* ── tipografia ──────────────────────────────────────
-   Eyebrow e título seguem o padrão da LP (.section-eyebrow / .section-title: Barlow Condensed + Anton).
-   A Caveat (a mesma do Nyr Inspira) fica DENTRO do cartão: nome do produto e observação. */
-.nv-carnaval .novidade-eyebrow {
-    margin-bottom: 12px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--nv-a1)
-}
-
-.nv-carnaval .novidade-eyebrow::before {
-    background: var(--nv-a1)
-}
-
-.nv-carnaval .novidade-title {
-    font-family: 'Anton', sans-serif;
-    font-size: clamp(32px, 5vw, 52px);
-    text-transform: none;
-    letter-spacing: 0;
-    line-height: 1.05;
-    color: var(--nv-ink)
-}
-
-@media (min-width:1500px) {
-    .nv-carnaval .novidade-eyebrow {
-        font-size: 17px
-    }
-
-    .nv-carnaval .novidade-title {
-        font-size: clamp(52px, 3.33vw, 64px)
-    }
-}
-
-.nv-carnaval .novidade-nome {
-    font-family: 'Caveat', cursive;
-    font-weight: 700;
-    text-transform: none;
-    letter-spacing: 0;
-    line-height: .95;
-    font-size: clamp(46px, 5.2vw, 64px)
-}
-
-.nv-carnaval .novidade-obs {
-    color: var(--nv-body);
-    font-family: 'Caveat', cursive;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 1.3
-}
-
-@media (min-width:1500px) {
-    .nv-carnaval .novidade-nome {
-        font-size: clamp(56px, 3.6vw, 70px)
-    }
-
-    .nv-carnaval .novidade-obs {
-        font-size: 26px
-    }
-}
-
-/* ── tabs ── */
-.nv-carnaval .novidade-tab {
-    color: var(--nv-tab)
-}
-
-.nv-carnaval .novidade-tab.unvisited {
-    color: var(--nv-ink);
-    opacity: .8
-}
-
-.nv-carnaval .novidade-tab:hover {
-    color: var(--nv-ink)
-}
-
-.nv-carnaval .novidade-tab.active {
-    color: var(--nv-tab-on);
-    opacity: 1
-}
-
-.nv-carnaval .novidade-tab::after {
-    background: var(--nv-sep)
-}
-
-.nv-carnaval .novidade-tab.active::after {
-    background: var(--nv-a1)
-}
-
-.nv-carnaval .novidade-tab.unvisited::after {
-    animation: nv-tab-breathe 2.2s ease-in-out infinite
-}
-
-.nv-carnaval .novidade-tab-sep {
-    color: var(--nv-sep)
-}
-
-@keyframes nv-tab-breathe {
-
-    0%,
-    100% {
-        background: var(--nv-sep)
-    }
-
-    50% {
-        background: var(--nv-a1)
-    }
-}
-
-/* ── cartão e imagem (imagem com o MESMO fundo do cartão) ── */
-.nv-carnaval .novidade-card {
-    background: var(--nv-card);
-    border: 1px solid var(--nv-line);
-    box-shadow: 0 0 60px var(--nv-glow), 0 0 0 1px var(--nv-line)
-}
-
-.nv-carnaval .novidade-card-img,
-.nv-carnaval .novidade-card-img img,
-.nv-carnaval .novidade-slide {
-    background: var(--nv-card)
-}
-
-.nv-carnaval .novidade-card-body::before {
-    background: linear-gradient(90deg, var(--nv-a1) 0%, var(--nv-a2) 55%, var(--nv-a3) 100%)
-}
-
-.nv-carnaval .novidade-badge {
-    background: var(--nv-a1);
-    color: var(--nv-a1t)
-}
-
-.nv-carnaval .novidade-ref {
-    color: var(--nv-muted)
-}
-
-.nv-carnaval .novidade-nome {
-    color: var(--nv-ink)
-}
-
-.nv-carnaval .novidade-nome em {
-    color: var(--nv-a1)
-}
-
-.nv-carnaval .novidade-desc {
-    color: var(--nv-body)
-}
-
-.nv-carnaval .novidade-desc strong {
-    color: var(--nv-ink)
-}
-
-.nv-carnaval .novidade-selo {
-    color: var(--nv-muted)
-}
-
-/* ── botões ── */
-.nv-carnaval .novidade-btn-video {
-    background: var(--nv-btn);
-    color: var(--nv-btn-ink);
-    animation: nv-video-pulse 2.5s ease-in-out infinite 1.25s
-}
-
-.nv-carnaval .novidade-btn-video:hover {
-    background: var(--nv-btn-h);
-    animation: none
-}
-
-.nv-carnaval .novidade-btn-wa {
-    color: var(--nv-a1);
-    border-color: var(--nv-line);
-    animation: nv-wa-pulse 2.5s ease-in-out infinite
-}
-
-.nv-carnaval .novidade-btn-wa:hover {
-    background: color-mix(in srgb, var(--nv-a1) 8%, transparent);
-    border-color: var(--nv-a1);
-    animation: none
-}
-
-@keyframes nv-video-pulse {
-
-    0%,
-    100% {
-        box-shadow: 0 0 0 0 transparent
-    }
-
-    50% {
-        box-shadow: 0 0 0 4px var(--nv-glow)
-    }
-}
-
-@keyframes nv-wa-pulse {
-
-    0%,
-    100% {
-        border-color: var(--nv-line)
-    }
-
-    50% {
-        border-color: var(--nv-a1);
-        box-shadow: 0 0 12px var(--nv-line)
-    }
-}
-
-/* ── dots do carrossel ── */
-.nv-carnaval .novidade-dot {
-    border-color: var(--nv-a1)
-}
-
-.nv-carnaval .novidade-dot:not(.active) {
-    animation: none;
-    opacity: .55
-}
-
-.nv-carnaval .novidade-dot.active {
-    background: var(--nv-a1);
-    border-color: var(--nv-a1)
-}
-
-@media (max-width:800px) {
-    .nv-carnaval .novidade-card-body {
-        border-top: 1px solid var(--nv-line)
-    }
-
-    .nv-carnaval .novidade-card-body::before {
-        background: linear-gradient(90deg, var(--nv-a1) 0%, var(--nv-a2) 55%, var(--nv-a3) 100%)
-    }
-}
-
-/* ── Novidade Carnaval — lista de SKUs (produtos agrupados) ── */
-.nv-carnaval .novidade-skus {
-    list-style: none;
-    margin: 12px 0 28px;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.nv-carnaval .novidade-sku {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 10px 12px 10px 14px;
-    border: 1px solid var(--nv-line);
-    border-radius: 10px;
-}
-
-.nv-carnaval .novidade-sku-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-}
-
-.nv-carnaval .novidade-sku-info b {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--nv-a1);
-}
-
-.nv-carnaval .novidade-sku-info span {
-    font-size: 14px;
-    line-height: 1.35;
-    color: var(--nv-body);
-}
-
-.nv-carnaval .novidade-sku-btn {
-    flex-shrink: 0;
-    width: auto;
-    flex: 0 0 auto;
-    padding: 9px 14px;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    white-space: nowrap;
-}
-
-.nv-carnaval .novidade-sku-btn svg {
-    width: 13px;
-    height: 13px;
-}
-
-.nv-carnaval .novidade-sku-novideo {
-    flex-shrink: 0;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--nv-muted);
-    text-align: right;
-}
-
-@media (max-width: 420px) {
-    .nv-carnaval .novidade-sku {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .nv-carnaval .novidade-sku-btn {
-        justify-content: center;
-    }
-
-    .nv-carnaval .novidade-sku-novideo {
-        text-align: left;
-    }
-}
-
-/* ── Novidade Carnaval — 9 abas quebram em linhas: sem separador "·" (ficaria solto no fim da linha) ── */
-.nv-carnaval .novidade-tab-sep {
-    display: none;
-}
-
-.nv-carnaval .novidade-tabs {
-    gap: 8px 26px;
-}
-
-@media (max-width: 600px) {
-    .nv-carnaval .novidade-tabs {
-        gap: 8px 18px;
-    }
-}
-
-/* ── Novidade Carnaval — lista de características ── */
-.nv-carnaval .novidade-features {
-    list-style: none;
-    margin: 10px 0 30px;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-.nv-carnaval .novidade-features li {
-    position: relative;
-    padding-left: 24px;
-    font-size: 15px;
-    line-height: 1.45;
-    color: var(--nv-body);
-}
-
-.nv-carnaval .novidade-features li::before {
-    content: '';
-    position: absolute;
-    left: 2px;
-    top: 0.42em;
-    width: 12px;
-    height: 7px;
-    border-left: 2.5px solid var(--nv-a1);
-    border-bottom: 2.5px solid var(--nv-a1);
-    transform: rotate(-45deg);
-}
-
-/* ── Novidade Carnaval — eyebrow: só texto, centralizado (sem o traço ::before) ── */
-.nv-carnaval .novidade-eyebrow {
-    display: block;
-    text-align: center;
-    text-indent: 4px;
-    /* compensa o letter-spacing que sobra depois da última letra */
-}
-
-.nv-carnaval .novidade-eyebrow::before {
-    content: none;
-    display: none;
-}
-
-/* ── Novidade Carnaval — incentivo ao clique: bolinhas do carrossel pulsam (como no Halloween) ── */
-@keyframes nv-dot-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        border-color: var(--nv-line);
-    }
-
-    50% {
-        transform: scale(1.5);
-        border-color: var(--nv-a1);
-    }
-}
-
-.nv-carnaval .novidade-dot:not(.active) {
-    opacity: 1;
-    animation: nv-dot-pulse 1.8s ease-in-out infinite;
-}
-
-@media (min-width: 1500px) {
-    .nv-carnaval .novidade-features li {
-        font-size: 17px;
-    }
-
-    .nv-carnaval .novidade-sku-info span {
-        font-size: 15px;
-    }
-}
-
-/* ══════════════════════════════════════════════════════
-   NOVIDADES CARNAVAL — hover fluido
-   · As pulsações ("incentivo ao clique") rodam em camadas próprias (::before/::after)
-     e animam só opacidade (compositor, sem repintar). Assim o hover do próprio
-     elemento nunca briga com uma animação em andamento.
-   · Hover anima só propriedades baratas (cor, transform, sombra pequena).
-══════════════════════════════════════════════════════ */
-.nv-carnaval {
-    --nv-ease: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* desliga as pulsações antigas (que animavam box-shadow / border-color / background) */
-.nv-carnaval .novidade-btn-video,
-.nv-carnaval .novidade-btn-wa,
-.nv-carnaval .novidade-tab.unvisited::after {
-    animation: none;
-}
-
-/* cartão: mantém a entrada (.reveal) e só troca a cor da borda no hover */
-.nv-carnaval .novidade-card {
-    transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.4s ease;
-}
-
-/* ── abas: sublinhado fixo + camada que "respira" ── */
-.nv-carnaval .novidade-tab {
-    transition: color 0.3s ease;
-}
-
-.nv-carnaval .novidade-tab::after {
-    transition: background-color 0.3s ease;
-}
-
-.nv-carnaval .novidade-tab::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: var(--nv-a1);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.nv-carnaval .novidade-tab.unvisited::before {
-    animation: nv-opacity-pulse 2.2s ease-in-out infinite;
-}
-
-/* ── botões: pulsação numa camada à parte ── */
-.nv-carnaval .novidade-btn-video,
-.nv-carnaval .novidade-btn-wa {
-    position: relative;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
-        box-shadow 0.35s var(--nv-ease), transform 0.35s var(--nv-ease);
-}
-
-.nv-carnaval .novidade-btn-video::after,
-.nv-carnaval .novidade-btn-wa::after {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.nv-carnaval .novidade-btn-video::after {
-    inset: 0;
-    box-shadow: 0 0 0 4px var(--nv-glow);
-    animation: nv-opacity-pulse 2.5s ease-in-out infinite 1.25s;
-}
-
-.nv-carnaval .novidade-btn-wa::after {
-    border: 1px solid var(--nv-a1);
-    box-shadow: 0 0 12px var(--nv-line);
-    animation: nv-opacity-pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes nv-opacity-pulse {
-
-    0%,
-    100% {
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-.nv-carnaval .novidade-btn-video svg {
-    transition: transform 0.35s var(--nv-ease);
-}
-
-.nv-carnaval .novidade-sku {
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-
-    .nv-carnaval .novidade-card:hover {
-        border-color: color-mix(in srgb, var(--nv-a1) 55%, transparent);
-    }
-
-    .nv-carnaval .novidade-tab:hover {
-        color: var(--nv-ink);
-    }
-
-    .nv-carnaval .novidade-tab:not(.active):hover::after {
-        background-color: color-mix(in srgb, var(--nv-a1) 65%, transparent);
-    }
-
-    .nv-carnaval .novidade-btn-video:hover {
-        background-color: var(--nv-btn-h);
-        transform: translateY(-1px);
-        box-shadow: 0 6px 16px -4px var(--nv-glow);
-    }
-
-    .nv-carnaval .novidade-btn-video:hover svg {
-        transform: translateX(1px);
-    }
-
-    .nv-carnaval .novidade-btn-wa:hover {
-        background-color: color-mix(in srgb, var(--nv-a1) 8%, transparent);
-        border-color: var(--nv-a1);
-        transform: translateY(-1px);
-        box-shadow: 0 6px 16px -6px var(--nv-line);
-    }
-
-    .nv-carnaval .novidade-sku:hover {
-        border-color: color-mix(in srgb, var(--nv-a1) 60%, transparent);
-        background-color: color-mix(in srgb, var(--nv-a1) 3%, transparent);
-    }
-}
-
-/* clique */
-.nv-carnaval .novidade-btn-video:active,
-.nv-carnaval .novidade-btn-wa:active {
-    transform: translateY(0);
-    box-shadow: none;
-    transition-duration: 0.12s;
-}
-
-/* foco de teclado */
-.nv-carnaval .novidade-tab:focus-visible,
-.nv-carnaval .novidade-btn-video:focus-visible,
-.nv-carnaval .novidade-btn-wa:focus-visible,
-.nv-carnaval .novidade-dot:focus-visible {
-    outline: 2px solid var(--nv-a1);
-    outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    .nv-carnaval .novidade-btn-video:hover,
-    .nv-carnaval .novidade-btn-wa:hover {
-        transform: none;
-    }
-
-    .nv-carnaval .novidade-tab.unvisited::before,
-    .nv-carnaval .novidade-btn-video::after,
-    .nv-carnaval .novidade-btn-wa::after {
-        animation: none;
-    }
-}
-
-/* ══════════════════════════════════════════════════════
-   NOVIDADES CARNAVAL — nome do produto sempre em UMA linha
-   O nome não quebra (nowrap) e a fonte se ajusta à largura real do cartão:
-   font-size = largura disponível ÷ largura do texto (em "em", medida na Caveat
-   e guardada em --nw no próprio h3, já com 4% de folga). O tamanho máximo continua
-   sendo o de antes; só encolhe quando precisa. Sem JS.
-══════════════════════════════════════════════════════ */
-.nv-carnaval .novidade-card-body {
-    container-type: inline-size;
-}
-
-.nv-carnaval .novidade-nome {
-    --nv-nome-max: clamp(46px, 5.2vw, 64px);
-    white-space: nowrap;
-    font-size: clamp(26px, 7vw, 40px);
-    /* reserva p/ navegadores sem container queries */
-    font-size: max(20px, min(var(--nv-nome-max), calc(100cqw / var(--nw, 7))));
-}
-
-@media (min-width: 1500px) {
-    .nv-carnaval .novidade-nome {
-        --nv-nome-max: clamp(56px, 3.6vw, 70px);
-    }
-}
-
-/* ══════════════════════════════════════════════════════
-   NYR INSPIRA — estilo do Novidades Carnaval (paleta Confete)
-   Fundo escuro, estampa, película, mockup e animações de entrada ficam como estavam.
-   Muda só a linguagem dos elementos: selo, destaque do título, Caveat, ✓ e botão.
-   Sem o laranja da marca (seção exclusivamente sazonal).
-══════════════════════════════════════════════════════ */
-.insp-promo {
-    --ip-a1: #E0197D;
-    /* rosa (acento do Novidades) */
-    --ip-a1-soft: #FF8CC6;
-    /* rosa claro: brilho do título e ✓ sobre o fundo escuro */
-    --ip-btn: #6D28D9;
-    /* roxo do botão "Ver vídeo" */
-    --ip-btn-h: #5B21B6;
-    --ip-ease: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* selo: mesma peça do selo do Novidades */
-.insp-promo .insp-promo__badge {
-    font-size: 12px;
-    letter-spacing: 2px;
-    padding: 3px 10px;
-    border-radius: 4px;
-    background: var(--ip-a1);
-    color: #fff;
-}
-
-/* título: "Inspira" em rosa (o brilho que passa uma vez agora é rosa claro) */
-.insp-promo .insp-promo__title em {
-    color: var(--ip-a1);
-}
-
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-    .insp-promo .insp-promo__title em {
-        background: linear-gradient(100deg, var(--ip-a1) 0 42%, var(--ip-a1-soft) 50%, var(--ip-a1) 58% 100%) 100% 0 / 250% 100% no-repeat;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-    }
-}
-
-/* "Ideias que vendem." em Caveat (a mesma de dentro do cartão do Novidades) */
-.insp-promo .insp-promo__lead strong {
-    display: block;
-    font-family: 'Caveat', cursive;
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 6px;
-    color: #fff;
-}
-
-/* ✓ em rosa */
-.insp-promo .insp-promo__facts svg {
-    color: var(--ip-a1-soft);
-}
-
-/* botão: o mesmo do "Ver vídeo" do Novidades */
-.insp-promo .insp-promo__cta {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    background: var(--ip-btn);
-    color: #fff;
-    padding: 16px 26px;
-    transition: background-color 0.3s ease, transform 0.35s var(--ip-ease), box-shadow 0.35s var(--ip-ease);
-}
-
-.insp-promo .insp-promo__cta svg {
-    transition: transform 0.35s var(--ip-ease);
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .insp-promo .insp-promo__cta:hover {
-        background: var(--ip-btn-h);
-        transform: translateY(-1px);
-        box-shadow: 0 8px 22px -6px rgba(109, 40, 217, 0.65);
-    }
-
-    .insp-promo .insp-promo__cta:hover svg {
-        transform: translateX(3px);
-    }
-}
-
-.insp-promo .insp-promo__cta:active {
-    transform: translateY(0);
-    box-shadow: none;
-}
-
-.insp-promo .insp-promo__cta:focus-visible {
-    outline: 2px solid var(--ip-a1-soft);
-    outline-offset: 4px;
-}
-
-/* pulso único da entrada: agora em roxo/rosa (substitui o laranja) */
-@keyframes insp-pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(224, 25, 125, 0.55);
-    }
-
-    100% {
-        box-shadow: 0 0 0 20px rgba(224, 25, 125, 0);
-    }
-}
-
-@media (min-width: 1500px) {
-    .insp-promo .insp-promo__lead strong {
-        font-size: 36px;
-    }
-}
-
-/* ── Divisa Novidades ↔ Nyr Inspira: fio de 3px, rosa → roxo, com as pontas esmaecidas.
-      Desenha-se do centro para as bordas ao entrar na tela (usa o .is-armed/.is-in que o JS
-      da seção já aplica) e depois passa um brilho bem sutil, devagar. Sem JS ou com
-      movimento reduzido, fica estático e visível. ── */
-.insp-promo::before {
-    height: 3px;
-    opacity: 1;
-    box-shadow: 0 0 10px rgba(224, 25, 125, 0.35);
-    background:
-        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent) no-repeat -50% 0 / 26% 100%,
-        linear-gradient(90deg, transparent 0%, var(--ip-a1) 14%, var(--ip-btn) 50%, var(--ip-a1) 86%, transparent 100%);
-}
-
-.insp-promo.is-armed::before {
-    transform-origin: center;
-    transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.insp-promo.is-in::before {
-    animation: insp-line-glint 9s ease-in-out 2s infinite;
-}
-
-@keyframes insp-line-glint {
-
-    0%,
-    55% {
-        background-position: -50% 0, 0 0;
-    }
-
-    100% {
-        background-position: 150% 0, 0 0;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .insp-promo.is-in::before {
-        animation: none;
-    }
-}
-
-/* texto de apoio do Inspira: evita palavra sozinha na última linha */
-.insp-promo .insp-promo__lead {
-    text-wrap: pretty;
-    max-width: 460px;
-}
-
-/* ── Novidades: setas de navegação nas extremidades do card ──
-      Cada clique avança uma aba (circular). Cor do botão = roxo da paleta; no hover só muda a
-      cor e o chevron avança 2px (sem zoom), no mesmo ritmo dos demais botões da seção. ── */
-.novidade-stage {
-    position: relative;
-    /* tamanho da seta: encolhe aos poucos com a largura da tela (46px → 26px) */
-    --nv-arr: clamp(26px, calc(14px + 2.4vw), 46px);
-}
-
-.nv-carnaval .novidade-arrow {
-    position: absolute;
-    top: 50%;
-    z-index: 5;
-    width: var(--nv-arr);
-    height: var(--nv-arr);
-    margin-top: calc(var(--nv-arr) / -2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    background: var(--nv-btn);
-    color: #fff;
-    cursor: pointer;
-    box-shadow: 0 6px 18px var(--nv-glow), 0 2px 6px rgba(42, 15, 77, 0.25);
-    transition: background-color .3s var(--nv-ease), box-shadow .3s var(--nv-ease);
-    -webkit-tap-highlight-color: transparent;
-}
-
-.nv-carnaval .novidade-arrow svg {
-    width: 48%;
-    height: 48%;
-    transition: transform .3s var(--nv-ease);
-}
-
-.nv-carnaval .novidade-arrow--prev {
-    left: calc(var(--nv-arr) * -1 - 16px);
-}
-
-.nv-carnaval .novidade-arrow--next {
-    right: calc(var(--nv-arr) * -1 - 16px);
-}
-
-.nv-carnaval .novidade-arrow:active {
-    background: var(--nv-btn-h);
-}
-
-.nv-carnaval .novidade-arrow:focus-visible {
-    outline: 3px solid var(--nv-a1);
-    outline-offset: 3px;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .nv-carnaval .novidade-arrow:hover {
-        background: var(--nv-btn-h);
-        box-shadow: 0 8px 22px var(--nv-glow), 0 2px 6px rgba(42, 15, 77, 0.3);
-    }
-
-    .nv-carnaval .novidade-arrow--prev:hover svg {
-        transform: translateX(-2px);
-    }
-
-    .nv-carnaval .novidade-arrow--next:hover svg {
-        transform: translateX(2px);
-    }
-}
-
-/* sem folga lateral na tela: a seta fica rente à borda da tela (faixa de 24px do contêiner) e,
-   conforme cresce, invade só um pouco o card. Área de toque ampliada por ::after. */
-@media (max-width: 1160px) {
-    .nv-carnaval .novidade-arrow {
-        border-width: 1.5px;
-        box-shadow: 0 3px 10px var(--nv-glow);
-    }
-
-    .nv-carnaval .novidade-arrow::after {
-        content: "";
-        position: absolute;
-        inset: -8px;
-    }
-
-    .nv-carnaval .novidade-arrow--prev {
-        left: -23px;
-    }
-
-    .nv-carnaval .novidade-arrow--next {
-        right: -23px;
-    }
-}
-
-/* celular: na altura do centro da foto */
-@media (max-width: 768px) {
-    .nv-carnaval .novidade-arrow {
-        top: calc((100vw - 48px) * 0.667);
-    }
-}
-
-/* de 800px para baixo a escala das setas recomeça: 40px em 800px → 26px em 390px */
-@media (max-width: 800px) {
-    .novidade-stage {
-        --nv-arr: clamp(26px, calc(12.7px + 3.415vw), 40px);
-    }
-}
-
-/* telas ≥1500px: selos e referências também ganham +2px sobre o tamanho padrão */
-@media (min-width: 1500px) {
-    .service-badge {
-        font-size: 15px;
-    }
-
-    .novidade-ref {
-        font-size: 16px;
-    }
-
-    .insp-promo .insp-promo__badge {
-        font-size: 14px;
-    }
-}
-
-/* Sobre: entre 1050px e 1499px o texto cresce de 17px até 18px (acima de 1500px = 20px) */
-@media (min-width: 1050px) and (max-width: 1499px) {
-    .sobre-para {
-        font-size: clamp(17px, calc(17px + (100vw - 1050px) / 449), 18px)
-    }
-
-    .sobre-sub {
-        font-size: clamp(17px, calc(17px + (100vw - 1050px) / 449), 18px)
-    }
-}
-
-/* ── Telas de notebook (largas, porém baixas): equivale a 1–2 "Ctrl + menos" do navegador.
-      O layout (espaços, imagens, cards) encolhe, mas TODOS os textos mantêm o tamanho que já
-      tinham em cada largura (as regras abaixo são geradas a partir dos font-size do arquivo,
-      divididos pelo zoom). Só as seções de conteúdo; Hero, Services, menu e botões fixos ficam
-      como estão. Para desfazer, apague este bloco. ── */
-@media (min-width: 1024px) and (max-height: 770px) {
-
-    #numeros,
-    #produtos,
-    #novidade,
-    #inspira,
-    #sobre,
-    section.pilares,
-    #redecomercial,
-    #faq,
-    #contato,
-    body>footer {
-        --nv-z: 0.9;
-        --nv-k: 0.97;
-        zoom: 0.9;
-        font-size: calc(16px * 0.97 / 0.9);
-    }
-
-    /* Sobre mantém a redução anterior */
-    #sobre {
-        --nv-k: 0.95;
-        font-size: calc(16px * 0.95 / 0.9);
-    }
-}
-
-@media (min-width: 1024px) and (max-height: 680px) {
-
-    #numeros,
-    #produtos,
-    #novidade,
-    #inspira,
-    #sobre,
-    section.pilares,
-    #redecomercial,
-    #faq,
-    #contato,
-    body>footer {
-        --nv-z: 0.85;
-        --nv-k: 0.95;
-        zoom: 0.85;
-        font-size: calc(16px * 0.95 / 0.85);
-    }
-
-    /* Sobre mantém a redução anterior */
-    #sobre {
-        --nv-k: 0.925;
-        font-size: calc(16px * 0.925 / 0.85);
-    }
-}
-
-@media (min-width: 1024px) and (max-height: 770px) {
-    .number-value {
-        font-size: calc((clamp(44px, 5vw, 68px)) * var(--nv-k) / var(--nv-z));
-    }
-
-    .number-label {
-        font-size: calc((13px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .section-eyebrow {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .section-title {
-        font-size: calc((clamp(32px, 5vw, 52px)) * var(--nv-k) / var(--nv-z));
-    }
-
-    .title-dark {
-        font-size: calc((clamp(32px, 4vw, 48px)) * var(--nv-k) / var(--nv-z));
-    }
-
-    .season-tab {
-        font-size: calc((13px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .products-row-label {
-        font-size: calc((12px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .card-prev,
-    .card-next {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .card-ref {
-        font-size: calc((12.5px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .card-video-btn-no-video {
-        font-size: calc((13px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .no-video-msg {
-        font-size: calc((11px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .card-name {
-        font-size: calc((18px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .card-desc {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .card-video-btn-primary {
-        font-size: calc((13px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .card-cta-secondary {
-        font-size: calc((12px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .sobre-title {
-        font-size: calc((clamp(30px, 4vw, 46px)) * var(--nv-k) / var(--nv-z));
-    }
-
-    .sobre-sub {
-        font-size: calc((16px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .sobre-para {
-        font-size: calc((16px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .pilar-title {
-        font-size: calc((16px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .pilar-desc {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .depo-quote {
-        font-size: calc((52px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .depo-text {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .depo-name {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .depo-role {
-        font-size: calc((12px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .faq-question-text {
-        font-size: calc((18px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .faq-answer p {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .cta-eyebrow {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .cta-title {
-        font-size: calc((clamp(34px, 4.5vw, 56px)) * var(--nv-k) / var(--nv-z));
-    }
-
-    .cta-sub {
-        font-size: calc((18px) * var(--nv-k) / var(--nv-z));
-    }
-
-    :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .form-label {
-        font-size: calc((12px) * var(--nv-k) / var(--nv-z));
-    }
-
-    :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .form-input {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .form-submit {
-        font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .form-note {
-        font-size: calc((13px) * var(--nv-k) / var(--nv-z));
-    }
-
-    :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .field-error {
-        font-size: calc((11px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .footer-tagline {
-        font-size: calc((12px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .footer-nav a {
-        font-size: calc((13px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .footer-contact-badge {
-        font-size: calc((11px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .footer-contact-item {
-        font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .footer-copy {
-        font-size: calc((12px) * var(--nv-k) / var(--nv-z));
-    }
-
-    @media (min-width: 1500px) {
-        .number-value {
-            font-size: calc((clamp(68px, 4.27vw, 82px)) * var(--nv-k) / var(--nv-z));
-        }
-
-        .section-title {
-            font-size: calc((clamp(52px, 3.33vw, 64px)) * var(--nv-k) / var(--nv-z));
-        }
-
-        .title-dark {
-            font-size: calc((clamp(48px, 3.02vw, 58px)) * var(--nv-k) / var(--nv-z));
-        }
-
-        .sobre-title {
-            font-size: calc((clamp(46px, 2.92vw, 56px)) * var(--nv-k) / var(--nv-z));
-        }
-
-        .cta-title {
-            font-size: calc((clamp(56px, 3.54vw, 68px)) * var(--nv-k) / var(--nv-z));
-        }
-
-        .sobre-para {
-            font-size: calc((20px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .sobre-sub {
-            font-size: calc((20px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .pilar-title {
-            font-size: calc((19px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .pilar-desc {
-            font-size: calc((18px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .faq-question-text {
-            font-size: calc((22px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .faq-answer p {
-            font-size: calc((18px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .cta-sub {
-            font-size: calc((22px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .depo-text {
-            font-size: calc((18px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .depo-name {
-            font-size: calc((18px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .section-eyebrow {
-            font-size: calc((17px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .card-name {
-            font-size: calc((20px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .card-desc {
-            font-size: calc((17px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .season-tab {
-            font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .products-row-label {
-            font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .depo-role {
-            font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .number-label {
-            font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-        }
-
-        :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .form-label {
-            font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-        }
-
-        :is(#numeros, #produtos, #novidade, #inspira, #sobre, section.pilares, #redecomercial, #faq, #contato) .form-input {
-            font-size: calc((17px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .form-submit {
-            font-size: calc((16px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .form-note {
-            font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .footer-tagline {
-            font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .footer-nav a {
-            font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .footer-contact-badge {
-            font-size: calc((13px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .footer-contact-item {
-            font-size: calc((16px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .footer-copy {
-            font-size: calc((13px) * var(--nv-k) / var(--nv-z));
-        }
-    }
-
-    .novidade-eyebrow {
-        font-size: calc((19px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .novidade-title {
-        font-size: calc((clamp(38px, 5.5vw, 62px)) * var(--nv-k) / var(--nv-z));
-    }
-
-    .novidade-badge {
-        font-size: calc((10px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .novidade-ref {
-        font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .novidade-nome {
-        font-size: calc((clamp(28px, 3.6vw, 44px)) * var(--nv-k) / var(--nv-z));
-    }
-
-    .novidade-desc {
-        font-size: calc((16px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .novidade-obs {
-        font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .novidade-btn-video {
-        font-size: calc((12px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .novidade-btn-wa {
-        font-size: calc((12px) * var(--nv-k) / var(--nv-z));
-    }
-
-    @media (min-width: 1500px) {
-        .novidade-nome {
-            font-size: calc((clamp(36px, 2.5vw, 46px)) * var(--nv-k) / var(--nv-z));
-        }
-
-        .novidade-desc {
-            font-size: calc((20px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .novidade-obs {
-            font-size: calc((17px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .novidade-eyebrow {
-            font-size: calc((23px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .novidade-btn-video,
-        .novidade-btn-wa {
-            font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-        }
-    }
-
-    .novidade-tab {
-        font-size: calc((16px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .novidade-tab-sep {
-        font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-    }
-
-    @media (max-width: 600px) {
-        .novidade-tab {
-            font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-        }
-    }
-
-    .insp-promo__badge {
-        font-size: calc((13px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .insp-promo__title {
-        font-size: calc((clamp(40px, 5.2vw, 62px)) * var(--nv-k) / var(--nv-z));
-    }
-
-    .insp-promo__lead {
-        font-size: calc((17px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .insp-promo__facts li {
-        font-size: calc((17px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .insp-promo__cta {
-        font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .nv-carnaval .novidade-eyebrow {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .nv-carnaval .novidade-title {
-        font-size: calc((clamp(32px, 5vw, 52px)) * var(--nv-k) / var(--nv-z));
-    }
-
-    @media (min-width:1500px) {
-        .nv-carnaval .novidade-eyebrow {
-            font-size: calc((17px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .nv-carnaval .novidade-title {
-            font-size: calc((clamp(52px, 3.33vw, 64px)) * var(--nv-k) / var(--nv-z));
-        }
-    }
-
-    .nv-carnaval .novidade-nome {
-        font-size: calc((clamp(46px, 5.2vw, 64px)) * var(--nv-k) / var(--nv-z));
-    }
-
-    .nv-carnaval .novidade-obs {
-        font-size: calc((22px) * var(--nv-k) / var(--nv-z));
-    }
-
-    @media (min-width:1500px) {
-        .nv-carnaval .novidade-nome {
-            font-size: calc((clamp(56px, 3.6vw, 70px)) * var(--nv-k) / var(--nv-z));
-        }
-
-        .nv-carnaval .novidade-obs {
-            font-size: calc((26px) * var(--nv-k) / var(--nv-z));
-        }
-    }
-
-    .nv-carnaval .novidade-sku-info b {
-        font-size: calc((12px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .nv-carnaval .novidade-sku-info span {
-        font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .nv-carnaval .novidade-sku-btn {
-        font-size: calc((11px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .nv-carnaval .novidade-sku-novideo {
-        font-size: calc((11px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .nv-carnaval .novidade-features li {
-        font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-    }
-
-    @media (min-width: 1500px) {
-        .nv-carnaval .novidade-features li {
-            font-size: calc((17px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .nv-carnaval .novidade-sku-info span {
-            font-size: calc((15px) * var(--nv-k) / var(--nv-z));
-        }
-    }
-
-    .insp-promo .insp-promo__badge {
-        font-size: calc((12px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .insp-promo .insp-promo__lead strong {
-        font-size: calc((32px) * var(--nv-k) / var(--nv-z));
-    }
-
-    .insp-promo .insp-promo__cta {
-        font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-    }
-
-    @media (min-width: 1500px) {
-        .insp-promo .insp-promo__lead strong {
-            font-size: calc((36px) * var(--nv-k) / var(--nv-z));
-        }
-    }
-
-    @media (min-width: 1500px) {
-        .novidade-ref {
-            font-size: calc((16px) * var(--nv-k) / var(--nv-z));
-        }
-
-        .insp-promo .insp-promo__badge {
-            font-size: calc((14px) * var(--nv-k) / var(--nv-z));
-        }
-    }
-
-    @media (min-width: 1050px) and (max-width: 1499px) {
-        .sobre-para {
-            font-size: calc((clamp(17px, calc(17px + (100vw - 1050px) / 449), 18px)) * var(--nv-k) / var(--nv-z));
-        }
-
-        .sobre-sub {
-            font-size: calc((clamp(17px, calc(17px + (100vw - 1050px) / 449), 18px)) * var(--nv-k) / var(--nv-z));
-        }
-    }
-
-    /* nome da novidade (uma linha, ajustado ao card): mesma fórmula, compensando o zoom */
-    #novidade .novidade-nome {
-        font-size: max(calc(20px * var(--nv-k) / var(--nv-z)), min(calc(var(--nv-nome-max) * var(--nv-k) / var(--nv-z)), calc(100cqw / var(--nw, 7))));
     }
 }
