@@ -5509,7 +5509,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     border: none;
     padding: 6px 0;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -5574,7 +5574,7 @@ body[data-mode="apresentacao"] .height-hamburger span {
     }
 
     .novidade-tab {
-        font-size: 12px;
+        font-size: 14px;
         letter-spacing: 1px;
     }
 }
@@ -7692,8 +7692,14 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     #contato,
     body>footer {
         --nv-z: 0.9;
-        --nv-k: 0.95;
+        --nv-k: 0.97;
         zoom: 0.9;
+        font-size: calc(16px * 0.97 / 0.9);
+    }
+
+    /* Sobre mantém a redução anterior */
+    #sobre {
+        --nv-k: 0.95;
         font-size: calc(16px * 0.95 / 0.9);
     }
 }
@@ -7711,8 +7717,14 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     #contato,
     body>footer {
         --nv-z: 0.85;
-        --nv-k: 0.925;
+        --nv-k: 0.95;
         zoom: 0.85;
+        font-size: calc(16px * 0.95 / 0.85);
+    }
+
+    /* Sobre mantém a redução anterior */
+    #sobre {
+        --nv-k: 0.925;
         font-size: calc(16px * 0.925 / 0.85);
     }
 }
@@ -8057,7 +8069,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
     }
 
     .novidade-tab {
-        font-size: calc((14px) * var(--nv-k) / var(--nv-z));
+        font-size: calc((16px) * var(--nv-k) / var(--nv-z));
     }
 
     .novidade-tab-sep {
@@ -8066,7 +8078,7 @@ body.hero-pop :is(.sticky-nav, .sticky-mobile-nav) a.btn-login.btn-login-primary
 
     @media (max-width: 600px) {
         .novidade-tab {
-            font-size: calc((12px) * var(--nv-k) / var(--nv-z));
+            font-size: calc((14px) * var(--nv-k) / var(--nv-z));
         }
     }
 
