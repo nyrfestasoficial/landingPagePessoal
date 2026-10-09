@@ -82,7 +82,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Caveat:wght@600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="src/css/teste-arriscado.css">
+    <link rel="stylesheet" href="src/css/teste-arriscado-2.css">
 
     <!-- ═══════════════════ GOOGLE ADS (gtag.js) ═══════════════════ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18386450761"></script>
@@ -648,7 +648,7 @@
             <div class="service-row reverse reveal" style="transition-delay:.3s">
                 <div class="service-text">
                     <span class="service-num">02</span>
-                    <span class="service-badge badge-upcoming">Em breve</span>
+                    <span class="service-badge badge-current">Em andamento</span>
                     <h2 class="service-title">Carnaval</h2>
                     <p class="service-desc"><strong>Não adianta pedir fantasia em fevereiro.</strong> O Carnaval exige
                         antecipação: os melhores lotes saem nos primeiros meses do ano. Nossa linha cobre do acessório
@@ -2678,7 +2678,7 @@
     </section>
 
     <script>
-        /* NYR Inspira — animações: entrada, parallax da estampa, contagem e confete no botão (o mockup é estático).
+        /* NYR Inspira — animações: entrada, contagem e confete no botão (fundo e mockup são estáticos).
            Sem JS ou com prefers-reduced-motion a seção permanece estática e visível. */
         (function () {
             const sec = document.getElementById('inspira');
@@ -2686,7 +2686,6 @@
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
             const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-            const bg = sec.querySelector('.insp-promo__bg');
             const cta = sec.querySelector('.insp-promo__cta');
             const counts = Array.from(sec.querySelectorAll('.insp-count'));
 
@@ -2706,24 +2705,6 @@
                 });
             }
 
-            /* ── parallax lento da estampa de fundo (o mockup fica estático) ── */
-            let inView = false, raf = 0;
-
-            function progress() {
-                const r = sec.getBoundingClientRect(), vh = window.innerHeight;
-                return Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-            }
-            function frame() {
-                raf = 0;
-                const dpr = window.devicePixelRatio || 1;
-                const snap = function (v) { return Math.round(v * dpr) / dpr; };
-                const k = window.innerWidth <= 768 ? 0.5 : 1;
-                if (bg) bg.style.transform = 'translate3d(0,' + snap((progress() - 0.5) * 80 * k) + 'px,0)';
-            }
-            function schedule() { if (!raf) raf = requestAnimationFrame(frame); }
-
-            window.addEventListener('scroll', function () { if (inView) schedule(); }, { passive: true });
-            window.addEventListener('resize', schedule);
 
             /* ── confete saindo do botão (só com mouse) ── */
             function burst(el) {
@@ -2757,12 +2738,10 @@
             /* ── gatilho de entrada (12% visível, igual ao reveal da LP) ── */
             new IntersectionObserver(function (entries) {
                 entries.forEach(function (e) {
-                    inView = e.isIntersecting;
                     if (e.intersectionRatio >= 0.12 && !sec.classList.contains('is-in')) {
                         sec.classList.add('is-in');
                         runCounts();
                     }
-                    if (inView) schedule();
                 });
             }, { threshold: [0, 0.12] }).observe(sec);
         })();
