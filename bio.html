@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://res.cloudinary.com">
-    <!-- Preload do logo: crítico para o Page Loader -->
+    <!-- Preload do logo da página -->
     <link rel="preload" as="image"
         href="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778845994/LOGO_NYR_pvsjqk.webp">
 
@@ -28,7 +28,7 @@
         href="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778847413/favicon-32x32_ei8qnz.png">
 
     <!-- ── SEO ───────────────────────────────────── -->
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noindex, follow">
     <meta name="description"
         content="Distribuidora B2B especializada em artigos para Carnaval, Festa Junina, Copa, Halloween e Páscoa. Mais de 7.000 lojistas em 27 estados. Atendimento exclusivo para CNPJ. São Paulo, SP.">
     <meta name="keywords"
@@ -38,7 +38,6 @@
     <meta name="theme-color" content="#0d0d0d">
 
     <!-- ── OPEN GRAPH (WhatsApp, Instagram, Facebook) ── -->
-    <!-- Nota: atualize og:url com a URL final da bio page -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nyrfestas.com.br/bio">
     <meta property="og:title" content="Nyr Festas — Artigos de Festas Sazonais">
@@ -59,11 +58,34 @@
 
     <!-- ── FONTS ─────────────────────────────────── -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@400;500;600&family=Creepster&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Caveat:wght@700&family=Creepster&display=swap"
         rel="stylesheet">
 
     <!-- ── STYLES ────────────────────────────────── -->
-    <link rel="stylesheet" href="./src/css/bio.css">
+    <link rel="stylesheet" href="./src/css/bio.css?v=20261015">
+    <!-- Sem JavaScript: mostra o conteúdo (as animações de entrada dependem de JS) -->
+    <noscript>
+        <style>
+            .bio-logo,
+            .bio-btn,
+            .bio-btn-season,
+            .bio-contact,
+            .season-pill,
+            .bio-tag-sub {
+                opacity: 1 !important;
+                clip-path: none !important;
+            }
+
+            .char-inner,
+            .bio-tag-sub {
+                transform: none !important;
+            }
+
+            .geo-layer {
+                display: none;
+            }
+        </style>
+    </noscript>
 
     <!-- ═══════════════════ GOOGLE ADS (gtag.js) ═══════════════════ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18386450761"></script>
@@ -119,6 +141,20 @@
            NAO renomear os botoes para "fugir" da regra: resolve por
            tabela, mas volta a duplicar assim que alguem aceitar de novo
            uma sugestao de evento automatico no Gerenciador.
+
+           ATUALIZACAO 15/10/2026: a regra 1689604965462613 foi APAGADA
+           no Gerenciador de Eventos (conferido: nao aparece mais em
+           estRules na config do pixel). A correcao de setembro tinha
+           ficado pela metade: tiraram o Lead do codigo (fire() recebia
+           null) e ficou so o da regra, que disparava no CLIQUE mesmo
+           com o formulario invalido e saia sem eventID.
+
+           Agora o Lead do Meta sai SO de nyrTrackLead, com 'Lead' em
+           fire(), depois da validacao do formulario e com eventID
+           "nyr-...". Se o Lead voltar a duplicar, conferir se alguem
+           recriou a regra:
+             curl "https://connect.facebook.net/signals/config/1263940769105902?v=2.9.397&r=stable"
+           e procurar estRules.
            ──────────────────────────────────────────────────────────── */
     </script>
 
@@ -214,7 +250,7 @@
              */
             w.nyrTrackLead = function (url, nome) {
                 if (isTooSoon()) return false;
-                fire(FORM_CONVERSIONS, null, nome || 'Formulário WhatsApp');
+                fire(FORM_CONVERSIONS, 'Lead', nome || 'Formulário WhatsApp');
                 openNow(url);
                 return false;
             };
@@ -243,23 +279,6 @@
 <body>
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=1263940769105902&ev=PageView&noscript=1" /></noscript>
-
-    <!-- Page Loader -->
-    <div id="page-loader">
-        <div class="loader-content">
-            <img class="loader-logo" id="loader-logo-img"
-                src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778845994/LOGO_NYR_pvsjqk.webp"
-                alt="Nyr Festas">
-            <div class="loader-ring-wrap" id="loader-ring-wrap">
-                <svg class="loader-svg" viewBox="0 0 52 52">
-                    <g transform="translate(26,26) rotate(-90)">
-                        <circle class="loader-track" cx="0" cy="0" r="22" />
-                        <circle class="loader-ring" id="loader-ring" cx="0" cy="0" r="22" />
-                    </g>
-                </svg>
-            </div>
-        </div>
-    </div>
 
     <!-- Fundo -->
     <canvas id="confetti-canvas"></canvas>
@@ -363,20 +382,15 @@
                     </a>
                 </div>
 
-                <a href="campanha.html" class="bio-btn-season" target="_blank" rel="noopener noreferrer"
-                    aria-label="Saiba mais sobre a Temporada Halloween 2026">
-                    👻 Temporada&nbsp;<span>Halloween 2026</span>
-                </a>
-
-                <div class="bio-newsletter">
-                    <span class="bio-newsletter-label">Receber novidades no seu e-mail</span>
-                    <div class="bio-email-row">
-                        <input class="bio-email-input" type="email" id="bio-email-input"
-                            placeholder="contato@email.com.br" autocomplete="email">
-                        <input type="text" id="bio-honeypot" style="display:none" tabindex="-1" autocomplete="off">
-                        <button class="bio-email-btn" id="bio-email-btn" onclick="submitBioEmail()">Inscrever</button>
-                    </div>
-                    <span class="bio-email-note" id="bio-email-note"></span>
+                <div class="bio-seasonal">
+                    <a href="campanha-halloween.html" class="bio-btn-season" target="_blank" rel="noopener noreferrer"
+                        aria-label="Saiba mais sobre a Temporada Halloween 2026">
+                        👻 Temporada&nbsp;<span>Halloween 2026</span>
+                    </a>
+                    <a href="campanha-carnaval.html" class="bio-btn-season bio-btn-season--carnaval" target="_blank"
+                        rel="noopener noreferrer" aria-label="Saiba mais sobre a Temporada Carnaval 2027">
+                        🎭 Temporada&nbsp;<span>Carnaval 2027</span>
+                    </a>
                 </div>
 
                 <div class="bio-contact">
@@ -445,34 +459,67 @@
             <button class="modal-privacy-close" id="modal-privacy-close">&times;</button>
             <div class="modal-privacy-content">
                 <h2 class="modal-privacy-title">Política de Privacidade</h2>
-                <p class="modal-privacy-updated">Última atualização: maio de 2025</p>
+                <p class="modal-privacy-updated">Última atualização: outubro de 2026</p>
+
                 <h3>1. Quem somos</h3>
-                <p>Nyr Festas Comercial Ltda, inscrita sob o CNPJ 09.722.322/0001-19, com sede em São Paulo – SP, é a
-                    controladora dos dados pessoais tratados por este site. Contato: <strong>vendas@mm88.com.br</strong>
-                </p>
+                <p>Nyr Festas Comercial Ltda, pessoa jurídica de direito privado inscrita sob o CNPJ 09.722.322/0001-19,
+                    com sede em São Paulo – SP, é a controladora dos dados pessoais tratados por este site.</p>
+                <p>Contato do responsável por dados: <strong>vendas@mm88.com.br</strong></p>
+
                 <h3>2. Quais dados coletamos</h3>
-                <p><strong>E-mail:</strong> coletado voluntariamente pelo formulário de inscrição de novidades,
-                    armazenado em planilha eletrônica hospedada no Google Workspace.</p>
-                <p><strong>Dados técnicos (localStorage):</strong> usado exclusivamente para controle de intervalo entre
-                    envios (rate limiting). Nenhum dado pessoal é transmitido por esse mecanismo.</p>
+                <p><strong>Razão Social e CNPJ:</strong> informados voluntariamente por você no formulário “Falar com
+                    Atendente” e inseridos na mensagem enviada ao nosso canal de atendimento via WhatsApp. Esses dados
+                    não são armazenados em servidor ou banco de dados da Nyr Festas por meio deste site; a partir do
+                    envio, ficam no histórico da conversa no WhatsApp, sujeito aos termos e à política de privacidade
+                    do WhatsApp/Meta.</p>
+                <p><strong>Contato direto:</strong> ao clicar em telefone, e-mail ou WhatsApp, os dados que você
+                    fornecer nessa comunicação (como nome, número de telefone e conteúdo da mensagem) são recebidos
+                    pela Nyr Festas diretamente pelo canal escolhido.</p>
+                <p><strong>Dados de navegação e medição:</strong> este site utiliza o Google Ads (tag do Google) e o
+                    Pixel da Meta para medir visitas e ações realizadas na página, como cliques nos botões de
+                    atendimento, telefone e e-mail. Essas ferramentas podem coletar, por meio de cookies e tecnologias
+                    semelhantes, informações como endereço IP, tipo de dispositivo e navegador, páginas visitadas e
+                    interações. Os dados são tratados também pelo Google e pela Meta, conforme as respectivas políticas
+                    de privacidade. Você pode bloquear ou apagar cookies nas configurações do seu navegador.</p>
+                <p><strong>Conteúdo de terceiros:</strong> o site carrega imagens e fontes de serviços como Cloudinary
+                    e Google Fonts. Ao carregar esses conteúdos, seu endereço IP e dados básicos do navegador são
+                    recebidos por esses provedores.</p>
+                <p>Este site não possui formulário de cadastro de e-mail nem coleta endereços de e-mail para listas de
+                    comunicação.</p>
+
                 <h3>3. Finalidade do tratamento</h3>
-                <p>O e-mail é utilizado para envio de comunicações comerciais e novidades. Base legal: consentimento do
-                    titular (Art. 7º, I, da LGPD – Lei 13.709/2018).</p>
+                <p>Os dados de Razão Social e CNPJ são utilizados para identificar o estabelecimento que solicita
+                    atendimento e responder ao seu contato, em razão de procedimentos preliminares relacionados a
+                    eventual contrato (Art. 7º, V, da Lei 13.709/2018 – LGPD), uma vez que a Nyr Festas atende apenas
+                    clientes com CNPJ. Os dados de navegação e medição são utilizados para avaliar o desempenho do site
+                    e das campanhas de divulgação, e para melhorar a experiência de uso.</p>
+
                 <h3>4. Compartilhamento de dados</h3>
-                <p>Os dados não são vendidos, cedidos ou compartilhados com terceiros para fins comerciais. O
-                    armazenamento no Google está sujeito aos seus Termos de Serviço e Política de Privacidade.</p>
+                <p>Os dados coletados não são vendidos nem cedidos a terceiros para fins comerciais. Há tratamento por
+                    provedores de serviços necessários ao funcionamento do site e ao atendimento, como Google,
+                    Meta/WhatsApp e Cloudinary, cada um sujeito aos seus próprios termos e políticas de privacidade.</p>
+
                 <h3>5. Prazo de retenção</h3>
-                <p>Os e-mails são mantidos enquanto houver interesse comercial legítimo ou até que o titular solicite a
-                    exclusão.</p>
+                <p>As informações enviadas pelo WhatsApp são mantidas pelo tempo necessário ao atendimento e ao
+                    relacionamento comercial, ou até que o titular solicite a exclusão. Os dados de navegação seguem os
+                    prazos definidos pelas respectivas ferramentas de medição.</p>
+
                 <h3>6. Direitos do titular</h3>
-                <p>Nos termos da LGPD, você tem direito a confirmar, acessar, corrigir, excluir seus dados e revogar o
-                    consentimento. Entre em contato pelo e-mail <strong>vendas@mm88.com.br</strong>.</p>
+                <p>Nos termos da LGPD, você tem direito a: confirmar a existência do tratamento, acessar seus dados,
+                    corrigir dados incompletos ou desatualizados, solicitar a exclusão, revogar o consentimento e
+                    solicitar informações sobre compartilhamento.</p>
+                <p>Para exercer qualquer desses direitos, entre em contato pelo e-mail
+                    <strong>vendas@mm88.com.br</strong> identificando-se como titular.
+                </p>
+
                 <h3>7. Segurança</h3>
                 <p>Adotamos medidas técnicas e organizacionais adequadas para proteger os dados pessoais contra acesso
-                    não autorizado ou destruição acidental.</p>
-                <h3>8. Alterações</h3>
+                    não autorizado, perda ou destruição acidental.</p>
+
+                <h3>8. Alterações nesta política</h3>
                 <p>Esta política pode ser atualizada periodicamente. Alterações relevantes serão comunicadas nesta
-                    página.</p>
+                    página com a data de atualização.</p>
+
             </div>
         </div>
     </div>
@@ -481,6 +528,8 @@
         /* ═══════════════════════════════════════════
            CONFETTI — light mode, 200 peças
         ═══════════════════════════════════════════ */
+        /* Respeita a preferência do sistema por menos movimento */
+        const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const canvas = document.getElementById('confetti-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -565,7 +614,7 @@
         let confettiPaused = false;
         document.addEventListener('visibilitychange', () => {
             confettiPaused = document.hidden;
-            if (!confettiPaused) { lastTime = 0; requestAnimationFrame(confettiLoop); }
+            if (!confettiPaused && !RM) { lastTime = 0; requestAnimationFrame(confettiLoop); }
         });
 
         function confettiLoop(ts) {
@@ -577,7 +626,7 @@
             requestAnimationFrame(confettiLoop);
         }
         initConfetti();
-        requestAnimationFrame(confettiLoop);
+        if (!RM) requestAnimationFrame(confettiLoop);
 
         /* ═══════════════════════════════════════════
            PARALLAX — mouse nos anéis geo
@@ -602,7 +651,7 @@
             });
             requestAnimationFrame(parallaxLoop);
         }
-        parallaxLoop();
+        if (!RM) parallaxLoop();
 
         /* ═══════════════════════════════════════════
            CHAR SPLIT UTILITY
@@ -633,39 +682,42 @@
         }
 
         /* ═══════════════════════════════════════════
-           SEQUÊNCIA DE ENTRADA — chamada pelo loader
+           SEQUÊNCIA DE ENTRADA
         ═══════════════════════════════════════════ */
         function startEntrance() {
-            /* 1 — Geo rings stagger (t+100ms) */
+            /* Com "reduzir movimento" tudo aparece de imediato */
+            const D = ms => RM ? 0 : ms;
+
+            /* 1 — Geo rings stagger */
             const geoEls = document.querySelectorAll(
                 '.geo-ring-1,.geo-ring-2,.geo-ring-3,.geo-ring-4,.geo-ring-5,' +
                 '.geo-sq-1,.geo-sq-2,.geo-sq-3,.geo-dot-1,.geo-dot-2,.geo-dot-3'
             );
             geoEls.forEach((el, i) => {
-                setTimeout(() => el.classList.add('geo-visible'), 100 + i * 70);
+                setTimeout(() => el.classList.add('geo-visible'), D(60 + i * 40));
             });
 
-            /* 2 — Logo scale+blur+glow (t+0ms) */
+            /* 2 — Logo scale+blur+glow */
             const img = document.getElementById('bio-logo-img');
             const outer = document.getElementById('bio-logo-outer');
             img.classList.add('logo-entering');
-            setTimeout(() => outer.classList.add('logo-floating'), 960);
+            setTimeout(() => outer.classList.add('logo-floating'), D(700));
 
-            /* 3 — bio-tag-main char-split (t+580ms) */
+            /* 3 — bio-tag-main char-split */
             setTimeout(() => {
                 const chars = document.querySelectorAll('.bio-tag-main .char-inner');
                 chars.forEach((c, i) => {
-                    setTimeout(() => c.classList.add('revealed'), i * 35);
+                    setTimeout(() => c.classList.add('revealed'), D(i * 25));
                 });
-            }, 580);
+            }, D(150));
 
-            /* 4 — bio-tag-sub fade+slide (t+880ms) */
+            /* 4 — bio-tag-sub fade+slide */
             setTimeout(() => {
                 const sub = document.querySelector('.bio-tag-sub');
                 if (sub) sub.classList.add('el-visible');
-            }, 880);
+            }, D(300));
 
-            /* 5 — Season pills spring stagger (t+1060ms) */
+            /* 5 — Season pills spring stagger */
             setTimeout(() => {
                 document.querySelectorAll('.season-pill').forEach((pill, i) => {
                     setTimeout(() => {
@@ -674,11 +726,11 @@
                             pill.classList.remove('pill-entering');
                             pill.classList.add('pill-pulsing');
                         }, { once: true });
-                    }, i * 80);
+                    }, D(i * 60));
                 });
-            }, 1060);
+            }, D(400));
 
-            /* 6 — Botões clip-path wipe (t+1460ms) */
+            /* 6 — Botões clip-path wipe ("Fale Conosco" é o primeiro) */
             setTimeout(() => {
                 document.querySelectorAll('.bio-btn').forEach((btn, i) => {
                     setTimeout(() => {
@@ -687,142 +739,48 @@
                             btn.classList.remove('btn-entering');
                             btn.classList.add('btn-revealed');
                         }, { once: true });
-                    }, i * 120);
+                    }, D(i * 100));
                 });
-            }, 1460);
+            }, D(450));
 
-            /* 6b — Botão sazonal block-rise (t+1700ms) */
+            /* 6b — Botões sazonais (Halloween, Carnaval) block-rise */
             setTimeout(() => {
-                const seasonal = document.querySelector('.bio-btn-season');
-                if (seasonal) {
-                    seasonal.classList.add('block-entering');
-                    seasonal.addEventListener('animationend', () => {
-                        seasonal.classList.remove('block-entering');
-                        seasonal.classList.add('season-revealed');
-                    }, { once: true });
-                }
-            }, 1700);
+                document.querySelectorAll('.bio-btn-season').forEach((seasonal, i) => {
+                    setTimeout(() => {
+                        seasonal.classList.add('block-entering');
+                        seasonal.addEventListener('animationend', () => {
+                            seasonal.classList.remove('block-entering');
+                            seasonal.classList.add('season-revealed');
+                        }, { once: true });
+                    }, D(i * 100));
+                });
+            }, D(600));
 
-            /* 7 — Newsletter + Contact block-rise (t+1880ms) */
+            /* 7 — Contato block-rise */
             setTimeout(() => {
-                const nl = document.querySelector('.bio-newsletter');
                 const ct = document.querySelector('.bio-contact');
-                if (nl) nl.classList.add('block-entering');
-                setTimeout(() => { if (ct) ct.classList.add('block-entering'); }, 100);
-            }, 1880);
+                if (ct) ct.classList.add('block-entering');
+            }, D(800));
         }
 
         /* ═══════════════════════════════════════════
-           PAGE LOADER — event-driven (idêntico à Landing Page)
+           ENTRADA — sem loader: começa assim que as fontes carregam
+           (limite de 1 s, para nunca atrasar o primeiro clique)
         ═══════════════════════════════════════════ */
         (function () {
-            const loader = document.getElementById('page-loader');
-            const loaderImg = loader.querySelector('.loader-logo');
-            const ringWrap = loader.querySelector('.loader-ring-wrap');
-            const ring = loader.querySelector('.loader-ring');
-
-            /* Pre-split chars para estarem prontos quando hero revelar */
+            /* Pre-split chars para estarem prontos quando a tagline revelar */
             splitTextIntoChars('.bio-tag-main');
 
-            Promise.all([
-                document.fonts.ready,
-                new Promise(resolve => {
-                    if (loaderImg.complete && loaderImg.naturalWidth > 0) resolve();
-                    else { loaderImg.onload = resolve; loaderImg.onerror = resolve; }
-                })
-            ]).then(() => {
-                /* Step 1 — Logo sobe */
-                loaderImg.classList.add('animating');
-
-                /* Step 2 — Ring aparece e desenha após logo estabilizar */
-                setTimeout(() => {
-                    ringWrap.classList.add('animating');
-                    void ring.offsetWidth; /* force reflow */
-                    ring.classList.add('animating');
-                }, 1050);
-
-                /* Step 3 — Slide-out após ring completar */
-                const RING_DRAW = 1800;
-                const RING_DELAY = 1050;
-                const PAUSE = 300;
-                const SLIDE = 700;
-
-                setTimeout(() => {
-                    loader.classList.add('slide-out');
-                    setTimeout(() => {
-                        loader.remove();
-                        startEntrance();
-                    }, SLIDE);
-                }, RING_DELAY + RING_DRAW + PAUSE);
-            });
-        })();
-
-        /* ═══════════════════════════════════════════
-           CAPTAÇÃO DE E-MAIL
-        ═══════════════════════════════════════════ */
-        (function () {
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzcAOzASeDABHGZZfMEMw0zVSmObsilrVwIftTMleBuae6SQXH5GJzlFdAPnn-pN4_BDA/exec';
-            const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-            const RATE_LIMIT = 60000;
-
-            function note(msg, err) {
-                const el = document.getElementById('bio-email-note');
-                if (!el) return;
-                el.textContent = msg;
-                el.style.color = err ? '#e53935' : '#6b6b6b';
-                setTimeout(() => { el.textContent = ''; }, 5000);
+            let started = false;
+            function go() {
+                if (started) return;
+                started = true;
+                startEntrance();
             }
-
-            window.submitBioEmail = function () {
-                const input = document.getElementById('bio-email-input');
-                const btn = document.getElementById('bio-email-btn');
-                const honeypot = document.getElementById('bio-honeypot');
-                const email = input.value.trim();
-
-                if (honeypot && honeypot.value) return;
-
-                const last = parseInt(localStorage.getItem('nyr_last_email_submit') || '0');
-                if (Date.now() - last < RATE_LIMIT) {
-                    note('Aguarde um momento antes de tentar novamente.', true);
-                    return;
-                }
-                if (!email || !EMAIL_RE.test(email)) {
-                    input.style.outline = '2px solid #e53935';
-                    note('Digite um e-mail válido (ex: contato@loja.com.br).', true);
-                    setTimeout(() => { input.style.outline = ''; }, 2500);
-                    return;
-                }
-
-                btn.textContent = 'Enviando...';
-                btn.disabled = true;
-                input.disabled = true;
-
-                fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({ email })
-                }).then(res => {
-                    if (!res.ok) throw new Error();
-                    localStorage.setItem('nyr_last_email_submit', Date.now().toString());
-                    btn.textContent = '✓ Inscrito';
-                    input.value = '';
-                    input.placeholder = 'Obrigado!';
-                    note('E-mail cadastrado com sucesso!', false);
-                    if (typeof fbq === 'function') {
-                        fbq('track', 'Subscribe', { content_name: 'Newsletter Bio' });
-                    }
-                }).catch(() => {
-                    btn.textContent = 'Inscrever';
-                    btn.disabled = false;
-                    input.disabled = false;
-                    note('Erro ao cadastrar. Tente novamente em instantes.', true);
-                });
-            };
-
-            const input = document.getElementById('bio-email-input');
-            if (input) input.addEventListener('keydown', e => {
-                if (e.key === 'Enter') window.submitBioEmail();
-            });
+            Promise.race([
+                document.fonts.ready,
+                new Promise(resolve => setTimeout(resolve, 1000))
+            ]).then(go);
         })();
 
         /* ═══════════════════════════════════════════

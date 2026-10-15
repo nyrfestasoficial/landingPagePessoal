@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- Extracted from WAV1 alongside index.html, re-synced 2026-09-27 - see the note at the top
+     of index.html and README.md for the full reasoning. No login links in this page. -->
 <html lang="pt-BR">
 
 <head>
@@ -27,11 +29,11 @@
         content="halloween atacado, distribuidora artigos de halloween, fantasias halloween atacado, inflável halloween, artigos sazonais B2B, distribuidora São Paulo, Nyr Festas">
     <meta name="author" content="Nyr Festas">
     <meta name="robots" content="noindex, follow">
-    <link rel="canonical" href="https://nyrfestas.com.br/halloween">
+    <link rel="canonical" href="https://nyrfestas.com.br/campanha-halloween">
 
     <!-- ── OPEN GRAPH (WhatsApp, Instagram, Facebook) ── -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nyrfestas.com.br/halloween">
+    <meta property="og:url" content="https://nyrfestas.com.br/campanha-halloween">
     <meta property="og:title" content="Nyr Festas – Halloween no Atacado para Lojistas">
     <meta property="og:description"
         content="Fantasias, infláveis, adereços e decoração de Halloween no atacado. Mais de 7.000 lojistas em 27 estados. Atendimento exclusivo para CNPJ.">
@@ -82,7 +84,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Creepster&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./src/css/campanha.css">
+    <link rel="stylesheet" href="./src/css/campanha-halloween.css?v=20261015">
 
     <!-- ═══════════════════ GOOGLE ADS (gtag.js) ═══════════════════ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18386450761"></script>
@@ -138,6 +140,20 @@
            NAO renomear os botoes para "fugir" da regra: resolve por
            tabela, mas volta a duplicar assim que alguem aceitar de novo
            uma sugestao de evento automatico no Gerenciador.
+
+           ATUALIZACAO 15/10/2026: a regra 1689604965462613 foi APAGADA
+           no Gerenciador de Eventos (conferido: nao aparece mais em
+           estRules na config do pixel). A correcao de setembro tinha
+           ficado pela metade: tiraram o Lead do codigo (fire() recebia
+           null) e ficou so o da regra, que disparava no CLIQUE mesmo
+           com o formulario invalido e saia sem eventID.
+
+           Agora o Lead do Meta sai SO de nyrTrackLead, com 'Lead' em
+           fire(), depois da validacao do formulario e com eventID
+           "nyr-...". Se o Lead voltar a duplicar, conferir se alguem
+           recriou a regra:
+             curl "https://connect.facebook.net/signals/config/1263940769105902?v=2.9.397&r=stable"
+           e procurar estRules.
            ──────────────────────────────────────────────────────────── */
     </script>
 
@@ -215,7 +231,7 @@
                     }
                 }
 
-                if (typeof w.fbq === 'function') {
+                if (metaEvent && typeof w.fbq === 'function') {
                     w.fbq('track', metaEvent, {
                         content_name: nome,
                         content_category: 'Atacado'

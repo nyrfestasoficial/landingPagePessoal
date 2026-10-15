@@ -317,18 +317,6 @@ button {
     }
 }
 
-@keyframes fade-up {
-    from {
-        opacity: 0;
-        transform: translateY(24px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 @keyframes modal-in {
     from {
         opacity: 0;
@@ -408,7 +396,6 @@ button {
     width: clamp(160px, 26vw, 265px);
     height: auto;
     opacity: 0;
-    transition: opacity 0.6s ease 3s;
 }
 
 .bio-logo.logo-entering {
@@ -599,6 +586,12 @@ button {
     }
 }
 
+.bio-seasonal {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
 .bio-btn-season {
     text-align: center;
     width: 100%;
@@ -644,91 +637,48 @@ button {
     color: #ffffff;
 }
 
+/* Carnaval — paleta da página de Carnaval (magenta, roxo, dourado) */
+@keyframes season-pulse-carnaval {
 
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(224, 25, 125, 0);
+    }
 
-/* ─── EMAIL CAPTURE ──────────────────────── */
-.bio-newsletter {
-    border-top: 3px solid var(--brand-orange);
-    padding-top: clamp(16px, 2.5vh, 24px);
-    opacity: 0;
+    50% {
+        box-shadow: 0 0 0 5px rgba(224, 25, 125, 0.24);
+    }
 }
 
-.bio-newsletter.block-entering {
-    animation: block-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.bio-newsletter-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
+.bio-btn-season--carnaval {
+    font-family: 'Caveat', cursive;
     font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--brand-orange);
-    margin-bottom: 12px;
-    display: block;
+    font-size: clamp(20px, 2.8vw, 27px);
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1.1;
+    background:
+        linear-gradient(var(--gray-1), var(--gray-1)) padding-box,
+        linear-gradient(135deg, #E0197D, #6D28D9, #F4A000) border-box;
 }
 
-.bio-email-row {
-    display: flex;
-    border: 1.5px solid var(--gray-2);
-    border-radius: 100px;
-    overflow: hidden;
-    background: var(--white);
-    transition: border-color var(--transition);
+.bio-btn-season--carnaval span {
+    color: #E0197D;
 }
 
-.bio-email-row:focus-within {
-    border-color: var(--brand-orange);
+.bio-btn-season--carnaval.season-revealed {
+    animation: season-pulse-carnaval 2.4s ease-in-out infinite;
 }
 
-.bio-email-input {
-    flex: 1;
-    min-width: 0;
-    padding: 12px 18px;
-    border: none;
-    outline: none;
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
-    color: var(--brand-bg);
-    background: transparent;
+.bio-btn-season--carnaval:hover {
+    background:
+        linear-gradient(rgba(224, 25, 125, 0.08), rgba(224, 25, 125, 0.08)) padding-box,
+        linear-gradient(135deg, #E0197D, #6D28D9, #F4A000) border-box;
+    box-shadow: 0 10px 32px rgba(224, 25, 125, 0.26);
+    color: #000000;
 }
 
-.bio-email-input::placeholder {
-    color: var(--gray-text);
-}
 
-.bio-email-btn {
-    padding: 10px 20px;
-    background: var(--brand-orange);
-    color: var(--brand-bg);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 0 100px 100px 0;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: background var(--transition);
-}
-
-.bio-email-btn:hover {
-    background: #e09000;
-}
-
-.bio-email-btn:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-}
-
-.bio-email-note {
-    font-size: 11px;
-    color: var(--gray-text);
-    margin-top: 8px;
-    display: block;
-    min-height: 16px;
-}
 
 /* ─── CONTATO — botões pill ─────────────── */
 .bio-contact {
@@ -1122,38 +1072,6 @@ button {
     }
 }
 
-/* ─── MAX-HEIGHT — telas pequenas ────────── */
-/* @media (max-height: 660px) {
-    .bio-logo {
-        width: clamp(100px, 18vw, 130px);
-    }
-
-    .bio-identity {
-        gap: 12px;
-    }
-
-    .bio-inner {
-        gap: 28px;
-    }
-
-    .bio-tag-main {
-        font-size: clamp(15px, 2.4vw, 22px);
-    }
-
-    .bio-tag-sub {
-        font-size: clamp(11px, 1.6vw, 16px);
-    }
-
-    .bio-page {
-        padding-top: 16px;
-        padding-bottom: 16px;
-    }
-
-    .bio-actions-col {
-        gap: 14px;
-    }
-} */
-
 /* ─── MAX-WIDTH — até 800px ──────────────── */
 @media (max-width: 800px) {
     .geo-ring-1 {
@@ -1259,113 +1177,6 @@ button {
     }
 }
 
-/* ─── PAGE LOADER — dark version ─────────── */
-#page-loader {
-    position: fixed;
-    inset: 0;
-    z-index: 2000;
-    background: #0d0d0d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 700ms cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-#page-loader.slide-out {
-    transform: translateY(-100%);
-}
-
-#page-loader::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0.55;
-    background-image: url("https://res.cloudinary.com/dzt1kqdbc/image/upload/v1779365137/pageLoaderLinkDaBio_ogfwnr.webp");
-    background-size: 300px;
-    background-repeat: repeat;
-    pointer-events: none;
-}
-
-.loader-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
-    position: relative;
-    z-index: 1;
-}
-
-.loader-logo {
-    width: 140px;
-    height: auto;
-    opacity: 0;
-    transform: translateY(65vh);
-}
-
-.loader-logo.animating {
-    animation: logo-rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes logo-rise {
-    from {
-        transform: translateY(65vh);
-        opacity: 0;
-        filter: drop-shadow(0 0 0 rgba(244, 160, 0, 0));
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-        filter: drop-shadow(0 0 8px rgba(255, 230, 180, 0.85)) drop-shadow(0 0 2px rgba(255, 230, 180, 0.55));
-    }
-}
-
-.loader-ring-wrap {
-    width: 52px;
-    height: 52px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.loader-ring-wrap.animating {
-    opacity: 1;
-}
-
-.loader-svg {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-}
-
-.loader-track {
-    fill: none;
-    stroke: rgba(244, 160, 0, 0.18);
-    stroke-width: 2;
-}
-
-.loader-ring {
-    fill: none;
-    stroke: #f4a000;
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-dasharray: 138.23;
-    stroke-dashoffset: 138.23;
-}
-
-.loader-ring.animating {
-    animation: draw-ring 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes draw-ring {
-    from {
-        stroke-dashoffset: 138.23;
-    }
-
-    to {
-        stroke-dashoffset: 0;
-    }
-}
-
 /* ─── LARGE MONITOR — ≥1300px × ≥768px ────── */
 @media (min-width: 1300px) and (min-height: 768px) {
     .bio-inner {
@@ -1414,21 +1225,6 @@ button {
         letter-spacing: 3px;
     }
 
-    .bio-newsletter-label {
-        font-size: 14px;
-        letter-spacing: 5px;
-    }
-
-    .bio-email-input {
-        padding: 15px 22px;
-        font-size: 16px;
-    }
-
-    .bio-email-btn {
-        padding: 13px 26px;
-        font-size: 14px;
-    }
-
     .bio-contact-pill {
         font-size: 15px;
         padding: 10px 20px;
@@ -1446,5 +1242,23 @@ button {
     .bio-footer-item {
         font-size: 12px;
         letter-spacing: 2.5px;
+    }
+}
+
+/* ─── REDUZIR MOVIMENTO ──────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        animation-delay: 0s !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+    }
+
+    #confetti-canvas {
+        display: none;
     }
 }

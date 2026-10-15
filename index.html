@@ -82,7 +82,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Caveat:wght@600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/style.css?v=20261015">
 
     <!-- ═══════════════════ GOOGLE ADS (gtag.js) ═══════════════════ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18386450761"></script>
@@ -138,6 +138,20 @@
            NAO renomear os botoes para "fugir" da regra: resolve por
            tabela, mas volta a duplicar assim que alguem aceitar de novo
            uma sugestao de evento automatico no Gerenciador.
+
+           ATUALIZACAO 15/10/2026: a regra 1689604965462613 foi APAGADA
+           no Gerenciador de Eventos (conferido: nao aparece mais em
+           estRules na config do pixel). A correcao de setembro tinha
+           ficado pela metade: tiraram o Lead do codigo (fire() recebia
+           null) e ficou so o da regra, que disparava no CLIQUE mesmo
+           com o formulario invalido e saia sem eventID.
+
+           Agora o Lead do Meta sai SO de nyrTrackLead, com 'Lead' em
+           fire(), depois da validacao do formulario e com eventID
+           "nyr-...". Se o Lead voltar a duplicar, conferir se alguem
+           recriou a regra:
+             curl "https://connect.facebook.net/signals/config/1263940769105902?v=2.9.397&r=stable"
+           e procurar estRules.
            ──────────────────────────────────────────────────────────── */
     </script>
 
@@ -233,7 +247,7 @@
              */
             w.nyrTrackLead = function (url, nome) {
                 if (isTooSoon()) return false;
-                fire(FORM_CONVERSIONS, null, nome || 'Formulário WhatsApp');
+                fire(FORM_CONVERSIONS, 'Lead', nome || 'Formulário WhatsApp');
                 openNow(url);
                 return false;
             };
@@ -301,7 +315,7 @@
                 <li><a href="#contato">Contato</a></li>
             </ul>
             <div class="sticky-logins">
-                <a href="login.html" class="btn-login btn-login-primary"><span class="btn-login__fx"
+                <a href="https://app.nyrfestas.com.br/login" class="btn-login btn-login-primary"><span class="btn-login__fx"
                         aria-hidden="true"></span><span class="btn-login__label">Fazer login</span><span
                         class="btn-login__icon" aria-hidden="true"><svg class="btn-login__arrow" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
@@ -326,7 +340,7 @@
                     <li><a href="#contato">Contato</a></li>
                 </ul>
                 <div class="sticky-mobile-logins">
-                    <a href="login.html" class="btn-login btn-login-primary"><span class="btn-login__fx"
+                    <a href="https://app.nyrfestas.com.br/login" class="btn-login btn-login-primary"><span class="btn-login__fx"
                             aria-hidden="true"></span><span class="btn-login__label">Fazer login</span><span
                             class="btn-login__icon" aria-hidden="true"><svg class="btn-login__arrow" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
@@ -398,7 +412,7 @@
         <header class="site-header" id="site-header">
             <div class="header-row-1" id="header-row-1">
                 <div class="header-container">
-                    <a href="login.html" class="btn-login btn-login-primary"><span class="btn-login__fx"
+                    <a href="https://app.nyrfestas.com.br/login" class="btn-login btn-login-primary"><span class="btn-login__fx"
                             aria-hidden="true"></span><span class="btn-login__label">Fazer login</span><span
                             class="btn-login__icon" aria-hidden="true"><svg class="btn-login__arrow" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
@@ -447,7 +461,7 @@
                             <li><a href="#contato">Contato</a></li>
                         </ul>
                         <div class="mobile-logins">
-                            <a href="login.html" class="btn-login btn-login-primary"><span class="btn-login__fx"
+                            <a href="https://app.nyrfestas.com.br/login" class="btn-login btn-login-primary"><span class="btn-login__fx"
                                     aria-hidden="true"></span><span class="btn-login__label">Fazer login</span><span
                                     class="btn-login__icon" aria-hidden="true"><svg class="btn-login__arrow"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
@@ -470,7 +484,7 @@
                             <li><a href="#contato">Contato</a></li>
                         </ul>
                         <div class="height-nav-logins">
-                            <a href="login.html" class="btn-login btn-login-primary"><span class="btn-login__fx"
+                            <a href="https://app.nyrfestas.com.br/login" class="btn-login btn-login-primary"><span class="btn-login__fx"
                                     aria-hidden="true"></span><span class="btn-login__label">Fazer login</span><span
                                     class="btn-login__icon" aria-hidden="true"><svg class="btn-login__arrow"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
@@ -1210,18 +1224,8 @@
                             </article>
                             <article class="card">
                                 <div class="card-media">
-                                    <div class="card-carousel" data-card-carousel>
-                                        <div class="card-carousel-track">
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846241/PRODUCTS_CR-MOD-6410_ochfro.webp"
-                                                    alt="Cartela de Bigode" loading="lazy"></div>
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383579/PRODUCTS_CR-MOD-6410_vseiyo.webp"
-                                                    alt="Cartela de Bigode" loading="lazy"></div>
-                                        </div><button class="card-prev" aria-label="Anterior">&#8249;</button><button
-                                            class="card-next" aria-label="Próximo">&#8250;</button>
-                                        <div class="card-dots"></div>
-                                    </div>
+                                    <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383579/PRODUCTS_CR-MOD-6410_vseiyo.webp"
+                                        alt="Cartela de Bigode" loading="lazy">
                                     <span class="card-ref">MOD-6410</span>
                                 </div>
                                 <div class="card-body">
@@ -1229,7 +1233,7 @@
                                     <p class="card-desc">Cartela com 12 bigodes pretos, modelos sortidos, de fácil
                                         revenda.</p>
                                     <button class="card-video-btn-primary"
-                                        data-video="https://www.youtube.com/shorts/tAWo3kRJ93M"
+                                        data-video="https://www.youtube.com/shorts/YBpRdjnIUU4"
                                         data-name="Cartela de Bigode" data-ref="MOD-6410"
                                         data-desc="Cartela de bigode em 12 unidades na cor preta com modelos sortidos, acessório de carnaval de fácil revenda e alto volume de saída."><svg
                                             viewBox="0 0 24 24">
@@ -1247,16 +1251,16 @@
                                         <div class="card-carousel-track">
                                             <div class="card-slide"><img
                                                     src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846204/PRODUCTS_CR-MOD-186_refcqz.webp"
-                                                    alt="Saia Tutu com Glitter" loading="lazy"></div>
+                                                    alt="Saia Tulê com Glitter" loading="lazy"></div>
                                             <div class="card-slide"><img
                                                     src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846209/PRODUCTS_CR-MOD-186_2_rbz37e.webp"
-                                                    alt="Saia Tutu com Glitter" loading="lazy"></div>
+                                                    alt="Saia Tulê com Glitter" loading="lazy"></div>
                                             <div class="card-slide"><img
                                                     src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846212/PRODUCTS_CR-MOD-186_3_mlmyes.webp"
-                                                    alt="Saia Tutu com Glitter" loading="lazy"></div>
+                                                    alt="Saia Tulê com Glitter" loading="lazy"></div>
                                             <div class="card-slide"><img
                                                     src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846214/PRODUCTS_CR-MOD-186_4_d6nmhg.webp"
-                                                    alt="Saia Tutu com Glitter" loading="lazy"></div>
+                                                    alt="Saia Tulê com Glitter" loading="lazy"></div>
                                         </div><button class="card-prev" aria-label="Anterior">&#8249;</button><button
                                             class="card-next" aria-label="Próximo">&#8250;</button>
                                         <div class="card-dots"></div>
@@ -1264,13 +1268,13 @@
                                     <span class="card-ref">MOD-186</span>
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-name">Saia Tutu com Glitter</h3>
-                                    <p class="card-desc">Saia tutu em tule com glitter, cores sortidas, 40 cm. Alta
-                                        demanda no varejo.</p>
+                                    <h3 class="card-name">Saia Tulê com Glitter</h3>
+                                    <p class="card-desc">Saia tulê com glitter, cores sortidas, 40 cm. Alta demanda no
+                                        varejo.</p>
                                     <button class="card-video-btn-primary"
-                                        data-video="https://www.youtube.com/shorts/tAWo3kRJ93M"
-                                        data-name="Saia Tutu com Glitter" data-ref="MOD-186"
-                                        data-desc="Saia tutu em tule com glitter em cores sortidas, peça de destaque em fantasias de carnaval com acabamento vibrante e alta demanda no varejo. 40 cm."><svg
+                                        data-video="https://www.youtube.com/shorts/PEi7epPTCJU"
+                                        data-name="Saia Tulê com Glitter" data-ref="MOD-186"
+                                        data-desc="Saia tulê com glitter em cores sortidas, peça de destaque em fantasias de carnaval com acabamento vibrante e alta demanda no varejo. 40 cm."><svg
                                             viewBox="0 0 24 24">
                                             <path d="M8 5v14l11-7z" />
                                         </svg>Ver Vídeo do Produto</button>
@@ -3391,7 +3395,7 @@
         // ─── COUNTDOWNS COMPLETOS (Junina, Copa, Halloween) ───────
         const CD_TARGETS = {
             halloween: new Date('2026-10-31T00:00:00'),
-            carnaval: new Date('2027-02-13T00:00:00'),
+            carnaval: new Date('2027-02-06T00:00:00'),
         };
         const pad = n => String(Math.max(0, n)).padStart(2, '0');
 

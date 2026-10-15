@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ── SEO PRIMARY ───────────────────────────────── -->
-    <title>Nyr Festas – Halloween no Atacado para Lojistas | Peça seu Catálogo</title>
+    <title>Nyr Festas – Carnaval no Atacado para Lojistas | Fale com um Atendente</title>
     <!-- Android -->
     <link rel="icon" type="image/png" sizes="192x192"
         href="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778847399/android-chrome-192x192_zumj1m.png">
@@ -22,30 +22,30 @@
         href="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778847413/favicon-32x32_ei8qnz.png">
 
     <meta name="description"
-        content="Distribuidora B2B de artigos de Halloween no atacado: fantasias, infláveis, adereços e decoração. Mais de 7.000 lojistas em 27 estados. Atendimento exclusivo para CNPJ. Peça seu catálogo.">
+        content="Distribuidora B2B de artigos de Carnaval no atacado: acessórios, adereços, painéis e decoração. Mais de 7.000 lojistas em 27 estados. Só para CNPJ.">
     <meta name="keywords"
-        content="halloween atacado, distribuidora artigos de halloween, fantasias halloween atacado, inflável halloween, artigos sazonais B2B, distribuidora São Paulo, Nyr Festas">
+        content="carnaval atacado, distribuidora artigos de carnaval, acessórios carnaval atacado, adereços carnaval, artigos sazonais B2B, distribuidora São Paulo, Nyr Festas">
     <meta name="author" content="Nyr Festas">
     <meta name="robots" content="noindex, follow">
-    <link rel="canonical" href="https://nyrfestas.com.br/halloween">
+    <link rel="canonical" href="https://nyrfestas.com.br/campanha-carnaval">
 
     <!-- ── OPEN GRAPH (WhatsApp, Instagram, Facebook) ── -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nyrfestas.com.br/halloween">
-    <meta property="og:title" content="Nyr Festas – Halloween no Atacado para Lojistas">
+    <meta property="og:url" content="https://nyrfestas.com.br/campanha-carnaval">
+    <meta property="og:title" content="Nyr Festas – Carnaval no Atacado para Lojistas">
     <meta property="og:description"
-        content="Fantasias, infláveis, adereços e decoração de Halloween no atacado. Mais de 7.000 lojistas em 27 estados. Atendimento exclusivo para CNPJ.">
+        content="Acessórios, adereços, painéis e decoração de Carnaval no atacado. Mais de 7.000 lojistas em 27 estados. Atendimento exclusivo para CNPJ.">
     <meta property="og:image"
-        content="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1776891406/heroHalloween_xzer33.png">
+        content="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1776891407/heroCarnaval_v4jliw.png">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="Nyr Festas">
 
     <!-- ── TWITTER / X ───────────────────────────────── -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nyr Festas – Halloween no Atacado para Lojistas">
-    <meta name="twitter:description" content="Mais de 7.000 lojistas em 27 estados. Artigos de Halloween no atacado.">
+    <meta name="twitter:title" content="Nyr Festas – Carnaval no Atacado para Lojistas">
+    <meta name="twitter:description" content="Mais de 7.000 lojistas em 27 estados. Artigos de Carnaval no atacado.">
     <meta name="twitter:image"
-        content="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1776891406/heroHalloween_xzer33.png">
+        content="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1776891407/heroCarnaval_v4jliw.png">
 
     <!-- ── SCHEMA.ORG (dados estruturados) ───────────── -->
     <script type="application/ld+json">
@@ -80,9 +80,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://res.cloudinary.com">
     <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Creepster&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Caveat:wght@600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./src/css/campanha.css">
+    <link rel="stylesheet" href="./src/css/campanha-carnaval.css?v=20261015">
 
     <!-- ═══════════════════ GOOGLE ADS (gtag.js) ═══════════════════ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18386450761"></script>
@@ -138,6 +138,20 @@
            NAO renomear os botoes para "fugir" da regra: resolve por
            tabela, mas volta a duplicar assim que alguem aceitar de novo
            uma sugestao de evento automatico no Gerenciador.
+
+           ATUALIZACAO 15/10/2026: a regra 1689604965462613 foi APAGADA
+           no Gerenciador de Eventos (conferido: nao aparece mais em
+           estRules na config do pixel). A correcao de setembro tinha
+           ficado pela metade: tiraram o Lead do codigo (fire() recebia
+           null) e ficou so o da regra, que disparava no CLIQUE mesmo
+           com o formulario invalido e saia sem eventID.
+
+           Agora o Lead do Meta sai SO de nyrTrackLead, com 'Lead' em
+           fire(), depois da validacao do formulario e com eventID
+           "nyr-...". Se o Lead voltar a duplicar, conferir se alguem
+           recriou a regra:
+             curl "https://connect.facebook.net/signals/config/1263940769105902?v=2.9.397&r=stable"
+           e procurar estRules.
            ──────────────────────────────────────────────────────────── */
     </script>
 
@@ -233,7 +247,7 @@
              */
             w.nyrTrackLead = function (url, nome) {
                 if (isTooSoon()) return false;
-                fire(FORM_CONVERSIONS, null, nome || 'Formulário WhatsApp');
+                fire(FORM_CONVERSIONS, 'Lead', nome || 'Formulário WhatsApp');
                 openNow(url);
                 return false;
             };
@@ -259,8 +273,8 @@
     </script>
 </head>
 
-<body data-mode="inicio">
-    <noscript><img height="1" width="1" style="display:none"
+<body>
+    <noscript><img height="1" width="1" style="display:none" alt=""
             src="https://www.facebook.com/tr?id=1263940769105902&ev=PageView&noscript=1" /></noscript>
 
     <!-- PAGE LOADER -->
@@ -322,7 +336,7 @@
         <!-- Background: imagem com blur + escurecimento em camada própria,
              separada do conteúdo, para não borrar texto/formulário -->
         <div class="hero-lp-bg"
-            style="background-image:url('https://res.cloudinary.com/dzt1kqdbc/image/upload/v1776891406/heroHalloween_xzer33.png')">
+            style="background-image:url('https://res.cloudinary.com/dzt1kqdbc/image/upload/v1776891407/heroCarnaval_v4jliw.png')">
         </div>
         <div class="hero-lp-overlay"></div>
 
@@ -367,14 +381,17 @@
         <!-- Hero main — headline + formulário, sem toggle -->
         <div class="hero-lp-main">
             <div class="hero-lp-text">
-                <span class="hero-lp-eyebrow">Distribuidora B2B · Halloween 2026</span>
-                <h1 class="hero-lp-title">O Halloween que mais vende está no catálogo da <em>Nyr Festas</em>.</h1>
-                <p class="hero-lp-sub">Fantasias, infláveis, adereços e decoração no atacado — variedade real, preço
-                    competitivo e entrega para os 27 estados. <br><strong>Exclusivo para lojistas com CNPJ.</strong></p>
+                <span class="hero-lp-eyebrow">Distribuidora B2B · Carnaval 2027</span>
+                <h1 class="hero-lp-title">O Carnaval que mais vende está no catálogo da <em>Nyr Festas</em>.</h1>
+                <p class="hero-lp-sub">Acessórios, adereços, painéis e decoração de Carnaval no atacado —
+                    <span class="hl">variedade real, preço competitivo</span> e entrega para os
+                    <span class="hl">27 estados</span>.
+                    <span class="hero-lp-cnpj">Exclusivo para lojistas com CNPJ</span>
+                </p>
             </div>
 
             <div class="hero-lp-form-card">
-                <h2 class="hero-lp-form-title">Solicite o <em>catálogo completo</em></h2>
+                <h2 class="hero-lp-form-title">Fale com um <em>atendente</em></h2>
                 <div class="form-group">
                     <label class="form-label" for="hero-razao-social">Razão Social</label>
                     <input class="form-input" type="text" id="hero-razao-social" placeholder="Nome da sua empresa"
@@ -430,69 +447,63 @@
     <!-- SERVICES -->
     <section class="services" id="servicos">
         <div class="container">
-
-
-
             <div class="service-row reveal" style="transition-delay:.2s">
                 <div class="service-text">
                     <span class="service-num">01</span>
                     <span class="service-badge badge-current">Em andamento</span>
-                    <h2 class="service-title">Halloween</h2>
-                    <p class="service-desc">O Halloween virou data no calendário do varejo brasileiro. Fantasias,
-                        infláveis, adereços e decorações com demanda crescente ano após ano, especialmente nos grandes
-                        centros. A Nyr distribui o que realmente sai do estoque — <strong>sem apostas de difícil saída,
-                            com foco no que vende</strong>.</p>
-                    <button class="btn-ver-produtos" data-season="halloween">
+                    <h2 class="service-title">Carnaval</h2>
+                    <p class="service-desc"><strong>Não adianta pedir fantasia em fevereiro.</strong> O Carnaval exige
+                        antecipação: os melhores lotes saem nos primeiros meses do ano. Nossa linha cobre do acessório
+                        básico à fantasia completa, com variedade para todos os perfis de loja.</p>
+                    <button class="btn-ver-produtos" data-season="carnaval">
                         Ver Produtos <span class="btn-arrow">→</span>
                     </button>
-                    <div class="service-countdown" id="cd-halloween-wrap">
+                    <div class="service-countdown" id="cd-carnaval-wrap">
                         <div class="service-countdown-unit"><span class="service-countdown-val"
-                                id="cd-halloween-d">--</span><span class="service-countdown-label">dias</span></div>
+                                id="cd-carnaval-d">--</span><span class="service-countdown-label">dias</span></div>
                         <span class="service-countdown-sep">:</span>
                         <div class="service-countdown-unit"><span class="service-countdown-val"
-                                id="cd-halloween-h">--</span><span class="service-countdown-label">horas</span></div>
+                                id="cd-carnaval-h">--</span><span class="service-countdown-label">horas</span></div>
                         <span class="service-countdown-sep">:</span>
                         <div class="service-countdown-unit"><span class="service-countdown-val"
-                                id="cd-halloween-m">--</span><span class="service-countdown-label">min</span></div>
+                                id="cd-carnaval-m">--</span><span class="service-countdown-label">min</span></div>
                         <span class="service-countdown-sep">:</span>
                         <div class="service-countdown-unit"><span class="service-countdown-val"
-                                id="cd-halloween-s">--</span><span class="service-countdown-label">seg</span></div>
+                                id="cd-carnaval-s">--</span><span class="service-countdown-label">seg</span></div>
                     </div>
                 </div>
+
                 <div class="service-img-col">
-                    <div class="service-img-wrap"
-                        style="background:rgba(123,45,139,0.07);border-color:rgba(123,45,139,0.2)">
+                    <div class="service-img-wrap" style="background:rgba(204,0,0,0.07);border-color:rgba(204,0,0,0.2)">
                         <span class="service-ilustrativas">Imagens Ilustrativas</span>
                         <div class="svc-carousel" data-carousel>
                             <div class="svc-carousel-track">
-                                <div class="svc-slide"><span class="svc-slide-label">Fantasias</span><img loading="lazy"
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846152/SERVICES_HL-FANTASIAS_c2fdwt.webp"
-                                        alt="Fantasias de Halloween">
-                                </div>
-                                <div class="svc-slide"><span class="svc-slide-label">Inflável</span><img loading="lazy"
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846155/SERVICES_HL-INFLAVEL-MOTOQUEIRO-CAVEIRA_t3uoev.webp"
-                                        alt="Inflável de Halloween"></div>
-                                <div class="svc-slide"><span class="svc-slide-label">Enfeite</span><img loading="lazy"
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846137/SERVICES_HL-BONECO-DECORATIVO_qzgquy.webp"
-                                        alt="Boneco Decorativo de Halloween"></div>
                                 <div class="svc-slide"><span class="svc-slide-label">Adereço</span><img loading="lazy"
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846142/SERVICES_HL-CESTO-PEGADOR_r7g0qh.webp"
-                                        alt="Adereços de Halloween">
-                                </div>
-                                <div class="svc-slide"><span class="svc-slide-label">Inflável</span><img loading="lazy"
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846147/SERVICES_HL-INFLAVEL-VAMPIRO_wqyfi6.webp"
-                                        alt="Inflável de Halloween"></div>
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846091/SERVICES_CR-MASCARA_yjdre6.webp"
+                                        alt="Adereço de Carnaval"></div>
+
+                                <div class="svc-slide"><span class="svc-slide-label">Decoração</span><img loading="lazy"
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846094/SERVICES_CR-MASCARA-ENFEITE_vq5swx.webp"
+                                        alt="Decoração Carnaval"></div>
+
                                 <div class="svc-slide"><span class="svc-slide-label">Meia-Calça</span><img
                                         loading="lazy"
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846150/SERVICES_HL-MEIAS_b3mmkb.webp"
-                                        alt="Meia-Calça de Halloween"></div>
-                                <div class="svc-slide"><span class="svc-slide-label">Chapéu</span><img loading="lazy"
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846140/SERVICES_HL-CHAPEU_wkng6k.webp"
-                                        alt="Chapéu de Halloween"></div>
-                                <div class="svc-slide"><span class="svc-slide-label">Decoração</span><img loading="lazy"
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846145/SERVICES_HL-DECORACAO_yc5iqe.webp"
-                                        alt="Decoração de Halloween">
-                                </div>
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846096/SERVICES_CR-MEIA-CAL%C3%87A_rrfecz.webp"
+                                        alt="Adereços de Carnaval"></div>
+
+                                <div class="svc-slide"><span class="svc-slide-label">Fantasia</span><img loading="lazy"
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846087/SERVICES_CR-ASAS-SAIAS_mg15yo.webp"
+                                        alt="Fantasia de Carnaval"></div>
+
+                                <div class="svc-slide"><span class="svc-slide-label">Adereço</span><img loading="lazy"
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846089/SERVICES_CR-COROA_iszuxp.webp"
+                                        alt="Adereço de Carnaval"></div>
+
+                                <div class="svc-slide"><span class="svc-slide-label">Brinco</span><img loading="lazy"
+                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846084/SERVICES_CR-BRINCO_hnczxk.webp"
+                                        alt="Adereço de Carnaval"></div>
+
+
                             </div>
                             <button class="svc-prev" aria-label="Anterior"><span>&#8249;</span></button>
                             <button class="svc-next" aria-label="Próximo"><span>&#8250;</span></button>
@@ -511,8 +522,8 @@
                 <h2 class="section-title">Nossos <em>Produtos</em></h2>
             </div>
 
-            <!-- HALLOWEEN -->
-            <div class="season-panel active" data-panel="halloween">
+            <!-- CARNAVAL -->
+            <div class="season-panel active" data-panel="carnaval">
                 <span class="products-row-label">Fileira 01</span>
                 <div class="cards-row-wrapper">
                     <button class="carousel-arrow carousel-arrow-prev" aria-label="Anterior"><svg viewBox="0 0 24 24">
@@ -522,59 +533,48 @@
                         <div class="cards-row">
                             <article class="card">
                                 <div class="card-media">
-                                    <div class="card-carousel" data-card-carousel>
-                                        <div class="card-carousel-track">
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846463/PRODUCTS_HL-MOD-1055_lqowlw.webp"
-                                                    alt="Inflável Bivolt Halloween" loading="lazy"></div>
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846512/PRODUCTS_HL-MOD-1055_2_mlasdv.webp"
-                                                    alt="Inflável Bivolt Halloween" loading="lazy"></div>
-                                        </div><button class="card-prev" aria-label="Anterior">&#8249;</button><button
-                                            class="card-next" aria-label="Próximo">&#8250;</button>
-                                        <div class="card-dots"></div>
-                                    </div>
-                                    <span class="card-ref">MOD-1055</span>
+                                    <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383580/PRODUCTS_CR-MOD-1191_ujxuil.webp"
+                                        alt="Óculos Cocar" loading="lazy">
+                                    <span class="card-ref">MOD-1191</span>
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-name">Inflável Bivolt Halloween</h3>
-                                    <p class="card-desc">Inflável de tomada bivolt com 2,40 (A) x 2 (L) m, perfeito
-                                        para decoração de fachadas e ambientes internos de grande impacto visual no
-                                        Halloween.</p>
+                                    <h3 class="card-name">Óculos Cocar</h3>
+                                    <p class="card-desc">Óculos com cocar, divertido e de fácil revenda para fantasias e
+                                        blocos.</p>
                                     <button class="card-video-btn-primary"
-                                        data-video="https://www.youtube.com/shorts/Te6WT_o_HWo"
-                                        data-name="Inflável Bivolt Halloween" data-ref="MOD-1055"
-                                        data-desc="Inflável de tomada bivolt com 2,40 (A) x 2 (L) m, perfeito para decoração de fachadas e ambientes internos de grande impacto visual no Halloween."><svg
+                                        data-video="https://www.youtube.com/shorts/VOlwdPEG6XQ" data-name="Óculos Cocar"
+                                        data-ref="MOD-1191"
+                                        data-desc="Óculos com cocar, acessório de carnaval divertido e de fácil revenda, ideal para compor fantasias e animar blocos e festas."><svg
                                             viewBox="0 0 24 24">
                                             <path d="M8 5v14l11-7z" />
                                         </svg>Ver Vídeo do Produto</button>
                                     <button class="card-cta-secondary"><svg viewBox="0 0 24 24">
                                             <path
                                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                                        </svg>Solicitar catálogo</button>
+                                        </svg>Falar com Atendente</button>
                                 </div>
                             </article>
                             <article class="card">
                                 <div class="card-media">
-                                    <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846495/PRODUCTS_HL-MOD-46_re2xlr.webp"
-                                        alt="Enfeite Sanfonado Fantasminha" loading="lazy">
-                                    <span class="card-ref">MOD-46</span>
+                                    <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383583/PRODUCTS_CR-MOD-1163_akgref.webp"
+                                        alt="Brincos com Plumas Coloridas" loading="lazy">
+                                    <span class="card-ref">MOD-1163</span>
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-name">Enfeite Sanfonado Fantasminha</h3>
-                                    <p class="card-desc">Enfeite sanfonado de fantasminha, leve e de fácil instalação,
-                                        ideal para decorar vitrines e espaços temáticos de Halloween. 50 cm.</p>
+                                    <h3 class="card-name">Brincos com Plumas Coloridas</h3>
+                                    <p class="card-desc">Brincos com plumas coloridas, destaque nas fantasias e de fácil
+                                        revenda.</p>
                                     <button class="card-video-btn-primary"
-                                        data-video="https://www.youtube.com/shorts/ODu_3fw-jjQ"
-                                        data-name="Enfeite Sanfonado Fantasminha" data-ref="MOD-46"
-                                        data-desc="Enfeite sanfonado de fantasminha, leve e de fácil instalação, ideal para decorar vitrines e espaços temáticos de Halloween. 50 cm."><svg
+                                        data-video="https://www.youtube.com/shorts/fTrqOATu8D8"
+                                        data-name="Brincos com Plumas Coloridas" data-ref="MOD-1163"
+                                        data-desc="Brincos com plumas coloridas no tema de carnaval, acessório de destaque para fantasias e de fácil revenda."><svg
                                             viewBox="0 0 24 24">
                                             <path d="M8 5v14l11-7z" />
                                         </svg>Ver Vídeo do Produto</button>
                                     <button class="card-cta-secondary"><svg viewBox="0 0 24 24">
                                             <path
                                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                                        </svg>Solicitar catálogo</button>
+                                        </svg>Falar com Atendente</button>
                                 </div>
                             </article>
                             <article class="card">
@@ -582,75 +582,71 @@
                                     <div class="card-carousel" data-card-carousel>
                                         <div class="card-carousel-track">
                                             <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846500/PRODUCTS_HL-MOD-951_nnedts.webp"
-                                                    alt="Chapéu de Bruxa Luxo com Véu" loading="lazy"></div>
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846241/PRODUCTS_CR-MOD-6410_ochfro.webp"
+                                                    alt="Cartela de Bigode" loading="lazy"></div>
                                             <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846506/PRODUCTS_HL-MOD-951_2_chu9il.webp"
-                                                    alt="Chapéu de Bruxa Luxo com Véu" loading="lazy"></div>
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846486/PRODUCTS_HL-MOD-951_3_yrhidf.webp"
-                                                    alt="Chapéu de Bruxa Luxo com Véu" loading="lazy"></div>
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846483/PRODUCTS_HL-MOD-951_4_hq8fin.webp"
-                                                    alt="Chapéu de Bruxa Luxo com Véu" loading="lazy"></div>
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383579/PRODUCTS_CR-MOD-6410_vseiyo.webp"
+                                                    alt="Cartela de Bigode" loading="lazy"></div>
                                         </div><button class="card-prev" aria-label="Anterior">&#8249;</button><button
                                             class="card-next" aria-label="Próximo">&#8250;</button>
                                         <div class="card-dots"></div>
                                     </div>
-                                    <span class="card-ref">MOD-951</span>
+                                    <span class="card-ref">MOD-6410</span>
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-name">Chapéu de Bruxa Luxo com Véu</h3>
-                                    <p class="card-desc">Chapéu de bruxa luxo com véu em cores sortidas, peça de
-                                        destaque em fantasias de Halloween com acabamento diferenciado e alta demanda no
+                                    <h3 class="card-name">Cartela de Bigode</h3>
+                                    <p class="card-desc">Cartela com 12 bigodes pretos, modelos sortidos, de fácil
+                                        revenda.</p>
+                                    <button class="card-video-btn-primary"
+                                        data-video="https://www.youtube.com/shorts/YBpRdjnIUU4"
+                                        data-name="Cartela de Bigode" data-ref="MOD-6410"
+                                        data-desc="Cartela de bigode em 12 unidades na cor preta com modelos sortidos, acessório de carnaval de fácil revenda e alto volume de saída."><svg
+                                            viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>Ver Vídeo do Produto</button>
+                                    <button class="card-cta-secondary"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+                                        </svg>Falar com Atendente</button>
+                                </div>
+                            </article>
+                            <article class="card">
+                                <div class="card-media">
+                                    <div class="card-carousel" data-card-carousel>
+                                        <div class="card-carousel-track">
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846204/PRODUCTS_CR-MOD-186_refcqz.webp"
+                                                    alt="Saia Tulê com Glitter" loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846209/PRODUCTS_CR-MOD-186_2_rbz37e.webp"
+                                                    alt="Saia Tulê com Glitter" loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846212/PRODUCTS_CR-MOD-186_3_mlmyes.webp"
+                                                    alt="Saia Tulê com Glitter" loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846214/PRODUCTS_CR-MOD-186_4_d6nmhg.webp"
+                                                    alt="Saia Tulê com Glitter" loading="lazy"></div>
+                                        </div><button class="card-prev" aria-label="Anterior">&#8249;</button><button
+                                            class="card-next" aria-label="Próximo">&#8250;</button>
+                                        <div class="card-dots"></div>
+                                    </div>
+                                    <span class="card-ref">MOD-186</span>
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-name">Saia Tulê com Glitter</h3>
+                                    <p class="card-desc">Saia tulê com glitter, cores sortidas, 40 cm. Alta demanda no
                                         varejo.</p>
                                     <button class="card-video-btn-primary"
-                                        data-video="https://www.youtube.com/shorts/9_zA4aDKng4"
-                                        data-name="Chapéu de Bruxa Luxo com Véu" data-ref="MOD-951"
-                                        data-desc="Chapéu de bruxa luxo com véu em cores sortidas, peça de destaque em fantasias de Halloween com acabamento diferenciado e alta demanda no varejo."><svg
+                                        data-video="https://www.youtube.com/shorts/PEi7epPTCJU"
+                                        data-name="Saia Tulê com Glitter" data-ref="MOD-186"
+                                        data-desc="Saia tulê com glitter em cores sortidas, peça de destaque em fantasias de carnaval com acabamento vibrante e alta demanda no varejo. 40 cm."><svg
                                             viewBox="0 0 24 24">
                                             <path d="M8 5v14l11-7z" />
                                         </svg>Ver Vídeo do Produto</button>
                                     <button class="card-cta-secondary"><svg viewBox="0 0 24 24">
                                             <path
                                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                                        </svg>Solicitar catálogo</button>
-                                </div>
-                            </article>
-                            <article class="card">
-                                <div class="card-media">
-                                    <div class="card-carousel" data-card-carousel>
-                                        <div class="card-carousel-track">
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846503/PRODUCTS_HL-MOD-143_i4jc3d.webp"
-                                                    alt="Mini Bolsas em Feltro Halloween" loading="lazy"></div>
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846477/PRODUCTS_HL-MOD-143_2_l6xjff.webp"
-                                                    alt="Mini Bolsas em Feltro Halloween" loading="lazy"></div>
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846472/PRODUCTS_HL-MOD-143_3_yxfead.webp"
-                                                    alt="Mini Bolsas em Feltro Halloween" loading="lazy"></div>
-                                        </div><button class="card-prev" aria-label="Anterior">&#8249;</button><button
-                                            class="card-next" aria-label="Próximo">&#8250;</button>
-                                        <div class="card-dots"></div>
-                                    </div>
-                                    <span class="card-ref">MOD-143</span>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-name">Mini Bolsas em Feltro Halloween</h3>
-                                    <p class="card-desc">Mini bolsas em feltro com figuras sortidas, ideais para revenda
-                                        como acessório de fantasia ou lembrancinha temática. 13 cm.</p>
-                                    <button class="card-video-btn-primary"
-                                        data-video="https://www.youtube.com/shorts/FaRKqiWPhy0"
-                                        data-name="Mini Bolsas em Feltro Halloween" data-ref="MOD-143"
-                                        data-desc="Mini bolsas em feltro com figuras sortidas, ideais para revenda como acessório de fantasia ou lembrancinha temática. 13 cm."><svg
-                                            viewBox="0 0 24 24">
-                                            <path d="M8 5v14l11-7z" />
-                                        </svg>Ver Vídeo do Produto</button>
-                                    <button class="card-cta-secondary"><svg viewBox="0 0 24 24">
-                                            <path
-                                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                                        </svg>Solicitar catálogo</button>
+                                        </svg>Falar com Atendente</button>
                                 </div>
                             </article>
                         </div>
@@ -671,58 +667,35 @@
                                     <div class="card-carousel" data-card-carousel>
                                         <div class="card-carousel-track">
                                             <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846480/PRODUCTS_HL-MOD-924_oy3ch9.webp"
-                                                    alt="Mãozinha Terror" loading="lazy"></div>
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383582/PRODUCTS_CR-MOD-1180_x3qnbb.webp"
+                                                    alt="Painel em Papel Cartonado" loading="lazy"></div>
                                             <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846509/PRODUCTS_HL-MOD-924_2_copz9o.webp"
-                                                    alt="Mãozinha Terror" loading="lazy"></div>
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383581/PRODUCTS_CR-MOD-1180_2_xl3uc8.webp"
+                                                    alt="Painel em Papel Cartonado" loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383580/PRODUCTS_CR-MOD-1180_3_na6wfg.webp"
+                                                    alt="Painel em Papel Cartonado" loading="lazy"></div>
                                         </div><button class="card-prev" aria-label="Anterior">&#8249;</button><button
                                             class="card-next" aria-label="Próximo">&#8250;</button>
                                         <div class="card-dots"></div>
                                     </div>
-                                    <span class="card-ref">MOD-924</span>
+                                    <span class="card-ref">MOD-1180</span>
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-name">Mãozinha Terror</h3>
-                                    <p class="card-desc">Mãozinha terror em material resistente, acessório de Halloween
-                                        de alto giro, ideal para compor fantasias ou decorações temáticas. 13 (A) x 10
-                                        (L) cm.
-                                    </p>
+                                    <h3 class="card-name">Painel em Papel Cartonado</h3>
+                                    <p class="card-desc">Painel em papel cartonado, modelos sortidos, 50 (L) x 30 (A)
+                                        cm, para vitrines e fachadas.</p>
                                     <button class="card-video-btn-primary"
-                                        data-video="https://www.youtube.com/shorts/PbFXHJFEeck"
-                                        data-name="Mãozinha Terror" data-ref="MOD-924" data-desc="Mãozinha terror em material resistente, acessório de Halloween de alto giro, ideal para compor fantasias ou decorações temáticas. 13 (A) x 10
-                                        (L) cm."><svg viewBox="0 0 24 24">
+                                        data-video="https://www.youtube.com/shorts/A44wE40lhYA"
+                                        data-name="Painel em Papel Cartonado" data-ref="MOD-1180"
+                                        data-desc="Painel em papel cartonado com modelos sortidos, 50 cm (L) x 30 cm (A), ideal para decorar vitrines, fachadas e ambientes temáticos de carnaval."><svg
+                                            viewBox="0 0 24 24">
                                             <path d="M8 5v14l11-7z" />
                                         </svg>Ver Vídeo do Produto</button>
                                     <button class="card-cta-secondary"><svg viewBox="0 0 24 24">
                                             <path
                                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                                        </svg>Solicitar catálogo</button>
-                                </div>
-                            </article>
-                            <article class="card">
-                                <div class="card-media">
-                                    <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846489/PRODUCTS_HL-REF-100_snjlm4.webp"
-                                        alt="Abóbora em Plástico com Alça" loading="lazy">
-                                    <span class="card-ref">REF: 100</span>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-name">Abóbora em Plástico com Alça</h3>
-                                    <p class="card-desc">Abóbora em plástico com alça, produto clássico e indispensável
-                                        no Halloween, ideal para revenda como acessório de fantasia infantil. 12 (A) ×
-                                        19 (L)
-                                        cm, 11 cm de diâmetro. 2 litros.</p>
-                                    <button class="card-video-btn-primary"
-                                        data-video="https://www.youtube.com/shorts/XhHG6XjvZRU"
-                                        data-name="Abóbora em Plástico com Alça" data-ref="REF: 100" data-desc="Abóbora em plástico com alça, produto clássico e indispensável no Halloween, ideal para revenda como acessório de fantasia infantil. 12 (A) ×
-                                        19 (L)
-                                        cm, 11 cm de diâmetro. 2 litros."><svg viewBox="0 0 24 24">
-                                            <path d="M8 5v14l11-7z" />
-                                        </svg>Ver Vídeo do Produto</button>
-                                    <button class="card-cta-secondary"><svg viewBox="0 0 24 24">
-                                            <path
-                                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                                        </svg>Solicitar catálogo</button>
+                                        </svg>Falar com Atendente</button>
                                 </div>
                             </article>
                             <article class="card">
@@ -730,64 +703,118 @@
                                     <div class="card-carousel" data-card-carousel>
                                         <div class="card-carousel-track">
                                             <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846466/PRODUCTS_HL-MOD-971_isvmhm.webp"
-                                                    alt="Campainha Eletrônica Terror" loading="lazy"></div>
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383590/PRODUCTS_CR-MOD-1110_gmgk5k.webp"
+                                                    alt="Painel Máscara de Plástico com Fitas Metalizadas"
+                                                    loading="lazy"></div>
                                             <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846492/PRODUCTS_HL-MOD-971_2_j9tgbc.webp"
-                                                    alt="Campainha Eletrônica Terror" loading="lazy"></div>
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383588/PRODUCTS_CR-MOD-1110_2_paoq50.webp"
+                                                    alt="Painel Máscara de Plástico com Fitas Metalizadas"
+                                                    loading="lazy"></div>
                                             <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846475/PRODUCTS_HL-MOD-971_3_fow1nu.webp"
-                                                    alt="Campainha Eletrônica Terror" loading="lazy"></div>
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383587/PRODUCTS_CR-MOD-1110_3_h1rde6.webp"
+                                                    alt="Painel Máscara de Plástico com Fitas Metalizadas"
+                                                    loading="lazy"></div>
                                             <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846498/PRODUCTS_HL-MOD-971_4_y0lroj.webp"
-                                                    alt="Campainha Eletrônica Terror" loading="lazy"></div>
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383586/PRODUCTS_CR-MOD-1110_5_of640c.webp"
+                                                    alt="Painel Máscara de Plástico com Fitas Metalizadas"
+                                                    loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383585/PRODUCTS_CR-MOD-1110_6_ovqt09.webp"
+                                                    alt="Painel Máscara de Plástico com Fitas Metalizadas"
+                                                    loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383584/PRODUCTS_CR-MOD-1110_7_bdlycj.webp"
+                                                    alt="Painel Máscara de Plástico com Fitas Metalizadas"
+                                                    loading="lazy"></div>
                                         </div><button class="card-prev" aria-label="Anterior">&#8249;</button><button
                                             class="card-next" aria-label="Próximo">&#8250;</button>
                                         <div class="card-dots"></div>
                                     </div>
-                                    <span class="card-ref">MOD-971</span>
+                                    <span class="card-ref">MOD-1110</span>
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-name">Campainha Eletrônica Terror</h3>
-                                    <p class="card-desc">Campainha eletrônica com luz, som e língua surpresa em modelos
-                                        sortidos, item de forte apelo visual para decoração e brincadeiras temáticas. 20
-                                        (A)
-                                        × 14 (L) cm.</p>
+                                    <h3 class="card-name">Painel Máscara de Plástico com Fitas Metalizadas</h3>
+                                    <p class="card-desc">Painel de máscara em plástico com fitas metalizadas, modelos
+                                        sortidos. 50 (L) x 86 (A) cm.</p>
                                     <button class="card-video-btn-primary"
-                                        data-video="https://www.youtube.com/shorts/B04_i7amgIE"
-                                        data-name="Campainha Eletrônica Terror" data-ref="MOD-971" data-desc="Campainha eletrônica com luz, som e língua surpresa em modelos sortidos, item de forte apelo visual para decoração e brincadeiras temáticas. 20
-                                        (A)
-                                        × 14 (L) cm."><svg viewBox="0 0 24 24">
+                                        data-video="https://www.youtube.com/shorts/Q_0OcxfVf1s"
+                                        data-name="Painel Máscara de Plástico com Fitas Metalizadas" data-ref="MOD-1110"
+                                        data-desc="Painel em formato de máscara, em plástico com fitas metalizadas, modelos sortidos, 50 cm (L) x 86 cm (A), ideal para decorar vitrines e ambientes de carnaval."><svg
+                                            viewBox="0 0 24 24">
                                             <path d="M8 5v14l11-7z" />
                                         </svg>Ver Vídeo do Produto</button>
                                     <button class="card-cta-secondary"><svg viewBox="0 0 24 24">
                                             <path
                                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                                        </svg>Solicitar catálogo</button>
+                                        </svg>Falar com Atendente</button>
                                 </div>
                             </article>
                             <article class="card">
                                 <div class="card-media">
-                                    <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846469/PRODUCTS_HL-MOD-6420_jsf2vx.webp"
-                                        alt="Dente de Vampiro em Silicone" loading="lazy">
-                                    <span class="card-ref">MOD-6420</span>
+                                    <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383592/PRODUCTS_CR-MOD-360_glhogj.webp"
+                                        alt="Sombrinha Frevo Colorida com Cabo de Madeira" loading="lazy">
+                                    <span class="card-ref">MOD-360</span>
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-name">Dente de Vampiro em Silicone</h3>
-                                    <p class="card-desc">Dente de vampiro em silicone maleável e confortável, acessório
-                                        clássico de Halloween com alta saída em lojas de fantasias e artigos de festa.
-                                    </p>
-                                    <button class="card-video-btn-no-video"><svg viewBox="0 0 24 24">
-                                            <path
-                                                d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                fill="none" />
-                                        </svg>Vídeo não disponível</button><span class="no-video-msg">Este produto não
-                                        possui vídeo ilustrativo.</span>
+                                    <h3 class="card-name">Sombrinha Frevo Colorida com Cabo de Madeira</h3>
+                                    <p class="card-desc">Sombrinha de frevo colorida com cabo de madeira, 50 cm de
+                                        diâmetro e 34 cm de cabo.</p>
+                                    <button class="card-video-btn-primary"
+                                        data-video="https://www.youtube.com/shorts/8BcxLG_ZihQ"
+                                        data-name="Sombrinha Frevo Colorida com Cabo de Madeira" data-ref="MOD-360"
+                                        data-desc="Sombrinha de frevo colorida com cabo de madeira, 50 cm de diâmetro e 34 cm de cabo, item tradicional do carnaval para fantasias, blocos e decoração."><svg
+                                            viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>Ver Vídeo do Produto</button>
                                     <button class="card-cta-secondary"><svg viewBox="0 0 24 24">
                                             <path
                                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                                        </svg>Solicitar catálogo</button>
+                                        </svg>Falar com Atendente</button>
+                                </div>
+                            </article>
+                            <article class="card">
+                                <div class="card-media">
+                                    <div class="card-carousel" data-card-carousel>
+                                        <div class="card-carousel-track">
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846222/PRODUCTS_CR-MOD-1119_m8girv.webp"
+                                                    alt="Adesivo Facial Meia Face com Pedras" loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846225/PRODUCTS_CR-MOD-1119_2_jle2xl.webp"
+                                                    alt="Adesivo Facial Meia Face com Pedras" loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846228/PRODUCTS_CR-MOD-1119_3_egbtnx.webp"
+                                                    alt="Adesivo Facial Meia Face com Pedras" loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846230/PRODUCTS_CR-MOD-1119_4_kxa1yt.webp"
+                                                    alt="Adesivo Facial Meia Face com Pedras" loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846233/PRODUCTS_CR-MOD-1119_5_tovkhy.webp"
+                                                    alt="Adesivo Facial Meia Face com Pedras" loading="lazy"></div>
+                                            <div class="card-slide"><img
+                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846235/PRODUCTS_CR-MOD-1119_6_wvs44x.webp"
+                                                    alt="Adesivo Facial Meia Face com Pedras" loading="lazy"></div>
+                                        </div><button class="card-prev" aria-label="Anterior">&#8249;</button><button
+                                            class="card-next" aria-label="Próximo">&#8250;</button>
+                                        <div class="card-dots"></div>
+                                    </div>
+                                    <span class="card-ref">MOD-1119</span>
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-name">Adesivo Facial Meia Face com Pedras</h3>
+                                    <p class="card-desc">Adesivo facial em cartela meia face com pedras sortidas, de
+                                        alto giro.</p>
+                                    <button class="card-video-btn-primary"
+                                        data-video="https://www.youtube.com/shorts/tAWo3kRJ93M"
+                                        data-name="Adesivo Facial Meia Face com Pedras" data-ref="MOD-1119"
+                                        data-desc="Adesivo facial em cartela meia face com pedras sortidas, acessório de carnaval de alto giro, ideal para lojistas que trabalham com fantasias e adereços temáticos."><svg
+                                            viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>Ver Vídeo do Produto</button>
+                                    <button class="card-cta-secondary"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.129.558 4.126 1.532 5.856L.057 23.784a.5.5 0 0 0 .602.617l6.077-1.43A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.524-5.18-1.434l-.37-.22-3.827.901.928-3.73-.242-.384A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+                                        </svg>Falar com Atendente</button>
                                 </div>
                             </article>
                         </div>
@@ -799,160 +826,422 @@
             </div>
         </div>
     </section>
-    <!-- NOVIDADE HALLOWEEN 2026 -->
-    <section class="novidade-hl" id="novidade" style="padding: 80px 0; background: var(--black);">
+    <!-- NOVIDADES -->
+    <section class="novidade-hl nv-carnaval nv-confete" id="novidade" style="padding: 80px 0;">
         <div class="container">
             <div class="novidade-header reveal">
-                <div class="novidade-eyebrow">Novidade Halloween 2026</div>
+                <div class="novidade-eyebrow">Novidades Carnaval 2027</div>
                 <h2 class="novidade-title">Em primeira mão</h2>
             </div>
 
             <div class="novidade-tabs reveal" style="transition-delay:.08s">
-                <button class="novidade-tab active" data-novidade-panel="mao-terror">Mão do Terror</button>
+                <button class="novidade-tab active" data-novidade-panel="leques">Leques</button>
                 <span class="novidade-tab-sep">·</span>
-                <button class="novidade-tab unvisited" data-novidade-panel="painel-h">Painéis Horizontais</button>
+                <button class="novidade-tab unvisited" data-novidade-panel="painel-mascara">Painel Máscara</button>
                 <span class="novidade-tab-sep">·</span>
-                <button class="novidade-tab unvisited" data-novidade-panel="painel-v">Painel Vertical</button>
+                <button class="novidade-tab unvisited" data-novidade-panel="sombrinha">Sombrinha</button>
+                <span class="novidade-tab-sep">·</span>
+                <button class="novidade-tab unvisited" data-novidade-panel="painel-holografico">Painel
+                    Holográfico</button>
+                <span class="novidade-tab-sep">·</span>
+                <button class="novidade-tab unvisited" data-novidade-panel="cilios-led">Cílios de LED</button>
+                <span class="novidade-tab-sep">·</span>
+                <button class="novidade-tab unvisited" data-novidade-panel="oculos">Óculos</button>
+                <span class="novidade-tab-sep">·</span>
+                <button class="novidade-tab unvisited" data-novidade-panel="colar">Colar</button>
+                <span class="novidade-tab-sep">·</span>
+                <button class="novidade-tab unvisited" data-novidade-panel="adesivos">Adesivos</button>
+                <span class="novidade-tab-sep">·</span>
+                <button class="novidade-tab unvisited" data-novidade-panel="varais">Varais</button>
             </div>
 
-            <!-- PAINEL — MÃO DO TERROR -->
-            <div class="novidade-panel active" data-novidade-panel="mao-terror">
-                <div class="novidade-card reveal" style="transition-delay:.15s">
-                    <div class="novidade-card-img">
-                        <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1783693270/NOVIDADE_HL-MAO-DO-TERROR_oeefnd.webp"
-                            alt="Mão do Terror REF 315" loading="lazy">
-                    </div>
-                    <div class="novidade-card-body">
-                        <span class="novidade-badge">Novo para 2026</span>
-                        <p class="novidade-ref">REF · 315</p>
-                        <h3 class="novidade-nome">Mão do <em>Terror</em></h3>
-                        <p class="novidade-desc">Um item que <strong>vende sozinho na vitrine</strong>: quem vê, quer
-                            testar.
-                            Quem testa, compra. Efeito imediato, demanda garantida.</p>
-                        <p class="novidade-obs">Esse tipo de produto costuma esgotar rápido por ser novidade — vale
-                            garantir quantidade já no pedido de antecipação.</p>
-                        <div class="novidade-actions">
-                            <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="Mão do Terror"
-                                data-video="https://www.youtube.com/shorts/qyWJVIOrloU" data-name="Mão do Terror"
-                                data-ref="REF 315"
-                                data-desc="Efeito surpresa de mão saindo do corpo — item de alto impacto visual e giro garantido na vitrine."><svg
-                                    viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>Ver vídeo do produto</button>
-                            <button class="novidade-btn-wa" data-novidade-wa-btn="Mão do Terror">Falar com
-                                atendente</button>
-                            <span class="novidade-selo">Imagens Ilustrativas</span>
+            <div class="novidade-stage">
+                <button type="button" class="novidade-arrow novidade-arrow--prev" aria-label="Novidade anterior"><svg
+                        viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M15 5l-7 7 7 7" />
+                    </svg></button>
+                <button type="button" class="novidade-arrow novidade-arrow--next" aria-label="Próxima novidade"><svg
+                        viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 5l7 7-7 7" />
+                    </svg></button>
+
+                <!-- PAINEL — LEQUES ARCO-ÍRIS -->
+                <div class="novidade-panel active" data-novidade-panel="leques">
+                    <div class="novidade-card reveal" style="transition-delay:.15s">
+                        <div class="novidade-card-img">
+                            <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469259/NOVIDADE_CR-MOD-1138_MOD-1137_zlbrto.webp"
+                                alt="Leques Arco-Íris" loading="lazy">
+                        </div>
+                        <div class="novidade-card-body">
+                            <span class="novidade-badge">Novo para 2027</span>
+                            <p class="novidade-ref">MOD-1138 e MOD-1137</p>
+                            <h3 class="novidade-nome" style="--nw:5.89">Leques <em
+                                    style="white-space:nowrap">Arco-Íris</em></h3>
+                            <p class="novidade-desc">Leques nas cores do arco-íris, em dois tamanhos: colorido que chama
+                                atenção na vitrine e anima a folia.</p>
+                            <ul class="novidade-skus">
+                                <li class="novidade-sku">
+                                    <span class="novidade-sku-info"><b>MOD-1138</b><span>Leque arco-íris · 33 (A) × 64
+                                            (L) cm</span></span>
+                                    <button class="novidade-btn-video novidade-sku-btn card-video-btn-primary"
+                                        data-novidade-wa="Leques Arco-Íris"
+                                        data-video="https://www.youtube.com/shorts/xi1b8RDMVvA"
+                                        data-name="Leque arco-íris MOD-1138" data-ref="MOD-1138"
+                                        data-desc="Leques nas cores do arco-íris, em dois tamanhos: colorido que chama atenção na vitrine e anima a folia. Leque arco-íris · 33 (A) × 64 (L) cm."><svg
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>Ver vídeo</button>
+                                </li>
+                                <li class="novidade-sku">
+                                    <span class="novidade-sku-info"><b>MOD-1137</b><span>Leque arco-íris · 23 (A) × 42
+                                            (L) cm</span></span>
+                                    <button class="novidade-btn-video novidade-sku-btn card-video-btn-primary"
+                                        data-novidade-wa="Leques Arco-Íris"
+                                        data-video="https://www.youtube.com/shorts/nDWN4Icd_Dc"
+                                        data-name="Leque arco-íris MOD-1137" data-ref="MOD-1137"
+                                        data-desc="Leques nas cores do arco-íris, em dois tamanhos: colorido que chama atenção na vitrine e anima a folia. Leque arco-íris · 23 (A) × 42 (L) cm."><svg
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>Ver vídeo</button>
+                                </li>
+                            </ul>
+                            <div class="novidade-actions">
+                                <button class="novidade-btn-wa" data-novidade-wa-btn="Leques Arco-Íris">Falar com
+                                    atendente</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- PAINEL — PAINÉIS HORIZONTAIS -->
-            <div class="novidade-panel" data-novidade-panel="painel-h">
-                <div class="novidade-card reveal">
-                    <div class="novidade-card-img">
-                        <div class="novidade-carousel" data-novidade-carousel>
-                            <div class="novidade-carousel-track">
-                                <div class="novidade-slide"><img
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEIS-HORIZONTAIS_1_m14qjj.webp"
-                                        alt="Painéis Horizontais 1" loading="lazy"></div>
-                                <div class="novidade-slide"><img
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEIS-HORIZONTAIS_2_xk0ruu.webp"
-                                        alt="Painéis Horizontais 2" loading="lazy"></div>
-                                <div class="novidade-slide"><img
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEIS-HORIZONTAIS_3_baqm4x.webp"
-                                        alt="Painéis Horizontais 3" loading="lazy"></div>
-                                <div class="novidade-slide"><img
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEIS-HORIZONTAIS_4_mmlzil.webp"
-                                        alt="Painéis Horizontais 4" loading="lazy"></div>
-                            </div>
-                            <div class="novidade-dots"></div>
+                <!-- PAINEL — PAINEL MÁSCARA -->
+                <div class="novidade-panel" data-novidade-panel="painel-mascara">
+                    <div class="novidade-card reveal">
+                        <div class="novidade-card-img">
+                            <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469254/NOVIDADE_CR-MOD-1194_bk4ar8.webp"
+                                alt="Painel Máscara" loading="lazy">
                         </div>
-                    </div>
-                    <div class="novidade-card-body">
-                        <span class="novidade-badge">Novo para 2026</span>
-                        <p class="novidade-ref">MOD-1130 e MOD-1131</p>
-                        <h3 class="novidade-nome">Painéis <em>Horizontais</em></h3>
-                        <p class="novidade-desc">Painéis em tecido para decoração, com acabamento reforçado, estampas
-                            de alto impacto visual e tecido resistente — ideais para ambientar vitrines, festas e
-                            decorações temáticas.</p>
-                        <p class="novidade-obs">MOD-1130 · 180×110 cm | MOD-1131 · 100×75 cm</p>
-                        <div class="novidade-actions">
-                            <div class="novidade-video-row">
+                        <div class="novidade-card-body">
+                            <span class="novidade-badge">Novo para 2027</span>
+                            <p class="novidade-ref">MOD-1194</p>
+                            <h3 class="novidade-nome" style="--nw:5.59">Painel <em>Máscara</em></h3>
+                            <p class="novidade-desc">Painel de máscara em plástico com fitas coloridas metalizadas:
+                                brilho e movimento para vitrines, festas e fotos.</p>
+                            <p class="novidade-obs">MOD-1194 · 84 (A) × 50 (L) cm</p>
+                            <div class="novidade-actions">
                                 <button class="novidade-btn-video card-video-btn-primary"
-                                    data-novidade-wa="Painéis Horizontais"
-                                    data-video="https://www.youtube.com/shorts/fFc9NeRSO_U"
-                                    data-name="Painel Horizontal MOD-1130" data-ref="MOD-1130"
-                                    data-desc="Painel em tecido para decoração, 180×110 cm — estampa de alto impacto para vitrines e ambientação temática."><svg
+                                    data-novidade-wa="Painel Máscara MOD-1194"
+                                    data-video="https://www.youtube.com/shorts/qAytmf1wWFA"
+                                    data-name="Painel Máscara MOD-1194" data-ref="MOD-1194"
+                                    data-desc="Painel de máscara em plástico com fitas coloridas metalizadas: brilho e movimento para vitrines, festas e fotos. MOD-1194 · 84 (A) × 50 (L) cm"><svg
                                         viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M8 5v14l11-7z" />
-                                    </svg>Vídeo MOD-1130</button>
+                                    </svg>Ver vídeo do produto</button>
+                                <button class="novidade-btn-wa" data-novidade-wa-btn="Painel Máscara MOD-1194">Falar com
+                                    atendente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAINEL — SOMBRINHA FREVO -->
+                <div class="novidade-panel" data-novidade-panel="sombrinha">
+                    <div class="novidade-card reveal">
+                        <div class="novidade-card-img">
+                            <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469256/NOVIDADE_CR-MOD-1179_qhxlns.webp"
+                                alt="Sombrinha Frevo" loading="lazy">
+                        </div>
+                        <div class="novidade-card-body">
+                            <span class="novidade-badge">Novo para 2027</span>
+                            <p class="novidade-ref">MOD-1179</p>
+                            <h3 class="novidade-nome" style="--nw:6.09">Sombrinha <em>Frevo</em></h3>
+                            <p class="novidade-desc">Sombrinha de frevo em papel, item tradicional do Carnaval com
+                                grande apelo visual para vitrines, blocos e fantasias.</p>
+                            <p class="novidade-obs">MOD-1179 · 38 cm de comprimento · 360°</p>
+                            <div class="novidade-actions">
                                 <button class="novidade-btn-video card-video-btn-primary"
-                                    data-novidade-wa="Painéis Horizontais"
-                                    data-video="https://www.youtube.com/shorts/a5GaxOJnGYE"
-                                    data-name="Painel Horizontal MOD-1131" data-ref="MOD-1131"
-                                    data-desc="Painel em tecido para decoração, 100×75 cm — estampa de alto impacto para vitrines e ambientação temática."><svg
+                                    data-novidade-wa="Sombrinha Frevo MOD-1179"
+                                    data-video="https://www.youtube.com/shorts/GIi_SBPdTRo"
+                                    data-name="Sombrinha Frevo MOD-1179" data-ref="MOD-1179"
+                                    data-desc="Sombrinha de frevo em papel, item tradicional do Carnaval com grande apelo visual para vitrines, blocos e fantasias. MOD-1179 · 38 cm de comprimento · 360°"><svg
                                         viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M8 5v14l11-7z" />
-                                    </svg>Vídeo MOD-1131</button>
+                                    </svg>Ver vídeo do produto</button>
+                                <button class="novidade-btn-wa" data-novidade-wa-btn="Sombrinha Frevo MOD-1179">Falar
+                                    com
+                                    atendente</button>
                             </div>
-                            <button class="novidade-btn-wa" data-novidade-wa-btn="Painéis Horizontais">Falar com
-                                atendente</button>
-                            <span class="novidade-selo">Imagens Ilustrativas</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- PAINEL — PAINEL VERTICAL -->
-            <div class="novidade-panel" data-novidade-panel="painel-v">
-                <div class="novidade-card reveal">
-                    <div class="novidade-card-img">
-                        <div class="novidade-carousel" data-novidade-carousel>
-                            <div class="novidade-carousel-track">
-                                <div class="novidade-slide"><img
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEL-VERTICAL_1_heb9n7.webp"
-                                        alt="Painel Vertical 1" loading="lazy"></div>
-                                <div class="novidade-slide"><img
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEL-VERTICAL_2_a3adk0.webp"
-                                        alt="Painel Vertical 2" loading="lazy"></div>
-                                <div class="novidade-slide"><img
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEL-VERTICAL_3_kluj1d.webp"
-                                        alt="Painel Vertical 3" loading="lazy"></div>
-                                <div class="novidade-slide"><img
-                                        src="https://res.cloudinary.com/dzt1kqdbc/image/upload/f_auto,q_auto/v1784638623/NOVIDADE_HL-PAINEL-VERTICAL_4_lejkhn.webp"
-                                        alt="Painel Vertical 4" loading="lazy"></div>
-                            </div>
-                            <div class="novidade-dots"></div>
+                <!-- PAINEL — PAINEL HOLOGRÁFICO -->
+                <div class="novidade-panel" data-novidade-panel="painel-holografico">
+                    <div class="novidade-card reveal">
+                        <div class="novidade-card-img">
+                            <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469255/NOVIDADE_CR-MOD-1171_kwc9bt.webp"
+                                alt="Painel Holográfico" loading="lazy">
                         </div>
-                    </div>
-                    <div class="novidade-card-body">
-                        <span class="novidade-badge">Novo para 2026</span>
-                        <p class="novidade-ref">MOD-1132</p>
-                        <h3 class="novidade-nome">Painel <em>Vertical</em></h3>
-                        <p class="novidade-desc">Painel em tecido para decoração, com acabamento reforçado, estampas
-                            de alto impacto visual e tecido resistente — ideal para ambientar vitrines, festas e
-                            decorações temáticas.</p>
-                        <p class="novidade-obs">MOD-1132 · 90×180 cm</p>
-                        <div class="novidade-actions">
-                            <button class="novidade-btn-video card-video-btn-primary" data-novidade-wa="Painel Vertical"
-                                data-video="https://www.youtube.com/shorts/yNv23HLk6So"
-                                data-name="Painel Vertical MOD-1132" data-ref="MOD-1132"
-                                data-desc="Painel em tecido para decoração, 90×180 cm — estampa de alto impacto para vitrines e ambientação temática."><svg
-                                    viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>Ver vídeo do produto</button>
-                            <button class="novidade-btn-wa" data-novidade-wa-btn="Painel Vertical">Falar com
-                                atendente</button>
-                            <span class="novidade-selo">Imagens Ilustrativas</span>
+                        <div class="novidade-card-body">
+                            <span class="novidade-badge">Novo para 2027</span>
+                            <p class="novidade-ref">MOD-1171</p>
+                            <h3 class="novidade-nome" style="--nw:6.35">Painel <em>Holográfico</em></h3>
+                            <p class="novidade-desc">Painel máscara holográfico de papel, em cores sortidas: efeito
+                                brilhante que valoriza vitrines e cenários.</p>
+                            <p class="novidade-obs">MOD-1171 · 30 (A) × 53 (L) cm · cores sortidas</p>
+                            <div class="novidade-actions">
+                                <button class="novidade-btn-video card-video-btn-primary"
+                                    data-novidade-wa="Painel Máscara Holográfico MOD-1171"
+                                    data-video="https://www.youtube.com/shorts/XPqsBvi7otA"
+                                    data-name="Painel Holográfico MOD-1171" data-ref="MOD-1171"
+                                    data-desc="Painel máscara holográfico de papel, em cores sortidas: efeito brilhante que valoriza vitrines e cenários. MOD-1171 · 30 (A) × 53 (L) cm · cores sortidas"><svg
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>Ver vídeo do produto</button>
+                                <button class="novidade-btn-wa"
+                                    data-novidade-wa-btn="Painel Máscara Holográfico MOD-1171">Falar com
+                                    atendente</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- PAINEL — CÍLIOS DE LED -->
+                <div class="novidade-panel" data-novidade-panel="cilios-led">
+                    <div class="novidade-card reveal">
+                        <div class="novidade-card-img">
+                            <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469254/NOVIDADE_CR-MOD-1185_vtqeel.webp"
+                                alt="Cílios de LED" loading="lazy">
+                        </div>
+                        <div class="novidade-card-body">
+                            <span class="novidade-badge">Novo para 2027</span>
+                            <p class="novidade-ref">MOD-1185</p>
+                            <h3 class="novidade-nome" style="--nw:4.68">Cílios de <em>LED</em></h3>
+                            <p class="novidade-desc">Cílios de LED para as pálpebras, em modelos sortidos: brilho que
+                                chama atenção em blocos, festas e eventos.</p>
+                            <ul class="novidade-features">
+                                <li>Adesivo colável (fácil aplicação)</li>
+                                <li>Funciona com bateria (inclusa)</li>
+                                <li>Possui fiação (leve e discreto)</li>
+                                <li>LED seguro e econômico</li>
+                                <li>Ideal para eventos prolongados</li>
+                                <li>Brilha no escuro (modelos sortidos)</li>
+                            </ul>
+                            <div class="novidade-actions">
+                                <button class="novidade-btn-video card-video-btn-primary"
+                                    data-novidade-wa="Cílios de LED MOD-1185"
+                                    data-video="https://www.youtube.com/shorts/yRlohqtiKr0"
+                                    data-name="Cílios de LED MOD-1185" data-ref="MOD-1185"
+                                    data-desc="Cílios de LED para as pálpebras, em modelos sortidos: brilho que chama atenção em blocos, festas e eventos."><svg
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>Ver vídeo do produto</button>
+                                <button class="novidade-btn-wa" data-novidade-wa-btn="Cílios de LED MOD-1185">Falar com
+                                    atendente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAINEL — ÓCULOS DE CARNAVAL -->
+                <div class="novidade-panel" data-novidade-panel="oculos">
+                    <div class="novidade-card reveal">
+                        <div class="novidade-card-img">
+                            <div class="novidade-carousel" data-novidade-carousel>
+                                <div class="novidade-carousel-track">
+                                    <div class="novidade-slide"><img
+                                            src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469257/NOVIDADE_CR-OCULOS_ifsvpa.webp"
+                                            alt="Óculos de Carnaval 1" loading="lazy"></div>
+                                    <div class="novidade-slide"><img
+                                            src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469256/NOVIDADE_CR-OCULOS_2_wbfbaz.webp"
+                                            alt="Óculos de Carnaval 2" loading="lazy"></div>
+                                </div>
+                                <div class="novidade-dots"></div>
+                            </div>
+                        </div>
+                        <div class="novidade-card-body">
+                            <span class="novidade-badge">Novo para 2027</span>
+                            <p class="novidade-ref">MOD-1190 · MOD-481 · MOD-1192 · MOD-1191</p>
+                            <h3 class="novidade-nome" style="--nw:6.68">Óculos <em>de Carnaval</em></h3>
+                            <p class="novidade-desc">Quatro modelos de óculos de fantasia para compor looks e animar a
+                                folia.</p>
+                            <ul class="novidade-skus">
+                                <li class="novidade-sku">
+                                    <span class="novidade-sku-info"><b>MOD-1190</b><span>Óculos morcego</span></span>
+                                    <button class="novidade-btn-video novidade-sku-btn card-video-btn-primary"
+                                        data-novidade-wa="Óculos de Carnaval"
+                                        data-video="https://www.youtube.com/shorts/bKdwVXbBmtA"
+                                        data-name="Óculos morcego MOD-1190" data-ref="MOD-1190"
+                                        data-desc="Quatro modelos de óculos de fantasia para compor looks e animar a folia. Óculos morcego."><svg
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>Ver vídeo</button>
+                                </li>
+                                <li class="novidade-sku">
+                                    <span class="novidade-sku-info"><b>MOD-481</b><span>Óculos de capitão
+                                            luxo</span></span>
+                                    <button class="novidade-btn-video novidade-sku-btn card-video-btn-primary"
+                                        data-novidade-wa="Óculos de Carnaval"
+                                        data-video="https://www.youtube.com/shorts/oNgIA29RurM"
+                                        data-name="Óculos de capitão luxo MOD-481" data-ref="MOD-481"
+                                        data-desc="Quatro modelos de óculos de fantasia para compor looks e animar a folia. Óculos de capitão luxo."><svg
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>Ver vídeo</button>
+                                </li>
+                                <li class="novidade-sku">
+                                    <span class="novidade-sku-info"><b>MOD-1192</b><span>Óculos de
+                                            policial</span></span>
+                                    <span class="novidade-sku-novideo">Sem vídeo ilustrativo</span>
+                                </li>
+                                <li class="novidade-sku">
+                                    <span class="novidade-sku-info"><b>MOD-1191</b><span>Óculos cocar</span></span>
+                                    <button class="novidade-btn-video novidade-sku-btn card-video-btn-primary"
+                                        data-novidade-wa="Óculos de Carnaval"
+                                        data-video="https://www.youtube.com/shorts/VOlwdPEG6XQ"
+                                        data-name="Óculos cocar MOD-1191" data-ref="MOD-1191"
+                                        data-desc="Quatro modelos de óculos de fantasia para compor looks e animar a folia. Óculos cocar."><svg
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>Ver vídeo</button>
+                                </li>
+                            </ul>
+                            <div class="novidade-actions">
+                                <button class="novidade-btn-wa" data-novidade-wa-btn="Óculos de Carnaval">Falar com
+                                    atendente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAINEL — COLAR COM PINGENTE -->
+                <div class="novidade-panel" data-novidade-panel="colar">
+                    <div class="novidade-card reveal">
+                        <div class="novidade-card-img">
+                            <div class="novidade-carousel" data-novidade-carousel>
+                                <div class="novidade-carousel-track">
+                                    <div class="novidade-slide"><img
+                                            src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469259/NOVIDADE_CR-MOD-1158_z81s9w.webp"
+                                            alt="Colar com Pingente 1" loading="lazy"></div>
+                                    <div class="novidade-slide"><img
+                                            src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469258/NOVIDADE_CR-MOD-1158_2_sez1x9.webp"
+                                            alt="Colar com Pingente 2" loading="lazy"></div>
+                                </div>
+                                <div class="novidade-dots"></div>
+                            </div>
+                        </div>
+                        <div class="novidade-card-body">
+                            <span class="novidade-badge">Novo para 2027</span>
+                            <p class="novidade-ref">MOD-1158</p>
+                            <h3 class="novidade-nome" style="--nw:6.80">Colar com <em>Pingente</em></h3>
+                            <p class="novidade-desc">Colar com pingente de Carnaval em modelos sortidos: acessório de
+                                fácil revenda para compor fantasias.</p>
+                            <p class="novidade-obs">MOD-1158 · 4 modelos sortidos</p>
+                            <div class="novidade-actions">
+                                <button class="novidade-btn-video card-video-btn-primary"
+                                    data-novidade-wa="Colar com Pingente MOD-1158"
+                                    data-video="https://www.youtube.com/shorts/UotlbcnJpDk"
+                                    data-name="Colar com Pingente MOD-1158" data-ref="MOD-1158"
+                                    data-desc="Colar com pingente de Carnaval em modelos sortidos: acessório de fácil revenda para compor fantasias. MOD-1158 · 4 modelos sortidos"><svg
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>Ver vídeo do produto</button>
+                                <button class="novidade-btn-wa" data-novidade-wa-btn="Colar com Pingente MOD-1158">Falar
+                                    com
+                                    atendente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAINEL — CARTELAS DE ADESIVOS -->
+                <div class="novidade-panel" data-novidade-panel="adesivos">
+                    <div class="novidade-card reveal">
+                        <div class="novidade-card-img">
+                            <div class="novidade-carousel" data-novidade-carousel>
+                                <div class="novidade-carousel-track">
+                                    <div class="novidade-slide"><img
+                                            src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469255/NOVIDADE_CR-MOD-1151_qez2xn.webp"
+                                            alt="Cartelas de Adesivos 1" loading="lazy"></div>
+                                    <div class="novidade-slide"><img
+                                            src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469255/NOVIDADE_CR-MOD-1151_2_gacats.webp"
+                                            alt="Cartelas de Adesivos 2" loading="lazy"></div>
+                                    <div class="novidade-slide"><img
+                                            src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469255/NOVIDADE_CR-MOD-1151_3_cpzwlo.webp"
+                                            alt="Cartelas de Adesivos 3" loading="lazy"></div>
+                                </div>
+                                <div class="novidade-dots"></div>
+                            </div>
+                        </div>
+                        <div class="novidade-card-body">
+                            <span class="novidade-badge">Novo para 2027</span>
+                            <p class="novidade-ref">MOD-1151</p>
+                            <h3 class="novidade-nome" style="--nw:7.23">Cartelas de <em>Adesivos</em></h3>
+                            <p class="novidade-desc">Cartelas de adesivos grandes e autocolantes, com estampas de
+                                Carnaval em modelos sortidos.</p>
+                            <p class="novidade-obs">MOD-1151 · 3 cartelas diferentes</p>
+                            <div class="novidade-actions">
+                                <button class="novidade-btn-video card-video-btn-primary"
+                                    data-novidade-wa="Cartelas de Adesivos MOD-1151"
+                                    data-video="https://www.youtube.com/shorts/O3k9lYL1ezg"
+                                    data-name="Cartelas de Adesivos MOD-1151" data-ref="MOD-1151"
+                                    data-desc="Cartelas de adesivos grandes e autocolantes, com estampas de Carnaval em modelos sortidos. MOD-1151 · 3 cartelas diferentes"><svg
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>Ver vídeo do produto</button>
+                                <button class="novidade-btn-wa"
+                                    data-novidade-wa-btn="Cartelas de Adesivos MOD-1151">Falar com
+                                    atendente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAINEL — VARAIS DE CARNAVAL -->
+                <div class="novidade-panel" data-novidade-panel="varais">
+                    <div class="novidade-card reveal">
+                        <div class="novidade-card-img">
+                            <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791469257/NOVIDADE_CR-MOD-1177_MOD-1183_bapsko.webp"
+                                alt="Varais de Carnaval" loading="lazy">
+                        </div>
+                        <div class="novidade-card-body">
+                            <span class="novidade-badge">Novo para 2027</span>
+                            <p class="novidade-ref">MOD-1177 e MOD-1183</p>
+                            <h3 class="novidade-nome" style="--nw:6.76">Varais <em>de Carnaval</em></h3>
+                            <p class="novidade-desc">Varais para decorar com a folia: um de papel e outro com estampas
+                                de Carnaval, ambos com 2 metros.</p>
+                            <ul class="novidade-skus">
+                                <li class="novidade-sku">
+                                    <span class="novidade-sku-info"><b>MOD-1177</b><span>Varal de papel Folia · 2
+                                            m</span></span>
+                                    <button class="novidade-btn-video novidade-sku-btn card-video-btn-primary"
+                                        data-novidade-wa="Varais de Carnaval"
+                                        data-video="https://www.youtube.com/shorts/1TGwOA0ap10"
+                                        data-name="Varal de papel Folia MOD-1177" data-ref="MOD-1177"
+                                        data-desc="Varais para decorar com a folia: um de papel e outro com estampas de Carnaval, ambos com 2 metros. Varal de papel Folia · 2 m."><svg
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>Ver vídeo</button>
+                                </li>
+                                <li class="novidade-sku">
+                                    <span class="novidade-sku-info"><b>MOD-1183</b><span>Varal com estampas de Carnaval
+                                            · 2 m</span></span>
+                                    <span class="novidade-sku-novideo">Sem vídeo ilustrativo</span>
+                                </li>
+                            </ul>
+                            <div class="novidade-actions">
+                                <button class="novidade-btn-wa" data-novidade-wa-btn="Varais de Carnaval">Falar com
+                                    atendente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
     </section>
-
     <!-- SOBRE -->
     <section class="sobre" id="sobre">
         <div class="container">
@@ -1314,17 +1603,6 @@
                     <p class="footer-contact-item"><strong>Telefone Fixo:</strong> (11) 2337-4241</p>
                     <p class="footer-contact-item"><strong>Localização:</strong> São Paulo, SP</p>
                 </div>
-                <div>
-                    <p class="footer-newsletter-title">Receber novidades</p>
-                    <div class="footer-email-row">
-                        <input class="footer-email-input" type="email" id="footer-email-input"
-                            placeholder="seu@email.com.br" autocomplete="email">
-                        <input type="text" id="footer-honeypot" style="display:none" tabindex="-1" autocomplete="off">
-                        <button class="footer-email-btn" id="footer-email-btn"
-                            onclick="submitFooterEmail()">Inscrever</button>
-                    </div>
-                    <p class="footer-email-note" id="footer-email-note"></p>
-                </div>
             </div>
             <div class="footer-bottom">
                 <p class="footer-copy">© 2025 Nyr Festas Comercial Ltda · Todos os direitos reservados</p>
@@ -1340,7 +1618,7 @@
             <button class="modal-privacy-close" id="modal-privacy-close">&times;</button>
             <div class="modal-privacy-content">
                 <h2 class="modal-privacy-title">Política de Privacidade</h2>
-                <p class="modal-privacy-updated">Última atualização: maio de 2025</p>
+                <p class="modal-privacy-updated">Última atualização: outubro de 2026</p>
 
                 <h3>1. Quem somos</h3>
                 <p>Nyr Festas Comercial Ltda, pessoa jurídica de direito privado inscrita sob o CNPJ 09.722.322/0001-19,
@@ -1350,29 +1628,43 @@
                 <p>Contato do responsável por dados: <strong>vendas@mm88.com.br</strong></p>
 
                 <h3>2. Quais dados coletamos</h3>
-                <p><strong>E-mail:</strong> coletado voluntariamente pelo formulário de inscrição de novidades presente
-                    no rodapé do site. Este dado é armazenado em planilha eletrônica de propriedade da Nyr Festas,
-                    hospedada no Google Workspace.</p>
-                <p><strong>Razão Social e CNPJ:</strong> inseridos no formulário de contato e transmitidos diretamente
-                    ao canal de atendimento via WhatsApp. Esses dados não são armazenados em nenhum servidor da Nyr
-                    Festas.</p>
-                <p><strong>Dados técnicos (localStorage):</strong> o site utiliza o armazenamento local do navegador
-                    exclusivamente para controle de intervalo entre envios do formulário de e-mail (rate limiting).
-                    Nenhum dado pessoal é transmitido por esse mecanismo.</p>
+                <p><strong>Razão Social e CNPJ:</strong> informados voluntariamente por você nos campos de contato do
+                    site e inseridos na mensagem enviada ao nosso canal de atendimento via WhatsApp. Esses dados não
+                    são armazenados em servidor ou banco de dados da Nyr Festas por meio deste site; a partir do envio,
+                    ficam no histórico da conversa no WhatsApp, sujeito aos termos e à política de privacidade do
+                    WhatsApp/Meta.</p>
+                <p><strong>Contato direto:</strong> ao clicar em telefone, e-mail ou WhatsApp, os dados que você
+                    fornecer nessa comunicação (como nome, número de telefone e conteúdo da mensagem) são recebidos
+                    pela Nyr Festas diretamente pelo canal escolhido.</p>
+                <p><strong>Dados de navegação e medição:</strong> este site utiliza o Google Ads (tag do Google) e o
+                    Pixel da Meta para medir visitas e ações realizadas na página, como cliques nos botões de
+                    atendimento. Essas ferramentas podem coletar, por meio de cookies e tecnologias semelhantes,
+                    informações como endereço IP, tipo de dispositivo e navegador, páginas visitadas e interações. Os
+                    dados são tratados também pelo Google e pela Meta, conforme as respectivas políticas de
+                    privacidade. Você pode bloquear ou apagar cookies nas configurações do seu navegador.</p>
+                <p><strong>Conteúdo de terceiros:</strong> o site carrega imagens, fontes e vídeos de serviços como
+                    Cloudinary, Google Fonts e YouTube (em modo de privacidade ampliada). Ao carregar esses conteúdos,
+                    seu endereço IP e dados básicos do navegador são recebidos por esses provedores.</p>
+                <p>Este site não possui formulário de cadastro de e-mail nem coleta endereços de e-mail para listas de
+                    comunicação.</p>
 
                 <h3>3. Finalidade do tratamento</h3>
-                <p>O e-mail coletado é utilizado para envio de comunicações comerciais, novidades de produtos e
-                    informações sobre sazonalidades atendidas pela Nyr Festas. O tratamento tem base legal no
-                    consentimento do titular (Art. 7º, I, da Lei 13.709/2018 – LGPD).</p>
+                <p>Os dados de Razão Social e CNPJ são utilizados para identificar o estabelecimento que solicita
+                    atendimento e responder ao seu contato, em razão de procedimentos preliminares relacionados a
+                    eventual contrato (Art. 7º, V, da Lei 13.709/2018 – LGPD), uma vez que a Nyr Festas atende apenas
+                    clientes com CNPJ. Os dados de navegação e medição são utilizados para avaliar o desempenho do site
+                    e das campanhas de divulgação, e para melhorar a experiência de uso.</p>
 
                 <h3>4. Compartilhamento de dados</h3>
-                <p>Os dados coletados não são vendidos, cedidos ou compartilhados com terceiros para fins comerciais. O
-                    armazenamento em planilha Google está sujeito aos Termos de Serviço e à Política de Privacidade do
-                    Google LLC.</p>
+                <p>Os dados coletados não são vendidos nem cedidos a terceiros para fins comerciais. Há tratamento por
+                    provedores de serviços necessários ao funcionamento do site e ao atendimento, como Google,
+                    Meta/WhatsApp, Cloudinary e YouTube, cada um sujeito aos seus próprios termos e políticas de
+                    privacidade.</p>
 
                 <h3>5. Prazo de retenção</h3>
-                <p>Os e-mails coletados são mantidos enquanto houver interesse comercial legítimo ou até que o titular
-                    solicite a exclusão.</p>
+                <p>As informações enviadas pelo WhatsApp são mantidas pelo tempo necessário ao atendimento e ao
+                    relacionamento comercial, ou até que o titular solicite a exclusão. Os dados de navegação seguem os
+                    prazos definidos pelas respectivas ferramentas de medição.</p>
 
                 <h3>6. Direitos do titular</h3>
                 <p>Nos termos da LGPD, você tem direito a: confirmar a existência do tratamento, acessar seus dados,
@@ -1489,20 +1781,20 @@
 
         // ─── CONFIG SAZONALIDADES ─────────────────────────────────
         const SEASONS = {
-            halloween: {
-                primary: '#3D0066',
-                cta: '#3D0066',
-                light: '#0d0d0d',
-                mid: '#6A0080',
-                badge: '#FF7800',
-                label: '#FF9A40',
-                border: '#FF7800'
+            carnaval: {
+                primary: '#C2185B',
+                cta: '#FF5722',
+                light: '#FCE4EC',
+                mid: '#FF4081',
+                badge: '#FF1744',
+                label: '#880E4F',
+                border: '#C2185B'
             },
         };
         const root = document.documentElement;
 
         function applySeason(s) {
-            const c = SEASONS[s] || SEASONS.halloween;
+            const c = SEASONS[s] || SEASONS.carnaval;
             root.style.setProperty('--season-primary', c.primary);
             root.style.setProperty('--season-cta', c.cta);
             root.style.setProperty('--season-light', c.light);
@@ -1511,11 +1803,11 @@
             root.style.setProperty('--season-label', c.label);
             root.style.setProperty('--season-border', c.border);
         }
-        applySeason('halloween');
+        applySeason('carnaval');
 
-        // ─── COUNTDOWN (Halloween) ───────
+        // ─── COUNTDOWN (Carnaval) ───────
         const CD_TARGETS = {
-            halloween: new Date('2026-10-31T00:00:00'),
+            carnaval: new Date('2027-02-06T00:00:00'),
         };
         const pad = n => String(Math.max(0, n)).padStart(2, '0');
 
@@ -1536,14 +1828,63 @@
             setInterval(() => updateCountdown(key), 1000);
         });
 
-        // ─── STICKY NAV ───────────────────────────────────────────
+        // ─── STICKY NAV (inteligente: esconde ao descer, mostra ao subir) ──
         const stickyNav = document.getElementById('sticky-nav');
         const heroEl = document.getElementById('hero');
 
-        window.addEventListener('scroll', () => {
-            const heroBottom = heroEl.getBoundingClientRect().bottom;
-            stickyNav.classList.toggle('visible', heroBottom < 60);
-        }, { passive: true });
+        (function () {
+            const DELTA = 10;            // px acumulados na mesma direção para esconder/mostrar (sensibilidade)
+            const HERO_OFFSET = 60;      // a barra só entra em cena depois do hero (igual ao comportamento anterior)
+            let lastY = window.scrollY;
+            let acc = 0;                 // movimento acumulado na direção atual (+ desce, − sobe)
+            let shown = false;
+            let ticking = false;
+
+            function setShown(v) {
+                if (v === shown) return;
+                shown = v;
+                stickyNav.classList.toggle('visible', v);
+            }
+
+            // Mantém a barra visível enquanto o menu mobile estiver aberto
+            // (ele mora dentro da barra; esconder a barra o faria sumir junto).
+            function menuOpen() {
+                return !!stickyNav.querySelector('.sticky-mobile-nav.open');
+            }
+
+            // Foco de teclado dentro da barra (foco por mouse/toque não conta).
+            function keyboardFocusInside() {
+                try { return !!stickyNav.querySelector(':focus-visible'); }
+                catch (e) { return false; }
+            }
+
+            function update() {
+                const maxY = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+                // limita ao intervalo real: ignora o "elástico" do iOS no topo e no fim da página
+                const y = Math.min(Math.max(window.scrollY, 0), maxY);
+                const dy = y - lastY;
+                lastY = y;
+
+                const pastHero = heroEl.getBoundingClientRect().bottom < HERO_OFFSET;
+                if (!pastHero) { acc = 0; setShown(false); return; }
+                if (menuOpen() || keyboardFocusInside()) { acc = 0; setShown(true); return; }
+                if (dy === 0) return;
+
+                if (Math.sign(dy) !== Math.sign(acc)) acc = 0;   // inverteu a direção → recomeça a contagem
+                acc += dy;
+
+                if (acc > DELTA) setShown(false);
+                else if (acc < -DELTA) setShown(true);
+            }
+
+            window.addEventListener('scroll', () => {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => { update(); ticking = false; });
+            }, { passive: true });
+
+            update();
+        })();
 
         // ─── HAMBURGER HEADER ─────────────────────────────────────
         const hamburger = document.getElementById('hamburger');
@@ -1801,71 +2142,6 @@
             this.value = v;
         });
 
-        // ─── CAPTAÇÃO DE E-MAIL (FOOTER) ─────────────────────────
-        (function () {
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzcAOzASeDABHGZZfMEMw0zVSmObsilrVwIftTMleBuae6SQXH5GJzlFdAPnn-pN4_BDA/exec';
-            const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-            const RATE_LIMIT_MS = 60000;
-
-            function showNote(msg, isError) {
-                const el = document.getElementById('footer-email-note');
-                if (!el) return;
-                el.textContent = msg;
-                el.style.color = isError ? 'rgba(255,100,100,0.9)' : 'rgba(255,255,255,0.7)';
-                setTimeout(() => { el.textContent = ''; }, 5000);
-            }
-
-            window.submitFooterEmail = function () {
-                const input = document.getElementById('footer-email-input');
-                const btn = document.getElementById('footer-email-btn');
-                const honeypot = document.getElementById('footer-honeypot');
-                const email = input.value.trim();
-
-                if (honeypot && honeypot.value) return;
-
-                const lastSent = parseInt(localStorage.getItem('nyr_last_email_submit') || '0');
-                if (Date.now() - lastSent < RATE_LIMIT_MS) {
-                    showNote('Aguarde um momento antes de tentar novamente.', true);
-                    return;
-                }
-
-                if (!email || !EMAIL_REGEX.test(email)) {
-                    input.style.borderColor = 'rgba(255,80,80,0.7)';
-                    showNote('Digite um e-mail válido (ex: contato@loja.com.br).', true);
-                    setTimeout(() => { input.style.borderColor = ''; }, 2500);
-                    return;
-                }
-
-                btn.textContent = 'Enviando...';
-                btn.disabled = true;
-                input.disabled = true;
-
-                fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({ email })
-                }).then(res => {
-                    if (!res.ok) throw new Error('server_error');
-                    localStorage.setItem('nyr_last_email_submit', Date.now().toString());
-                    btn.textContent = '✓ Inscrito';
-                    input.value = '';
-                    input.placeholder = 'Obrigado!';
-                    showNote('E-mail cadastrado com sucesso!', false);
-                }).catch(() => {
-                    btn.textContent = 'Inscrever';
-                    btn.disabled = false;
-                    input.disabled = false;
-                    showNote('Erro ao cadastrar. Tente novamente em instantes.', true);
-                });
-            };
-
-            // Envio com Enter
-            const input = document.getElementById('footer-email-input');
-            if (input) input.addEventListener('keydown', e => {
-                if (e.key === 'Enter') window.submitFooterEmail();
-            });
-        })();
-
         // ─── MODAL POLÍTICA DE PRIVACIDADE ───────────────────────
         (function () {
             const modal = document.getElementById('modal-privacy');
@@ -1919,7 +2195,7 @@
                 if (rsErr || cnpjErr) return;
                 const msg = [
                     `Olá, Nyr Festas!`,
-                    `Cheguei até aqui pela página de vendas e gostaria de mais informações.`,
+                    `Cheguei até aqui pela página de vendas de carnaval e gostaria de mais informações.`,
                     `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
                 ].map(encodeURIComponent).join('%0A');
                 nyrTrackLead(`https://wa.me/${WA}?text=${msg}`, 'Formulário CTA — Mais informações');
@@ -1947,10 +2223,10 @@
                 if (rsErr || cnpjErr) return;
                 const msg = [
                     `Olá, Nyr Festas!`,
-                    `Cheguei até aqui pela página de vendas e gostaria de solicitar o catálogo completo de Halloween.`,
+                    `Cheguei até aqui pela página de vendas de carnaval e gostaria de mais informações.`,
                     `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
                 ].map(encodeURIComponent).join('%0A');
-                nyrTrackLead(`https://wa.me/${WA}?text=${msg}`, 'Formulário Hero — Catálogo Halloween');
+                nyrTrackLead(`https://wa.me/${WA}?text=${msg}`, 'Formulário Hero — Mais informações');
             });
         })();
 
@@ -1958,29 +2234,12 @@
         const WA_NUM = WA;
         let _catalogSeason = null;
 
-        // Mensagem customizada para Novidade (sobrescreve buildWAMsg quando definida)
-        let _novWAMsg = null;
-
         function buildWAMsg(rs, cnpj) {
-            if (_novWAMsg) {
-                const msg = _novWAMsg
-                    .replace('{rs}', rs)
-                    .replace('{cnpj}', cnpj);
-                _novWAMsg = null;
-                return msg.split('\n').map(encodeURIComponent).join('%0A');
-            }
-            const lines = _catalogSeason
-                ? [
-                    `Olá, Nyr Festas!`,
-                    `Cheguei até aqui pela página de vendas e gostaria de solicitar o catálogo de ${_catalogSeason}.`,
-                    `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
-                ]
-                : [
-                    `Olá, Nyr Festas!`,
-                    `Cheguei até aqui pela página de vendas e gostaria de mais informações.`,
-                    `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
-                ];
-            return lines.map(encodeURIComponent).join('%0A');
+            return [
+                `Olá, Nyr Festas!`,
+                `Cheguei até aqui pela página de vendas de carnaval e gostaria de mais informações.`,
+                `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
+            ].map(encodeURIComponent).join('%0A');
         }
 
         function validarRS(v) {
@@ -2070,7 +2329,7 @@
                 if (rsErr) setFieldError(inputRS, errRS, rsErr);
                 if (cnpjErr) setFieldError(inputCNPJ, errCNPJ, cnpjErr);
                 if (rsErr || cnpjErr) return;
-                const origem = _catalogSeason ? `Catálogo ${_catalogSeason}` : 'Catálogo';
+                const origem = 'Mais informações';
                 nyrTrackLead(`https://wa.me/${WA_NUM}?text=${buildWAMsg(rs, cnpj)}`, `Formulário Modal — ${origem}`);
                 closeModal();
             });
@@ -2079,19 +2338,11 @@
             overlay.addEventListener('click', closeModal);
 
             // Gatilhos — card-cta-secondary, fab-whatsapp, footer-social-whatsapp, modal-video-wa-btn
-            const CATALOG_SEASONS = { halloween: 'Halloween' };
             document.addEventListener('click', function (e) {
                 const trigger = e.target.closest('.card-cta-secondary, .fab-whatsapp, .footer-social-whatsapp, #modal-video-wa-btn');
                 if (!trigger) return;
                 e.preventDefault();
-                let seasonName = null;
-                if (trigger.classList.contains('card-cta-secondary')) {
-                    const activePanel = document.querySelector('.season-panel.active');
-                    if (activePanel) seasonName = CATALOG_SEASONS[activePanel.dataset.panel] || null;
-                } else if (trigger.id === 'modal-video-wa-btn') {
-                    seasonName = trigger.dataset.catalogSeason || null;
-                }
-                openModal(seasonName);
+                openModal(null);
             });
 
             // Escape fecha apenas se vídeo modal não estiver aberto
@@ -2102,11 +2353,9 @@
 
             window._openWAModal = openModal;
 
-            // ─── NOVIDADE WA — genérico para os 3 painéis ─────────
+            // ─── NOVIDADE WA — todas as novidades usam a mesma mensagem ─────────
             document.querySelectorAll('[data-novidade-wa-btn]').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    const nome = btn.dataset.novidadeWaBtn;
-                    _novWAMsg = `Olá, Nyr Festas!\nCheguei até aqui pela página de vendas e estou interessado no item lançamento ${nome}.\nRazão Social: {rs}  |  CNPJ: {cnpj}`;
                     openModal(null);
                 });
             });
@@ -2124,8 +2373,6 @@
                 return m ? `https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1&rel=0&modestbranding=1` : '';
             }
 
-            const CATALOG_SEASONS_V = { halloween: 'Halloween' };
-
             function openModal(url, name, ref, desc) {
                 iframe.src = getEmbedUrl(url);
                 const nameEl = document.getElementById('modal-product-name');
@@ -2139,10 +2386,8 @@
                 const panelSeason = activePanel ? activePanel.dataset.panel : null;
                 const waBtn = document.getElementById('modal-video-wa-btn');
                 const waBtnText = waBtn.querySelector('.wa-btn-text');
-                const isNovidade = !!_novWAMsg;
-                const isCatalog = !isNovidade && (panelSeason === 'halloween');
-                waBtnText.textContent = isNovidade ? 'Falar com Atendente' : (isCatalog ? 'Solicitar catálogo' : 'Falar com Atendente');
-                waBtn.dataset.catalogSeason = isCatalog ? (CATALOG_SEASONS_V[panelSeason] || '') : '';
+                waBtnText.textContent = 'Falar com Atendente';
+                waBtn.dataset.catalogSeason = '';
 
                 modal.removeAttribute('hidden');
                 lockScroll();
@@ -2162,9 +2407,6 @@
 
             document.querySelectorAll('[data-video]').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    if (btn.dataset.novidadeWa) {
-                        _novWAMsg = `Olá, Nyr Festas!\nCheguei até aqui pela página de vendas e estou interessado no item lançamento ${btn.dataset.novidadeWa}.\nRazão Social: {rs}  |  CNPJ: {cnpj}`;
-                    }
                     openModal(btn.dataset.video, btn.dataset.name, btn.dataset.ref, btn.dataset.desc);
                 });
             });
@@ -2220,6 +2462,17 @@
         (function () {
             const tabs = document.querySelectorAll('.novidade-tab');
             const panels = document.querySelectorAll('.novidade-panel');
+
+            // setas nas extremidades: percorrem as abas em ordem (circular)
+            function stepNovidade(dir) {
+                const list = Array.from(tabs);
+                const cur = Math.max(0, list.findIndex(x => x.classList.contains('active')));
+                list[(cur + dir + list.length) % list.length].click();
+            }
+            const arrPrev = document.querySelector('.novidade-arrow--prev');
+            const arrNext = document.querySelector('.novidade-arrow--next');
+            if (arrPrev) arrPrev.addEventListener('click', () => stepNovidade(-1));
+            if (arrNext) arrNext.addEventListener('click', () => stepNovidade(1));
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -2411,24 +2664,9 @@
             nextBtn.addEventListener('click', function () { goTo(current + 1); });
         });
 
-        // ─── SVC CAROUSEL — PEEK + PULSE ─────────────────
+        // ─── SVC CAROUSEL — PULSE ─────────────────
         (function () {
             var interacted = new Set();
-
-            function animateScroll(el, to, duration, onDone) {
-                var from = el.scrollLeft;
-                var start = null;
-                function step(ts) {
-                    if (!start) start = ts;
-                    var p = Math.min((ts - start) / duration, 1);
-                    // ease in-out cubic
-                    var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
-                    el.scrollLeft = from + (to - from) * e;
-                    if (p < 1) { requestAnimationFrame(step); }
-                    else if (onDone) { onDone(); }
-                }
-                requestAnimationFrame(step);
-            }
 
             document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
                 var track = carousel.querySelector('.svc-carousel-track');
@@ -2451,30 +2689,8 @@
 
                         if (interacted.has(carousel)) return;
 
-                        if (!carousel.dataset.peeked) {
-                            carousel.dataset.peeked = 'true';
-
-                            var peekPx = Math.round(track.offsetWidth * 0.5);
-
-                            track.style.scrollSnapType = 'none';
-
-                            // Vai
-                            animateScroll(track, peekPx, 715, function () {
-                                // Volta após pausa
-                                setTimeout(function () {
-                                    animateScroll(track, 0, 385, function () {
-                                        track.style.scrollSnapType = '';
-                                        if (!interacted.has(carousel)) {
-                                            nextBtn.classList.add('pulsing');
-                                        }
-                                    });
-                                }, 0);
-                            });
-
-                        } else {
-                            if (!interacted.has(carousel)) {
-                                nextBtn.classList.add('pulsing');
-                            }
+                        if (!interacted.has(carousel)) {
+                            nextBtn.classList.add('pulsing');
                         }
                     });
                 }, { threshold: 0.4 });
