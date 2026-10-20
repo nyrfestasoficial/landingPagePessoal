@@ -28,7 +28,7 @@
         href="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778847413/favicon-32x32_ei8qnz.png">
 
     <!-- ── SEO ───────────────────────────────────── -->
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noindex, follow">
     <meta name="description"
         content="Distribuidora B2B especializada em artigos para Carnaval, Festa Junina, Copa, Halloween e Páscoa. Mais de 7.000 lojistas em 27 estados. Atendimento exclusivo para CNPJ. São Paulo, SP.">
     <meta name="keywords"
@@ -62,7 +62,7 @@
         rel="stylesheet">
 
     <!-- ── STYLES ────────────────────────────────── -->
-    <link rel="stylesheet" href="./src/css/bio.css">
+    <link rel="stylesheet" href="./src/css/bio.css?v=20261015">
     <!-- Sem JavaScript: mostra o conteúdo (as animações de entrada dependem de JS) -->
     <noscript>
         <style>
@@ -141,6 +141,20 @@
            NAO renomear os botoes para "fugir" da regra: resolve por
            tabela, mas volta a duplicar assim que alguem aceitar de novo
            uma sugestao de evento automatico no Gerenciador.
+
+           ATUALIZACAO 15/10/2026: a regra 1689604965462613 foi APAGADA
+           no Gerenciador de Eventos (conferido: nao aparece mais em
+           estRules na config do pixel). A correcao de setembro tinha
+           ficado pela metade: tiraram o Lead do codigo (fire() recebia
+           null) e ficou so o da regra, que disparava no CLIQUE mesmo
+           com o formulario invalido e saia sem eventID.
+
+           Agora o Lead do Meta sai SO de nyrTrackLead, com 'Lead' em
+           fire(), depois da validacao do formulario e com eventID
+           "nyr-...". Se o Lead voltar a duplicar, conferir se alguem
+           recriou a regra:
+             curl "https://connect.facebook.net/signals/config/1263940769105902?v=2.9.397&r=stable"
+           e procurar estRules.
            ──────────────────────────────────────────────────────────── */
     </script>
 
@@ -236,7 +250,7 @@
              */
             w.nyrTrackLead = function (url, nome) {
                 if (isTooSoon()) return false;
-                fire(FORM_CONVERSIONS, null, nome || 'Formulário WhatsApp');
+                fire(FORM_CONVERSIONS, 'Lead', nome || 'Formulário WhatsApp');
                 openNow(url);
                 return false;
             };

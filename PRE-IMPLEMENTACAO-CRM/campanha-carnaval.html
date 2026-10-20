@@ -27,11 +27,11 @@
         content="carnaval atacado, distribuidora artigos de carnaval, acessórios carnaval atacado, adereços carnaval, artigos sazonais B2B, distribuidora São Paulo, Nyr Festas">
     <meta name="author" content="Nyr Festas">
     <meta name="robots" content="noindex, follow">
-    <link rel="canonical" href="https://nyrfestas.com.br/carnaval">
+    <link rel="canonical" href="https://nyrfestas.com.br/campanha-carnaval">
 
     <!-- ── OPEN GRAPH (WhatsApp, Instagram, Facebook) ── -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nyrfestas.com.br/carnaval">
+    <meta property="og:url" content="https://nyrfestas.com.br/campanha-carnaval">
     <meta property="og:title" content="Nyr Festas – Carnaval no Atacado para Lojistas">
     <meta property="og:description"
         content="Acessórios, adereços, painéis e decoração de Carnaval no atacado. Mais de 7.000 lojistas em 27 estados. Atendimento exclusivo para CNPJ.">
@@ -82,7 +82,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Caveat:wght@600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./src/css/campanha-carnaval.css">
+    <link rel="stylesheet" href="./src/css/campanha-carnaval.css?v=20261020">
 
     <!-- ═══════════════════ GOOGLE ADS (gtag.js) ═══════════════════ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18386450761"></script>
@@ -138,6 +138,20 @@
            NAO renomear os botoes para "fugir" da regra: resolve por
            tabela, mas volta a duplicar assim que alguem aceitar de novo
            uma sugestao de evento automatico no Gerenciador.
+
+           ATUALIZACAO 15/10/2026: a regra 1689604965462613 foi APAGADA
+           no Gerenciador de Eventos (conferido: nao aparece mais em
+           estRules na config do pixel). A correcao de setembro tinha
+           ficado pela metade: tiraram o Lead do codigo (fire() recebia
+           null) e ficou so o da regra, que disparava no CLIQUE mesmo
+           com o formulario invalido e saia sem eventID.
+
+           Agora o Lead do Meta sai SO de nyrTrackLead, com 'Lead' em
+           fire(), depois da validacao do formulario e com eventID
+           "nyr-...". Se o Lead voltar a duplicar, conferir se alguem
+           recriou a regra:
+             curl "https://connect.facebook.net/signals/config/1263940769105902?v=2.9.397&r=stable"
+           e procurar estRules.
            ──────────────────────────────────────────────────────────── */
     </script>
 
@@ -233,7 +247,7 @@
              */
             w.nyrTrackLead = function (url, nome) {
                 if (isTooSoon()) return false;
-                fire(FORM_CONVERSIONS, null, nome || 'Formulário WhatsApp');
+                fire(FORM_CONVERSIONS, 'Lead', nome || 'Formulário WhatsApp');
                 openNow(url);
                 return false;
             };
@@ -321,9 +335,7 @@
 
         <!-- Background: imagem com blur + escurecimento em camada própria,
              separada do conteúdo, para não borrar texto/formulário -->
-        <div class="hero-lp-bg"
-            style="background-image:url('https://res.cloudinary.com/dzt1kqdbc/image/upload/v1776891407/heroCarnaval_v4jliw.png')">
-        </div>
+        <div class="hero-lp-bg"></div>
         <div class="hero-lp-overlay"></div>
 
         <!-- Site Header -->
@@ -565,18 +577,8 @@
                             </article>
                             <article class="card">
                                 <div class="card-media">
-                                    <div class="card-carousel" data-card-carousel>
-                                        <div class="card-carousel-track">
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1778846241/PRODUCTS_CR-MOD-6410_ochfro.webp"
-                                                    alt="Cartela de Bigode" loading="lazy"></div>
-                                            <div class="card-slide"><img
-                                                    src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383579/PRODUCTS_CR-MOD-6410_vseiyo.webp"
-                                                    alt="Cartela de Bigode" loading="lazy"></div>
-                                        </div><button class="card-prev" aria-label="Anterior">&#8249;</button><button
-                                            class="card-next" aria-label="Próximo">&#8250;</button>
-                                        <div class="card-dots"></div>
-                                    </div>
+                                    <img src="https://res.cloudinary.com/dzt1kqdbc/image/upload/v1791383579/PRODUCTS_CR-MOD-6410_vseiyo.webp"
+                                        alt="Cartela de Bigode" loading="lazy">
                                     <span class="card-ref">MOD-6410</span>
                                 </div>
                                 <div class="card-body">

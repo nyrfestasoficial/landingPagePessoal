@@ -159,8 +159,9 @@
 
     <!-- ══════════ CAMADA DE CONVERSÕES — Google Ads + Meta ══════════
          Ponto único de disparo para as duas plataformas.
-             nyrTrackLead(url, nome)     -> formulário enviado
-             nyrTrackContato(url, nome)  -> contato direto (tel / e-mail)
+             nyrTrackLead(url, nome, empresa) -> formulário enviado (+ contato na Resulta)
+             nyrTrackContato(url, nome)       -> contato direto (tel / e-mail)
+             nyrEnviarResulta(fields, nome)   -> só o contato na Resulta (newsletter)
     ═══════════════════════════════════════════════════════════════ -->
     <script>
         (function (w) {
@@ -241,15 +242,98 @@
                 return eventId;
             }
 
+            /* ── RESULTA — cada formulário vira contato no funil ───────
+               Fonte "Landing Page Nyr Festas" (Captação da empresa NYR
+               Festas, na Resulta Digital). A chave é PÚBLICA: pode ficar
+               no código porque só vale nos domínios autorizados da fonte
+               (www.nyrfestas.com.br; sem www, o site redireciona). Trocou
+               a chave na Resulta? Trocar aqui também, em todas as páginas.
+               ──────────────────────────────────────────────────────── */
+            var RESULTA = {
+                URL: 'https://www.resultadigitalmkt.com/api/ingest/leads',
+                CHAVE: 'pk_live_BDO5w83GRiRGBQcEEVTsrh60KnNQoS79'
+            };
+
+            function lerCookie(nome) {
+                var m = document.cookie.match(new RegExp('(?:^|; )' + nome + '=([^;]*)'));
+                return m ? decodeURIComponent(m[1]) : undefined;
+            }
+
+            /**
+             * Manda o contato para o funil da Resulta, com UTM e IDs de
+             * clique. Nunca trava o WhatsApp: se falhar, só avisa no console.
+             * @param {object} fields  name, company, email, phone, message
+             * @param {string} nome    qual formulário originou o contato
+             * @param {object} [extra] custom, consent, idempotencyKey
+             */
+            w.nyrEnviarResulta = function (fields, nome, extra) {
+                if (typeof w.fetch !== 'function') return;
+                var q = new URLSearchParams(w.location.search);
+                var body = {
+                    fields: fields,
+                    utm: {},
+                    context: {
+                        landingPage: w.location.href,
+                        formName: nome,
+                        referrer: document.referrer || undefined,
+                        fbp: lerCookie('_fbp'),
+                        fbc: lerCookie('_fbc')
+                    },
+                    idempotencyKey: newEventId()
+                };
+                ['source', 'medium', 'campaign', 'content', 'term'].forEach(function (k) {
+                    if (q.get('utm_' + k)) body.utm[k] = q.get('utm_' + k);
+                });
+                ['fbclid', 'gclid', 'gbraid', 'wbraid'].forEach(function (k) {
+                    if (q.get(k)) body.context[k] = q.get(k);
+                });
+                for (var k in extra) body[k] = extra[k];
+
+                var json = JSON.stringify(body);
+                function post(keepalive) {
+                    return w.fetch(RESULTA.URL, {
+                        method: 'POST',
+                        keepalive: keepalive,
+                        headers: { 'Authorization': 'Bearer ' + RESULTA.CHAVE, 'Content-Type': 'application/json' },
+                        body: json
+                    });
+                }
+                /* keepalive: o envio termina mesmo se o WhatsApp abrir na
+                   mesma aba. Navegador que recusar keepalive com preflight
+                   tenta de novo sem ele; o idempotencyKey impede contato
+                   duplicado nesse reenvio. */
+                post(true)
+                    .catch(function () { return post(false); })
+                    .then(function (r) {
+                        if (!r.ok) console.warn('[Resulta] contato recusado: HTTP ' + r.status);
+                    })
+                    .catch(function () { console.warn('[Resulta] falha de rede ao enviar o contato'); });
+            };
+
             /**
              * LEAD — formulário enviado (Razão Social + CNPJ).
              * Google Ads: "Enviar formulário de lead"   |   Meta: "Lead"
-             * @param {string} url   destino do WhatsApp (aberto na hora)
-             * @param {string} nome  qual formulário originou o lead
+             * Resulta: contato novo no funil (ver nyrEnviarResulta)
+             * @param {string} url      destino do WhatsApp (aberto na hora)
+             * @param {string} nome     qual formulário originou o lead
+             * @param {object} empresa  { razaoSocial, cnpj } já validados
              */
-            w.nyrTrackLead = function (url, nome) {
+            w.nyrTrackLead = function (url, nome, empresa) {
                 if (isTooSoon()) return false;
-                fire(FORM_CONVERSIONS, 'Lead', nome || 'Formulário WhatsApp');
+                nome = nome || 'Formulário WhatsApp';
+                var eventId = fire(FORM_CONVERSIONS, 'Lead', nome);
+                if (empresa) {
+                    /* O formulário não pede nome de pessoa nem telefone: o
+                       nome segue o padrão que a equipe já usa na Resulta,
+                       "Razão Social - CNPJ", e o CNPJ também vai no campo da
+                       pessoa "CNPJ" (chave cnpj). O mesmo eventID do Meta
+                       vira o idempotencyKey. */
+                    w.nyrEnviarResulta({
+                        name: empresa.razaoSocial + ' - ' + empresa.cnpj,
+                        company: empresa.razaoSocial,
+                        message: 'Razão Social: ' + empresa.razaoSocial + ' | CNPJ: ' + empresa.cnpj
+                    }, nome, { custom: { cnpj: empresa.cnpj }, idempotencyKey: eventId });
+                }
                 openNow(url);
                 return false;
             };
@@ -1366,12 +1450,15 @@
                 <p>Contato do responsável por dados: <strong>vendas@mm88.com.br</strong></p>
 
                 <h3>2. Quais dados coletamos</h3>
-                <p><strong>E-mail:</strong> coletado voluntariamente pelo formulário de inscrição de novidades presente
-                    no rodapé do site. Este dado é armazenado em planilha eletrônica de propriedade da Nyr Festas,
-                    hospedada no Google Workspace.</p>
-                <p><strong>Razão Social e CNPJ:</strong> inseridos no formulário de contato e transmitidos diretamente
-                    ao canal de atendimento via WhatsApp. Esses dados não são armazenados em nenhum servidor da Nyr
-                    Festas.</p>
+                <p><strong>E-mail:</strong> coletado voluntariamente pelo formulário de inscrição de novidades
+                    presente no rodapé do site. Este dado é armazenado em planilha eletrônica de propriedade da Nyr
+                    Festas, hospedada no Google Workspace, e também registrado no sistema de atendimento comercial da
+                    Nyr Festas, operado pela Resulta Digital, junto com informações de origem do contato (página,
+                    campanha de anúncio e identificadores de clique do Google e da Meta).</p>
+                <p><strong>Razão Social e CNPJ:</strong> inseridos no formulário de contato e transmitidos ao canal de
+                    atendimento via WhatsApp. Ao enviar, esses dados também são registrados no sistema de atendimento
+                    comercial da Nyr Festas, operado pela Resulta Digital, junto com informações de origem do contato
+                    (página, campanha de anúncio e identificadores de clique do Google e da Meta).</p>
                 <p><strong>Dados técnicos (localStorage):</strong> o site utiliza o armazenamento local do navegador
                     exclusivamente para controle de intervalo entre envios do formulário de e-mail (rate limiting).
                     Nenhum dado pessoal é transmitido por esse mecanismo.</p>
@@ -1379,16 +1466,20 @@
                 <h3>3. Finalidade do tratamento</h3>
                 <p>O e-mail coletado é utilizado para envio de comunicações comerciais, novidades de produtos e
                     informações sobre sazonalidades atendidas pela Nyr Festas. O tratamento tem base legal no
-                    consentimento do titular (Art. 7º, I, da Lei 13.709/2018 – LGPD).</p>
+                    consentimento do titular (Art. 7º, I, da Lei 13.709/2018 – LGPD). Os dados de Razão Social e CNPJ
+                    são utilizados para identificar o estabelecimento que solicita atendimento e responder ao seu
+                    contato, em razão de procedimentos preliminares relacionados a eventual contrato (Art. 7º, V, da
+                    LGPD).</p>
 
                 <h3>4. Compartilhamento de dados</h3>
-                <p>Os dados coletados não são vendidos, cedidos ou compartilhados com terceiros para fins comerciais. O
-                    armazenamento em planilha Google está sujeito aos Termos de Serviço e à Política de Privacidade do
-                    Google LLC.</p>
+                <p>Os dados coletados não são vendidos, cedidos ou compartilhados com terceiros para fins comerciais.
+                    O armazenamento em planilha Google está sujeito aos Termos de Serviço e à Política de Privacidade
+                    do Google LLC. O sistema de atendimento comercial é operado pela Resulta Digital, prestadora de
+                    serviço da Nyr Festas.</p>
 
                 <h3>5. Prazo de retenção</h3>
-                <p>Os e-mails coletados são mantidos enquanto houver interesse comercial legítimo ou até que o titular
-                    solicite a exclusão.</p>
+                <p>Os e-mails e os dados de contato coletados são mantidos enquanto houver interesse comercial
+                    legítimo ou até que o titular solicite a exclusão.</p>
 
                 <h3>6. Direitos do titular</h3>
                 <p>Nos termos da LGPD, você tem direito a: confirmar a existência do tratamento, acessar seus dados,
@@ -1856,6 +1947,9 @@
                 btn.disabled = true;
                 input.disabled = true;
 
+                /* Também entra como contato na Resulta, com consentimento */
+                nyrEnviarResulta({ email }, 'Newsletter — Rodapé', { consent: true });
+
                 fetch(SCRIPT_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain' },
@@ -1938,7 +2032,7 @@
                     `Cheguei até aqui pela página de vendas e gostaria de mais informações.`,
                     `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
                 ].map(encodeURIComponent).join('%0A');
-                nyrTrackLead(`https://wa.me/${WA}?text=${msg}`, 'Formulário CTA — Mais informações');
+                nyrTrackLead(`https://wa.me/${WA}?text=${msg}`, 'Formulário CTA — Mais informações', { razaoSocial: rs, cnpj });
             });
         })();
 
@@ -1966,7 +2060,7 @@
                     `Cheguei até aqui pela página de vendas e gostaria de solicitar o catálogo completo de Halloween.`,
                     `Razão Social: ${rs}  |  CNPJ: ${cnpj}`
                 ].map(encodeURIComponent).join('%0A');
-                nyrTrackLead(`https://wa.me/${WA}?text=${msg}`, 'Formulário Hero — Catálogo Halloween');
+                nyrTrackLead(`https://wa.me/${WA}?text=${msg}`, 'Formulário Hero — Catálogo Halloween', { razaoSocial: rs, cnpj });
             });
         })();
 
@@ -2087,7 +2181,7 @@
                 if (cnpjErr) setFieldError(inputCNPJ, errCNPJ, cnpjErr);
                 if (rsErr || cnpjErr) return;
                 const origem = _catalogSeason ? `Catálogo ${_catalogSeason}` : 'Catálogo';
-                nyrTrackLead(`https://wa.me/${WA_NUM}?text=${buildWAMsg(rs, cnpj)}`, `Formulário Modal — ${origem}`);
+                nyrTrackLead(`https://wa.me/${WA_NUM}?text=${buildWAMsg(rs, cnpj)}`, `Formulário Modal — ${origem}`, { razaoSocial: rs, cnpj });
                 closeModal();
             });
 
