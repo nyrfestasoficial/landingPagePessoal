@@ -5360,3 +5360,16 @@ button {
         font-size: max(calc(20px * var(--nv-k) / var(--nv-z)), min(calc(var(--nv-nome-max) * var(--nv-k) / var(--nv-z)), calc(100cqw / var(--nw, 7))));
     }
 }
+
+/* ── Hero responsivo: imagens dedicadas Tablet / Mobile (desktop = regra base) ── */
+@media (max-width: 891px) {
+    .hero-lp-bg {
+        background-image: url('https://res.cloudinary.com/dzt1kqdbc/image/upload/v1792495343/HERO_CARNAVAL-TABLET_ewsspm.webp');
+    }
+}
+
+@media (max-width: 720px) {
+    .hero-lp-bg {
+        background-image: url('https://res.cloudinary.com/dzt1kqdbc/image/upload/v1792495344/HERO_CARNAVAL-MOBILE_jixg4p.webp');
+    }
+}
